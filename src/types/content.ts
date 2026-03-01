@@ -29,4 +29,8 @@ export interface ContentFull {
   word_count?: number;
   read_time_minutes?: number;
   source_url?: string;
+  // SEO fields (from seo rewrite pipeline)
+  seo_meta_description?: string;
+  seo_schema_jsonld?: string;
+  seo_target_keyword?: string;
 }

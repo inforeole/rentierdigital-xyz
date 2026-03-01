@@ -12,6 +12,8 @@ interface Props {
   canonical: string;
   htmlContent: string;
   related: ContentListItem[];
+  seoSchemaJsonld?: string;
+  seoTargetKeyword?: string;
 }
 
 const {
@@ -23,7 +25,32 @@ const {
   canonical,
   htmlContent,
   related,
+  seoSchemaJsonld,
+  seoTargetKeyword,
 } = Astro.props;
+
+// Use custom JSON-LD from SEO pipeline if available, otherwise default
+const jsonLd = seoSchemaJsonld
+  ? JSON.parse(seoSchemaJsonld)
+  : {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      datePublished: publishedDate,
+      author: {
+        "@type": "Person",
+        name: "Phil",
+        url: "https://rentierdigital.xyz/about",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Rentier Digital",
+        url: "https://rentierdigital.xyz",
+      },
+    };
+// Ensure @context is always present
+if (!jsonLd["@context"]) jsonLd["@context"] = "https://schema.org";
 ---
 
 <BaseLayout
@@ -63,21 +90,6 @@ const {
     <RelatedArticles articles={related} />
   </article>
 
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
-    description,
-    datePublished: publishedDate,
-    author: {
-      "@type": "Person",
-      name: "Phil",
-      url: "https://rentierdigital.xyz/about",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Rentier Digital",
-      url: "https://rentierdigital.xyz",
-    },
-  })} />
+  {seoTargetKeyword && <meta name="keywords" content={seoTargetKeyword} />}
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </BaseLayout>

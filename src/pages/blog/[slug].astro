@@ -36,6 +36,7 @@ if (!content) {
 
 const htmlContent = await renderMarkdown(content.content_markdown);
 const description =
+  content.seo_meta_description ??
   content.hook_first_lines ??
   content.content_markdown.slice(0, 155).replace(/\n/g, " ");
 const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
@@ -50,4 +51,6 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
   canonical={canonical}
   htmlContent={htmlContent}
   related={related}
+  seoSchemaJsonld={content.seo_schema_jsonld}
+  seoTargetKeyword={content.seo_target_keyword}
 />
