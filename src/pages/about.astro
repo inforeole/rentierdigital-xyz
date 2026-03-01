@@ -7,7 +7,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   description="20 years in dev, now helping non-technical founders build and ship real products with AI."
 >
   <article class="prose prose-invert mx-auto max-w-3xl">
-    <h1>About</h1>
+    <div class="not-prose mb-8 flex items-center gap-6">
+      <img
+        src="/avatar.png"
+        alt="Phil"
+        class="h-24 w-24 rounded-full border-2 border-white/10"
+      />
+      <div>
+        <h1 class="text-3xl font-bold text-white">About</h1>
+      </div>
+    </div>
     <p>
       I'm Phil — 20 years in software development, team leadership, and agile
       methods. I've been building products from A to Z for startups and
@@ -37,7 +46,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <h2>Get in touch</h2>
     <p>
-      Find me on <a href="https://github.com/inforeole">GitHub</a>.
+      Find me on <a href="https://github.com/rentierdigital">GitHub</a>.
     </p>
   </article>
 </BaseLayout>
