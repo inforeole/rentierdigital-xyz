@@ -1,0 +1,53 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { getBlogList, getBlogBySlug } from "../../lib/convex";
+import { renderMarkdown } from "../../lib/markdown";
+import type { ContentListItem } from "../../types/content";
+
+export async function getStaticPaths() {
+  const articles = await getBlogList();
+  return articles.map((article) => {
+    // Pre-compute top 3 related articles by common themes
+    const related = articles
+      .filter((a) => a.slug !== article.slug)
+      .map((a) => ({
+        ...a,
+        commonThemes: a.themes.filter((t: string) =>
+          article.themes.includes(t)
+        ).length,
+      }))
+      .filter((a) => a.commonThemes > 0)
+      .sort((a, b) => b.commonThemes - a.commonThemes)
+      .slice(0, 3);
+    return {
+      params: { slug: article.slug },
+      props: { related: related as ContentListItem[] },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { related } = Astro.props;
+const content = await getBlogBySlug(slug!);
+
+if (!content) {
+  return Astro.redirect("/404");
+}
+
+const htmlContent = await renderMarkdown(content.content_markdown);
+const description =
+  content.hook_first_lines ??
+  content.content_markdown.slice(0, 155).replace(/\n/g, " ");
+const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
+---
+
+<ArticleLayout
+  title={content.title}
+  description={description}
+  publishedDate={content.published_date}
+  readTime={content.read_time_minutes}
+  themes={content.themes}
+  canonical={canonical}
+  htmlContent={htmlContent}
+  related={related}
+/>

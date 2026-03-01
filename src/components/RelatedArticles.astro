@@ -1,0 +1,32 @@
+---
+import type { ContentListItem } from "../types/content";
+
+interface Props {
+  articles: ContentListItem[];
+}
+
+const { articles } = Astro.props;
+---
+
+{
+  articles.length > 0 && (
+    <aside class="mt-12 border-t border-white/10 pt-8">
+      <h2 class="mb-4 text-lg font-semibold text-white">Related Articles</h2>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {articles.map((a) => (
+          <a
+            href={`/blog/${a.slug}`}
+            class="rounded-lg border border-white/10 p-4 transition-colors hover:border-white/20"
+          >
+            <h3 class="text-sm font-medium text-white">{a.title}</h3>
+            {a.hook_first_lines && (
+              <p class="mt-1 line-clamp-2 text-xs text-neutral-400">
+                {a.hook_first_lines}
+              </p>
+            )}
+          </a>
+        ))}
+      </div>
+    </aside>
+  )
+}

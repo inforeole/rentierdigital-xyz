@@ -1,0 +1,49 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+}
+
+const { currentPage, totalPages } = Astro.props;
+
+function pageUrl(page: number): string {
+  if (page === 1) return "/blog";
+  return `/blog/page/${page}`;
+}
+---
+
+{
+  totalPages > 1 && (
+    <nav class="flex items-center justify-center gap-4 pt-8">
+      {currentPage > 1 ? (
+        <a
+          href={pageUrl(currentPage - 1)}
+          class="rounded-md border border-white/10 px-4 py-2 text-sm text-neutral-400 transition-colors hover:border-white/20 hover:text-white"
+        >
+          Previous
+        </a>
+      ) : (
+        <span class="rounded-md border border-white/5 px-4 py-2 text-sm text-neutral-600">
+          Previous
+        </span>
+      )}
+
+      <span class="text-sm text-neutral-500">
+        {currentPage} / {totalPages}
+      </span>
+
+      {currentPage < totalPages ? (
+        <a
+          href={pageUrl(currentPage + 1)}
+          class="rounded-md border border-white/10 px-4 py-2 text-sm text-neutral-400 transition-colors hover:border-white/20 hover:text-white"
+        >
+          Next
+        </a>
+      ) : (
+        <span class="rounded-md border border-white/5 px-4 py-2 text-sm text-neutral-600">
+          Next
+        </span>
+      )}
+    </nav>
+  )
+}

@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Pagination from "../../components/Pagination.astro";
+import { getBlogList } from "../../lib/convex";
+
+const PAGE_SIZE = 12;
+
+const articles = await getBlogList();
+articles.sort(
+  (a, b) =>
+    new Date(b.published_date ?? 0).getTime() -
+    new Date(a.published_date ?? 0).getTime()
+);
+
+const totalPages = Math.ceil(articles.length / PAGE_SIZE);
+const pageArticles = articles.slice(0, PAGE_SIZE);
+---
+
+<BaseLayout
+  title="Blog — Rentier Digital"
+  description="Articles on building with AI, prompt engineering, solo building, and shipping real products."
+>
+  <h1 class="mb-8 text-3xl font-bold text-white">Blog</h1>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      pageArticles.map((article) => (
+        <ArticleCard
+          title={article.title}
+          slug={article.slug}
+          hook={article.hook_first_lines}
+          themes={article.themes}
+          publishedDate={article.published_date}
+          readTime={article.read_time_minutes}
+        />
+      ))
+    }
+  </div>
+
+  <Pagination currentPage={1} totalPages={totalPages} />
+</BaseLayout>
