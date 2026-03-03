@@ -34,7 +34,9 @@ if (!content) {
   return Astro.redirect("/404");
 }
 
-const htmlContent = await renderMarkdown(content.content_markdown);
+// Strip the first H1 from markdown (layout already renders it)
+const markdownWithoutH1 = content.content_markdown.replace(/^#\s+.+\n*/m, "");
+const htmlContent = await renderMarkdown(markdownWithoutH1);
 const description =
   content.seo_meta_description ??
   content.hook_first_lines ??
@@ -43,7 +45,7 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
 ---
 
 <ArticleLayout
-  title={content.title}
+  title={content.seo_meta_title ?? content.title}
   description={description}
   publishedDate={content.published_date}
   readTime={content.read_time_minutes}
@@ -53,4 +55,5 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
   related={related}
   seoSchemaJsonld={content.seo_schema_jsonld}
   seoTargetKeyword={content.seo_target_keyword}
+  coverImageUrl={content.cover_image_url}
 />
