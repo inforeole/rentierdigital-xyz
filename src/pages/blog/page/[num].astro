@@ -18,11 +18,9 @@ const { num } = Astro.params;
 const currentPage = Number(num);
 
 const articles = await getBlogList();
-articles.sort(
-  (a, b) =>
-    new Date(b.published_date ?? 0).getTime() -
-    new Date(a.published_date ?? 0).getTime()
-);
+const sortDate = (a: (typeof articles)[0]) =>
+  a.published_date ? new Date(a.published_date).getTime() : a._creationTime;
+articles.sort((a, b) => sortDate(b) - sortDate(a));
 
 const PAGE_SIZE = 12;
 const totalPages = Math.ceil(articles.length / PAGE_SIZE);

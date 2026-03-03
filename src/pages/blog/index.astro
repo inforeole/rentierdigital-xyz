@@ -7,11 +7,9 @@ import { getBlogList } from "../../lib/convex";
 const PAGE_SIZE = 12;
 
 const articles = await getBlogList();
-articles.sort(
-  (a, b) =>
-    new Date(b.published_date ?? 0).getTime() -
-    new Date(a.published_date ?? 0).getTime()
-);
+const sortDate = (a: (typeof articles)[0]) =>
+  a.published_date ? new Date(a.published_date).getTime() : a._creationTime;
+articles.sort((a, b) => sortDate(b) - sortDate(a));
 
 const totalPages = Math.ceil(articles.length / PAGE_SIZE);
 const pageArticles = articles.slice(0, PAGE_SIZE);

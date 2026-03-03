@@ -1,6 +1,7 @@
 // synced from convex/schema.ts — contents table
 export interface ContentListItem {
   _id: string;
+  _creationTime: number;
   title: string;
   slug: string;
   hook_first_lines: string | null;
