@@ -2,6 +2,7 @@
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import { getBlogList, getBlogBySlug } from "../../lib/convex";
 import { renderMarkdown } from "../../lib/markdown";
+import { toLocalImagePath } from "../../lib/image-utils";
 import type { ContentListItem } from "../../types/content";
 
 export async function getStaticPaths() {
@@ -38,7 +39,8 @@ if (!content) {
 // Then demote any remaining H1 to H2 — only one H1 per page (the layout title)
 const markdownWithoutH1 = content.content_markdown
   .replace(/^#\s+.+\n*/m, "")
-  .replace(/^# /gm, "## ");
+  .replace(/^# /gm, "## ")
+  .replace(/^\[cover image\]\s*$/gim, "");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
 const description =
   content.seo_meta_description ??
@@ -58,5 +60,5 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
   related={related}
   seoSchemaJsonld={content.seo_schema_jsonld}
   seoTargetKeyword={content.seo_target_keyword}
-  coverImageUrl={content.cover_image_url}
+  coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url) : undefined}
 />
