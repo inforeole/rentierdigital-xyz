@@ -35,7 +35,10 @@ if (!content) {
 }
 
 // Strip the first H1 from markdown (layout already renders it)
-const markdownWithoutH1 = content.content_markdown.replace(/^#\s+.+\n*/m, "");
+// Then demote any remaining H1 to H2 — only one H1 per page (the layout title)
+const markdownWithoutH1 = content.content_markdown
+  .replace(/^#\s+.+\n*/m, "")
+  .replace(/^# /gm, "## ");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
 const description =
   content.seo_meta_description ??
