@@ -50,7 +50,8 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
 ---
 
 <ArticleLayout
-  title={content.seo_meta_title ?? content.title}
+  title={content.title}
+  seoTitle={content.seo_meta_title}
   description={description}
   publishedDate={content.published_date}
   readTime={content.read_time_minutes}

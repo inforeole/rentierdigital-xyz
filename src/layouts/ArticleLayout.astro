@@ -5,6 +5,7 @@ import type { ContentListItem } from "../types/content";
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   publishedDate?: string;
   readTime?: number;
@@ -22,6 +23,7 @@ interface Props {
 
 const {
   title,
+  seoTitle,
   description,
   publishedDate,
   readTime,
@@ -62,7 +64,7 @@ if (!jsonLd["@context"]) jsonLd["@context"] = "https://schema.org";
 ---
 
 <BaseLayout
-  title={`${title} — Rentier Digital`}
+  title={`${seoTitle ?? title} — Rentier Digital`}
   description={description}
   canonical={canonical}
   ogType="article"
