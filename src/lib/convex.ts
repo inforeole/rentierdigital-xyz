@@ -9,10 +9,12 @@ export async function getBlogList(lang = "EN"): Promise<ContentListItem[]> {
 }
 
 export async function getBlogBySlug(
-  slug: string
+  slug: string,
+  lang?: string
 ): Promise<ContentFull | null> {
+  const langParam = lang ? `?lang=${lang}` : "";
   const res = await fetch(
-    `${CONVEX_SITE_URL}/api/blog/${encodeURIComponent(slug)}`
+    `${CONVEX_SITE_URL}/api/blog/${encodeURIComponent(slug)}${langParam}`
   );
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`/api/blog/${slug}: ${res.status}`);

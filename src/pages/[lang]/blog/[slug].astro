@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const { related, langCode } = Astro.props;
-const content = await getBlogBySlug(slug!);
+const content = await getBlogBySlug(slug!, langCode.toUpperCase());
 
 if (!content) {
   return Astro.redirect("/404");
