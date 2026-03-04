@@ -24,7 +24,7 @@ try {
       // dest doesn't exist, convert
     }
 
-    await sharp(src).avif({ quality: 50 }).toFile(dest);
+    await sharp(src).resize({ width: 768, withoutEnlargement: true }).avif({ quality: 40 }).toFile(dest);
     converted++;
     console.log(`Converted: ${file} → ${file.replace(/\.\w+$/, ".avif")}`);
   }
