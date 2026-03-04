@@ -39,20 +39,26 @@ if (!content) {
   return Astro.redirect("/404");
 }
 
+// Strip the first H1 from markdown (layout already renders it)
+// Then demote any remaining H1 to H2 — only one H1 per page (the layout title)
 const markdownWithoutH1 = content.content_markdown
   .replace(/^#\s+.+\n*/m, "")
   .replace(/^# /gm, "## ")
   .replace(/^\[cover image\]\s*$/gim, "");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
-const description =
+// Don't render cover in layout if markdown already has an inline image (avoids duplicate)
+const markdownHasInlineImage = /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
+const description = (
   content.seo_meta_description ??
   content.hook_first_lines ??
-  content.content_markdown.slice(0, 155).replace(/\n/g, " ");
+  content.content_markdown.slice(0, 155).replace(/\n/g, " ")
+).trim();
 const canonical = `https://rentierdigital.xyz/${langCode}/blog/${content.slug}`;
 ---
 
 <ArticleLayout
-  title={content.seo_meta_title ?? content.title}
+  title={content.title}
+  seoTitle={content.seo_meta_title}
   description={description}
   publishedDate={content.published_date}
   readTime={content.read_time_minutes}
@@ -63,6 +69,7 @@ const canonical = `https://rentierdigital.xyz/${langCode}/blog/${content.slug}`;
   seoSchemaJsonld={content.seo_schema_jsonld}
   seoTargetKeyword={content.seo_target_keyword}
   coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url) : undefined}
+  hideCoverImage={markdownHasInlineImage}
   coverImageAlt={content.cover_image_alt}
   lang={langCode}
   translations={content.translations}
