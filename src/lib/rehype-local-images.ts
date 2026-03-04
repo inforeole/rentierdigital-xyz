@@ -5,6 +5,8 @@ import type { Root, Element, Parent } from "hast";
 
 export function rehypeLocalImages() {
   return (tree: Root) => {
+    let isFirstImage = true;
+
     visit(tree, "element", (node: Element, index: number | undefined, parent: Parent | undefined) => {
       if (node.tagName !== "img") return;
       if (index === undefined || !parent) return;
@@ -17,6 +19,11 @@ export function rehypeLocalImages() {
         ? node.properties.alt
         : "Illustration";
 
+      // First image = LCP candidate: eager load, high priority
+      const loading = isFirstImage ? "eager" : "lazy";
+      const extraProps = isFirstImage ? { fetchpriority: "high" } : {};
+      isFirstImage = false;
+
       // Generate descriptive filename using alt text
       const filename = imageFilename(src, alt);
       const localSrc = `/blog-images/${filename}`;
@@ -26,8 +33,9 @@ export function rehypeLocalImages() {
       if (ext === "svg" || ext === "gif") {
         node.properties.src = localSrc;
         node.properties.alt = alt;
-        node.properties.loading = "lazy";
+        node.properties.loading = loading;
         node.properties.decoding = "async";
+        Object.assign(node.properties, extraProps);
         if (!node.properties.width) node.properties.width = "768";
         if (!node.properties.height) node.properties.height = "432";
         return;
@@ -40,11 +48,12 @@ export function rehypeLocalImages() {
         h("img", {
           src: localSrc,
           alt,
-          loading: "lazy",
+          loading,
           decoding: "async",
           width: "768",
           height: "432",
           sizes: "(max-width: 768px) 100vw, 662px",
+          ...extraProps,
         }),
       ]);
 
