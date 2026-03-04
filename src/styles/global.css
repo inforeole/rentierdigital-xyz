@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/* Prevent CLS on prose images that lack width/height attributes */
+.prose img {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+}
