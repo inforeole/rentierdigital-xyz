@@ -8,6 +8,7 @@ interface Props {
   publishedTime?: string;
   lang?: string;
   translations?: { lang: string; slug: string; title: string }[];
+  preloadImage?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   publishedTime,
   lang = "en",
   translations = [],
+  preloadImage,
 } = Astro.props;
 
 const siteName = "Rentier Digital";
@@ -29,6 +31,7 @@ const fullOgImage = ogImage.startsWith("http")
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+{preloadImage && <link rel="preload" as="image" type="image/avif" href={preloadImage} fetchpriority="high" />}
 <link rel="preconnect" href="https://plausible.io" />
 <link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="icon" href="/favicon.ico" sizes="32x32" />

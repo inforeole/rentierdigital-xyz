@@ -48,6 +48,10 @@ const markdownWithoutH1 = content.content_markdown
 const htmlContent = await renderMarkdown(markdownWithoutH1);
 // Don't render cover in layout if markdown already has an inline image (avoids duplicate)
 const markdownHasInlineImage = /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
+const firstImageMatch = markdownWithoutH1.match(/!\[(.*?)\]\((https?:\/\/[^)]+)\)/);
+const firstInlineImageUrl = firstImageMatch
+  ? toLocalImagePath(firstImageMatch[2], firstImageMatch[1] || "Illustration")
+  : undefined;
 const description = (
   content.seo_meta_description ??
   content.hook_first_lines ??
@@ -73,4 +77,5 @@ const canonical = `https://rentierdigital.xyz/${langCode}/blog/${content.slug}`;
   coverImageAlt={content.cover_image_alt}
   lang={langCode}
   translations={content.translations}
+  preloadImage={markdownHasInlineImage ? firstInlineImageUrl : undefined}
 />

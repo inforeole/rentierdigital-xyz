@@ -20,6 +20,7 @@ interface Props {
   hideCoverImage?: boolean;
   lang?: string;
   translations?: { lang: string; slug: string; title: string }[];
+  preloadImage?: string;
 }
 
 const {
@@ -39,7 +40,28 @@ const {
   hideCoverImage = false,
   lang,
   translations,
+  preloadImage,
 } = Astro.props;
+
+// LCP image preload: inline image if cover hidden, otherwise cover
+const lcpPreload = preloadImage
+  ? preloadImage.replace(/\.\w+$/, "-480w.avif")
+  : (!hideCoverImage && coverImageUrl)
+    ? coverImageUrl.replace(/\.\w+$/, "-480w.avif")
+    : undefined;
+
+// Transform TLDR into styled box — handles both blockquote and plain paragraph
+const processedHtml = htmlContent
+  // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div
+  .replace(
+    /<blockquote>\s*(<p><strong>TL;DR:?<\/strong>[\s\S]*?)<\/blockquote>/i,
+    '<div class="tldr-box">$1</div>'
+  )
+  // Case 2: TLDR as a plain paragraph → wrap in tldr-box div
+  .replace(
+    /(?<!<div class="tldr-box">)(<p><strong>TL;DR:?<\/strong>[\s\S]*?<\/p>)/i,
+    '<div class="tldr-box">$1</div>'
+  );
 
 // Build full cover image URL for meta tags
 const fullCoverImage = coverImageUrl
@@ -95,6 +117,7 @@ if (!jsonLd.publisher?.logo) {
   publishedTime={publishedDate}
   lang={lang}
   translations={translations}
+  preloadImage={lcpPreload}
 >
   <article class="mx-auto max-w-3xl">
     <header class="mb-8">
@@ -152,7 +175,7 @@ if (!jsonLd.publisher?.logo) {
 
     <div
       class="prose prose-invert max-w-none prose-headings:text-white prose-a:text-blue-400 prose-code:text-neutral-300 prose-pre:bg-[#111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-lg prose-img:border prose-img:border-white/10"
-      set:html={htmlContent}
+      set:html={processedHtml}
     />
 
     <RelatedArticles articles={related} lang={lang} />
