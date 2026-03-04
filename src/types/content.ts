@@ -5,13 +5,14 @@ export interface ContentListItem {
   title: string;
   slug: string;
   hook_first_lines: string | null;
-  lang: "EN" | "FR";
+  lang: "EN" | "FR" | "ES" | "DE";
   type: string;
   themes: string[];
   tags: string[];
   published_date: string | null;
   word_count: number | null;
   read_time_minutes: number | null;
+  translation_group_id?: string | null;
 }
 
 // synced from convex/schema.ts — contents table (full)
@@ -21,7 +22,7 @@ export interface ContentFull {
   slug: string;
   content_markdown: string;
   hook_first_lines?: string;
-  lang: "EN" | "FR";
+  lang: "EN" | "FR" | "ES" | "DE";
   type: string;
   themes: string[];
   tags?: string[];
@@ -30,8 +31,11 @@ export interface ContentFull {
   word_count?: number;
   read_time_minutes?: number;
   source_url?: string;
-  // SEO fields (from seo rewrite pipeline)
   seo_meta_description?: string;
+  seo_meta_title?: string;
   seo_schema_jsonld?: string;
   seo_target_keyword?: string;
+  cover_image_url?: string;
+  cover_image_alt?: string;
+  translations?: { lang: string; slug: string; title: string }[];
 }

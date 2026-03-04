@@ -2,9 +2,9 @@ import type { ContentListItem, ContentFull } from "../types/content";
 
 const CONVEX_SITE_URL = import.meta.env.CONVEX_SITE_URL;
 
-export async function getBlogList(): Promise<ContentListItem[]> {
-  const res = await fetch(`${CONVEX_SITE_URL}/api/blog`);
-  if (!res.ok) throw new Error(`/api/blog: ${res.status}`);
+export async function getBlogList(lang = "EN"): Promise<ContentListItem[]> {
+  const res = await fetch(`${CONVEX_SITE_URL}/api/blog?lang=${lang}`);
+  if (!res.ok) throw new Error(`/api/blog?lang=${lang}: ${res.status}`);
   return res.json();
 }
 
