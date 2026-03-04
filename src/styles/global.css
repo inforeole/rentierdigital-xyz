@@ -1,6 +1,22 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Serif font for article body text — system font, zero perf cost */
+.prose p,
+.prose li,
+.prose blockquote {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* TL;DR box — replaces blockquote to avoid prose quote marks */
+.tldr-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
 /* Prevent CLS on prose images that lack width/height attributes */
 .prose img {
   aspect-ratio: 16 / 9;
