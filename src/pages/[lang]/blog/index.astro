@@ -4,39 +4,34 @@ import ArticleCard from "../../../components/ArticleCard.astro";
 import Pagination from "../../../components/Pagination.astro";
 import { getBlogList } from "../../../lib/convex";
 
+const LOCALES = ["fr", "es", "de"];
+
 export async function getStaticPaths() {
-  const PAGE_SIZE = 12;
-  const articles = await getBlogList();
-  const totalPages = Math.ceil(articles.length / PAGE_SIZE);
-  // Pages 2 to N (page 1 is blog/index.astro)
-  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
-    params: { num: String(i + 2) },
-  }));
+  return LOCALES.map((lang) => ({ params: { lang } }));
 }
 
-const { num } = Astro.params;
-const currentPage = Number(num);
+const { lang } = Astro.params;
+const PAGE_SIZE = 12;
 
-const articles = await getBlogList();
+const articles = await getBlogList(lang!.toUpperCase());
 const sortDate = (a: (typeof articles)[0]) =>
   a.published_date ? new Date(a.published_date).getTime() : a._creationTime;
 articles.sort((a, b) => sortDate(b) - sortDate(a));
 
-const PAGE_SIZE = 12;
 const totalPages = Math.ceil(articles.length / PAGE_SIZE);
-const start = (currentPage - 1) * PAGE_SIZE;
-const pageArticles = articles.slice(start, start + PAGE_SIZE);
+const pageArticles = articles.slice(0, PAGE_SIZE);
 ---
 
 <BaseLayout
-  title={`Blog — Page ${currentPage} — Rentier Digital`}
+  title="Blog — Rentier Digital"
   description="Articles on building with AI, prompt engineering, solo building, and shipping real products."
+  lang={lang}
 >
   <h1 class="mb-8 text-3xl font-bold text-white">Blog</h1>
 
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {
-      pageArticles.map((article) => (
+  {pageArticles.length > 0 ? (
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {pageArticles.map((article) => (
         <ArticleCard
           title={article.title}
           slug={article.slug}
@@ -44,11 +39,13 @@ const pageArticles = articles.slice(start, start + PAGE_SIZE);
           themes={article.themes}
           publishedDate={article.published_date}
           readTime={article.read_time_minutes}
-          lang="en"
+          lang={lang}
         />
-      ))
-    }
-  </div>
+      ))}
+    </div>
+  ) : (
+    <p class="text-neutral-400">No articles available in this language yet.</p>
+  )}
 
-  <Pagination currentPage={currentPage} totalPages={totalPages} />
+  <Pagination currentPage={1} totalPages={totalPages} basePath={`/${lang}/blog`} />
 </BaseLayout>

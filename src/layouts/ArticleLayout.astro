@@ -16,6 +16,8 @@ interface Props {
   seoTargetKeyword?: string;
   coverImageUrl?: string;
   coverImageAlt?: string;
+  lang?: string;
+  translations?: { lang: string; slug: string; title: string }[];
 }
 
 const {
@@ -31,6 +33,8 @@ const {
   seoTargetKeyword,
   coverImageUrl,
   coverImageAlt,
+  lang,
+  translations,
 } = Astro.props;
 
 // Use custom JSON-LD from SEO pipeline if available, otherwise default
@@ -63,6 +67,8 @@ if (!jsonLd["@context"]) jsonLd["@context"] = "https://schema.org";
   canonical={canonical}
   ogType="article"
   publishedTime={publishedDate}
+  lang={lang}
+  translations={translations}
 >
   <article class="mx-auto max-w-3xl">
     <header class="mb-8">
@@ -101,7 +107,7 @@ if (!jsonLd["@context"]) jsonLd["@context"] = "https://schema.org";
       set:html={htmlContent}
     />
 
-    <RelatedArticles articles={related} />
+    <RelatedArticles articles={related} lang={lang} />
   </article>
 
   {seoTargetKeyword && <meta name="keywords" content={seoTargetKeyword} />}

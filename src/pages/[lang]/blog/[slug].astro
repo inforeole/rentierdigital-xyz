@@ -1,0 +1,70 @@
+---
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import { getBlogList, getBlogBySlug } from "../../../lib/convex";
+import { renderMarkdown } from "../../../lib/markdown";
+import { toLocalImagePath } from "../../../lib/image-utils";
+import type { ContentListItem } from "../../../types/content";
+
+const LOCALES = ["fr", "es", "de"];
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of LOCALES) {
+    const articles = await getBlogList(lang.toUpperCase());
+    for (const article of articles) {
+      const related = articles
+        .filter((a) => a.slug !== article.slug)
+        .map((a) => ({
+          ...a,
+          commonThemes: a.themes.filter((t: string) =>
+            article.themes.includes(t)
+          ).length,
+        }))
+        .filter((a) => a.commonThemes > 0)
+        .sort((a, b) => b.commonThemes - a.commonThemes)
+        .slice(0, 3);
+      paths.push({
+        params: { lang, slug: article.slug },
+        props: { related: related as ContentListItem[], langCode: lang },
+      });
+    }
+  }
+  return paths;
+}
+
+const { slug } = Astro.params;
+const { related, langCode } = Astro.props;
+const content = await getBlogBySlug(slug!);
+
+if (!content) {
+  return Astro.redirect("/404");
+}
+
+const markdownWithoutH1 = content.content_markdown
+  .replace(/^#\s+.+\n*/m, "")
+  .replace(/^# /gm, "## ")
+  .replace(/^\[cover image\]\s*$/gim, "");
+const htmlContent = await renderMarkdown(markdownWithoutH1);
+const description =
+  content.seo_meta_description ??
+  content.hook_first_lines ??
+  content.content_markdown.slice(0, 155).replace(/\n/g, " ");
+const canonical = `https://rentierdigital.xyz/${langCode}/blog/${content.slug}`;
+---
+
+<ArticleLayout
+  title={content.seo_meta_title ?? content.title}
+  description={description}
+  publishedDate={content.published_date}
+  readTime={content.read_time_minutes}
+  themes={content.themes}
+  canonical={canonical}
+  htmlContent={htmlContent}
+  related={related}
+  seoSchemaJsonld={content.seo_schema_jsonld}
+  seoTargetKeyword={content.seo_target_keyword}
+  coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url) : undefined}
+  coverImageAlt={content.cover_image_alt}
+  lang={langCode}
+  translations={content.translations}
+/>

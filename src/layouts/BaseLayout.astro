@@ -11,13 +11,16 @@ interface Props {
   ogImage?: string;
   ogType?: "website" | "article";
   publishedTime?: string;
+  lang?: string;
+  translations?: { lang: string; slug: string; title: string }[];
 }
 
 const props = Astro.props;
+const htmlLang = props.lang || "en";
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang={htmlLang} class="dark">
   <head>
     <BaseHead {...props} />
     <script

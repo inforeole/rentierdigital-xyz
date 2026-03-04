@@ -6,6 +6,8 @@ interface Props {
   ogImage?: string;
   ogType?: "website" | "article";
   publishedTime?: string;
+  lang?: string;
+  translations?: { lang: string; slug: string; title: string }[];
 }
 
 const {
@@ -15,6 +17,8 @@ const {
   ogImage = "/og-default.png",
   ogType = "website",
   publishedTime,
+  lang = "en",
+  translations = [],
 } = Astro.props;
 
 const siteName = "Rentier Digital";
@@ -30,6 +34,17 @@ const fullOgImage = ogImage.startsWith("http")
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <link rel="canonical" href={canonical} />
+{translations.length > 0 && (
+  <>
+    {translations.map((t) => {
+      const prefix = t.lang.toLowerCase() === "en" ? "" : `/${t.lang.toLowerCase()}`;
+      const url = `https://rentierdigital.xyz${prefix}/blog/${t.slug}`;
+      return <link rel="alternate" hreflang={t.lang.toLowerCase()} href={url} />;
+    })}
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+  </>
+)}
 <link
   rel="alternate"
   type="application/rss+xml"

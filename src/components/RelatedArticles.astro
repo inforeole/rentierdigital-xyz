@@ -3,9 +3,11 @@ import type { ContentListItem } from "../types/content";
 
 interface Props {
   articles: ContentListItem[];
+  lang?: string;
 }
 
-const { articles } = Astro.props;
+const { articles, lang } = Astro.props;
+const blogPrefix = lang && lang !== "en" ? `/${lang}/blog` : "/blog";
 ---
 
 {
@@ -15,7 +17,7 @@ const { articles } = Astro.props;
       <div class="grid gap-4 sm:grid-cols-3">
         {articles.map((a) => (
           <a
-            href={`/blog/${a.slug}`}
+            href={`${blogPrefix}/${a.slug}`}
             class="rounded-lg border border-white/10 p-4 transition-colors hover:border-white/20"
           >
             <h3 class="text-sm font-medium text-white">{a.title}</h3>
