@@ -1,27 +1,7 @@
 import { visit, SKIP } from "unist-util-visit";
-import { createHash } from "node:crypto";
 import { h } from "hastscript";
+import { imageFilename } from "./image-utils";
 import type { Root, Element, Parent } from "hast";
-
-function md5(input: string): string {
-  return createHash("md5").update(input).digest("hex");
-}
-
-function getExtension(url: string): string {
-  try {
-    const pathname = new URL(url).pathname;
-    const match = pathname.match(/\.(\w+)$/);
-    if (match) {
-      const ext = match[1].toLowerCase();
-      if (["jpg", "jpeg", "png", "gif", "webp", "svg", "avif"].includes(ext)) {
-        return ext;
-      }
-    }
-  } catch {
-    // invalid URL
-  }
-  return "jpg";
-}
 
 export function rehypeLocalImages() {
   return (tree: Root) => {
@@ -32,15 +12,15 @@ export function rehypeLocalImages() {
       const src = node.properties?.src;
       if (typeof src !== "string" || !src.startsWith("http")) return;
 
-      // URL rewrite → local path
-      const ext = getExtension(src);
-      const hash = md5(src).slice(0, 12);
-      const localSrc = `/blog-images/${hash}.${ext}`;
-
       // Alt fallback
       const alt = (typeof node.properties.alt === "string" && node.properties.alt.trim() !== "")
         ? node.properties.alt
         : "Illustration";
+
+      // Generate descriptive filename using alt text
+      const filename = imageFilename(src, alt);
+      const localSrc = `/blog-images/${filename}`;
+      const ext = filename.split(".").pop()?.toLowerCase();
 
       // SVG/GIF: keep simple <img>, no <picture> wrapper
       if (ext === "svg" || ext === "gif") {
@@ -54,9 +34,9 @@ export function rehypeLocalImages() {
       }
 
       // Other formats: wrap in <picture> with AVIF source
-      const avifSrc = `/blog-images/${hash}.avif`;
+      const avifSrc = `/blog-images/${filename.replace(/\.\w+$/, ".avif")}`;
       const pictureNode = h("picture", [
-        h("source", { srcSet: avifSrc, type: "image/avif" }),
+        h("source", { srcSet: avifSrc, type: "image/avif", sizes: "(max-width: 768px) 100vw, 662px" }),
         h("img", {
           src: localSrc,
           alt,
@@ -64,6 +44,7 @@ export function rehypeLocalImages() {
           decoding: "async",
           width: "768",
           height: "432",
+          sizes: "(max-width: 768px) 100vw, 662px",
         }),
       ]);
 

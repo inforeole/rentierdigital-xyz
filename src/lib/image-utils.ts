@@ -20,14 +20,37 @@ function getExtension(url: string): string {
   return "jpg";
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 50);
+}
+
+/**
+ * Generate a descriptive image filename from URL + optional descriptor.
+ * Format: {slugified-descriptor}-{hash8}.{ext}
+ * Fallback (no descriptor): {hash12}.{ext}
+ *
+ * Must match the logic in convex/astro.ts and rehype-local-images.ts.
+ */
+export function imageFilename(url: string, descriptor?: string): string {
+  const ext = getExtension(url);
+  const hash = md5(url).slice(0, 8);
+  if (descriptor && descriptor.trim()) {
+    const slug = slugify(descriptor);
+    if (slug) return `${slug}-${hash}.${ext}`;
+  }
+  return `${hash}.${ext}`;
+}
+
 /**
  * Convert an external image URL to a local /blog-images/ path.
- * Uses the same md5 hash as convex/astro.ts pushImagesToGitHub
+ * Uses the same naming as convex/astro.ts pushImagesToGitHub
  * and rehype-local-images.ts.
  */
-export function toLocalImagePath(url: string): string {
+export function toLocalImagePath(url: string, descriptor?: string): string {
   if (!url.startsWith("http")) return url;
-  const ext = getExtension(url);
-  const hash = md5(url).slice(0, 12);
-  return `/blog-images/${hash}.${ext}`;
+  return `/blog-images/${imageFilename(url, descriptor)}`;
 }

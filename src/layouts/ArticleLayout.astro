@@ -127,16 +127,19 @@ if (!jsonLd.publisher?.logo) {
             width="768"
             height="432"
             class="mb-8 w-full rounded-lg border border-white/10 object-cover"
+            fetchpriority="high"
           />
         ) : (
           <picture>
-            <source srcset={coverImageUrl.replace(/\.\w+$/, '.avif')} type="image/avif" />
+            <source srcset={coverImageUrl.replace(/\.\w+$/, '.avif')} type="image/avif" sizes="(max-width: 768px) 100vw, 662px" />
             <img
               src={coverImageUrl}
               alt={coverImageAlt || title}
               width="768"
               height="432"
+              sizes="(max-width: 768px) 100vw, 662px"
               class="mb-8 w-full rounded-lg border border-white/10 object-cover"
+              fetchpriority="high"
             />
           </picture>
         )
