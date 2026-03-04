@@ -4,9 +4,8 @@ import ArticleCard from "../../../../components/ArticleCard.astro";
 import Pagination from "../../../../components/Pagination.astro";
 import { getBlogList } from "../../../../lib/convex";
 
-const LOCALES = ["fr", "es", "de"];
-
 export async function getStaticPaths() {
+  const LOCALES = ["fr", "es", "de"];
   const PAGE_SIZE = 12;
   const paths = [];
   for (const lang of LOCALES) {

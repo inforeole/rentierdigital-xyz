@@ -5,9 +5,8 @@ import { renderMarkdown } from "../../../lib/markdown";
 import { toLocalImagePath } from "../../../lib/image-utils";
 import type { ContentListItem } from "../../../types/content";
 
-const LOCALES = ["fr", "es", "de"];
-
 export async function getStaticPaths() {
+  const LOCALES = ["fr", "es", "de"];
   const paths = [];
   for (const lang of LOCALES) {
     const articles = await getBlogList(lang.toUpperCase());
