@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /fr/
+Allow: /es/
+Allow: /de/
 
 Sitemap: https://rentierdigital.xyz/sitemap-index.xml
