@@ -131,7 +131,11 @@ if (!jsonLd.publisher?.logo) {
           />
         ) : (
           <picture>
-            <source srcset={coverImageUrl.replace(/\.\w+$/, '.avif')} type="image/avif" sizes="(max-width: 768px) 100vw, 662px" />
+            <source
+              srcset={`${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w`}
+              type="image/avif"
+              sizes="(max-width: 768px) 100vw, 662px"
+            />
             <img
               src={coverImageUrl}
               alt={coverImageAlt || title}

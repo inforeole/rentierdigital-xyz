@@ -24,9 +24,13 @@ try {
       // dest doesn't exist, convert
     }
 
+    // Full size (768w)
     await sharp(src).resize({ width: 768, withoutEnlargement: true }).avif({ quality: 40 }).toFile(dest);
+    // Mobile size (480w)
+    const mobileDest = join(dir, file.replace(/\.\w+$/, "-480w.avif"));
+    await sharp(src).resize({ width: 480, withoutEnlargement: true }).avif({ quality: 35 }).toFile(mobileDest);
     converted++;
-    console.log(`Converted: ${file} → ${file.replace(/\.\w+$/, ".avif")}`);
+    console.log(`Converted: ${file} → ${file.replace(/\.\w+$/, ".avif")} + 480w`);
   }
 
   console.log(`Done: ${converted} converted, ${images.length - converted} skipped`);

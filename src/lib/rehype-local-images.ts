@@ -41,10 +41,16 @@ export function rehypeLocalImages() {
         return;
       }
 
-      // Other formats: wrap in <picture> with AVIF source
-      const avifSrc = `/blog-images/${filename.replace(/\.\w+$/, ".avif")}`;
+      // Other formats: wrap in <picture> with AVIF srcset (480w + 768w)
+      const base = filename.replace(/\.\w+$/, "");
+      const avif768 = `/blog-images/${base}.avif`;
+      const avif480 = `/blog-images/${base}-480w.avif`;
       const pictureNode = h("picture", [
-        h("source", { srcSet: avifSrc, type: "image/avif", sizes: "(max-width: 768px) 100vw, 662px" }),
+        h("source", {
+          srcSet: `${avif480} 480w, ${avif768} 768w`,
+          type: "image/avif",
+          sizes: "(max-width: 768px) 100vw, 662px",
+        }),
         h("img", {
           src: localSrc,
           alt,
