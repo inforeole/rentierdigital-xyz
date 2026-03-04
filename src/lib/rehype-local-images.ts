@@ -40,9 +40,11 @@ export function rehypeLocalImages() {
         node.properties.alt = "Illustration";
       }
 
-      // Lazy loading + async decoding
+      // Lazy loading + async decoding + CLS prevention
       node.properties.loading = "lazy";
       node.properties.decoding = "async";
+      if (!node.properties.width) node.properties.width = "768";
+      if (!node.properties.height) node.properties.height = "432";
     });
   };
 }
