@@ -42,6 +42,8 @@ const markdownWithoutH1 = content.content_markdown
   .replace(/^# /gm, "## ")
   .replace(/^\[cover image\]\s*$/gim, "");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
+// Don't render cover in layout if markdown already has an inline image (avoids duplicate)
+const markdownHasInlineImage = /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
 const description =
   content.seo_meta_description ??
   content.hook_first_lines ??
@@ -61,7 +63,7 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
   related={related}
   seoSchemaJsonld={content.seo_schema_jsonld}
   seoTargetKeyword={content.seo_target_keyword}
-  coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url) : undefined}
+  coverImageUrl={content.cover_image_url && !markdownHasInlineImage ? toLocalImagePath(content.cover_image_url) : undefined}
   coverImageAlt={content.cover_image_alt}
   lang="en"
   translations={content.translations}
