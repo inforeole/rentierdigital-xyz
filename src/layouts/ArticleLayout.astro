@@ -52,6 +52,11 @@ const lcpPreload = preloadImage
 
 // Strip <hr> tags — layout handles spacing, markdown --- separators are noise
 let processedHtml = htmlContent.replace(/<hr\s*\/?>/gi, '');
+// Style first bold paragraph as subtitle (same sans-serif font as h1)
+processedHtml = processedHtml.replace(
+  /^(\s*<p><strong>)([\s\S]*?)(<\/strong><\/p>)/i,
+  '<p class="subtitle">$2</p>'
+);
 // Transform TLDR into styled box — handles both blockquote and plain paragraph
 processedHtml = processedHtml
   // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div

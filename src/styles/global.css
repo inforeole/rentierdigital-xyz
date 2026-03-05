@@ -8,6 +8,14 @@
   font-family: Georgia, "Times New Roman", serif;
 }
 
+/* Subtitle (hook) — same sans-serif as h1 */
+.prose .subtitle {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 /* TL;DR box — replaces blockquote to avoid prose quote marks */
 .tldr-box {
   background: rgba(255, 255, 255, 0.05);
