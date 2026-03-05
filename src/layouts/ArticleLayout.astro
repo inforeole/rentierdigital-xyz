@@ -51,6 +51,7 @@ const lcpPreload = preloadImage
     : undefined;
 
 // Strip <hr> tags — layout handles spacing, markdown --- separators are noise
+let processedHtml = htmlContent.replace(/<hr\s*\/?>/gi, '');
 // Transform TLDR into styled box — handles both blockquote and plain paragraph
 processedHtml = processedHtml
   // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div
