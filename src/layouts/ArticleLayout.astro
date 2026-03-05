@@ -51,7 +51,7 @@ const lcpPreload = preloadImage
     : undefined;
 
 // Transform TLDR into styled box — handles both blockquote and plain paragraph
-const processedHtml = htmlContent
+let processedHtml = htmlContent
   // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div
   .replace(
     /<blockquote>\s*(<p><strong>TL;DR:?<\/strong>[\s\S]*?)<\/blockquote>/i,
@@ -62,6 +62,34 @@ const processedHtml = htmlContent
     /(?<!<div class="tldr-box">)(<p><strong>TL;DR:?<\/strong>[\s\S]*?<\/p>)/i,
     '<div class="tldr-box">$1</div>'
   );
+
+// Inject cover image after TL;DR box (with italic caption)
+if (coverImageUrl && !hideCoverImage) {
+  const altText = coverImageAlt || title;
+  const isSvgOrGif = /\.(svg|gif)$/i.test(coverImageUrl);
+  const imgTag = isSvgOrGif
+    ? `<img src="${coverImageUrl}" alt="${altText}" width="768" height="432" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" />`
+    : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><img src="${coverImageUrl}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
+  const captionHtml = coverImageAlt
+    ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-500">${coverImageAlt}</figcaption>`
+    : '';
+  const figureHtml = `<figure class="my-8">${imgTag}${captionHtml}</figure>`;
+
+  if (processedHtml.includes('class="tldr-box"')) {
+    processedHtml = processedHtml.replace(
+      /(<div class="tldr-box">[\s\S]*?<\/div>)/i,
+      `$1\n${figureHtml}`
+    );
+  } else {
+    // Fallback: insert before the first h2
+    const h2Index = processedHtml.indexOf('<h2');
+    if (h2Index > -1) {
+      processedHtml = processedHtml.slice(0, h2Index) + figureHtml + processedHtml.slice(h2Index);
+    } else {
+      processedHtml = figureHtml + processedHtml;
+    }
+  }
+}
 
 // Build full cover image URL for meta tags
 const fullCoverImage = coverImageUrl
@@ -140,38 +168,6 @@ if (!jsonLd.publisher?.logo) {
         )
       }
     </header>
-
-    {
-      coverImageUrl && !hideCoverImage && (
-        coverImageUrl.match(/\.(svg|gif)$/i) ? (
-          <img
-            src={coverImageUrl}
-            alt={coverImageAlt || title}
-            width="768"
-            height="432"
-            class="mb-8 w-full rounded-lg border border-white/10 object-cover"
-            fetchpriority="high"
-          />
-        ) : (
-          <picture>
-            <source
-              srcset={`${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w`}
-              type="image/avif"
-              sizes="(max-width: 768px) 100vw, 662px"
-            />
-            <img
-              src={coverImageUrl}
-              alt={coverImageAlt || title}
-              width="768"
-              height="432"
-              sizes="(max-width: 768px) 100vw, 662px"
-              class="mb-8 w-full rounded-lg border border-white/10 object-cover"
-              fetchpriority="high"
-            />
-          </picture>
-        )
-      )
-    }
 
     <div
       class="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-a:text-blue-400 prose-code:text-neutral-300 prose-pre:bg-[#111] prose-pre:border prose-pre:border-white/10 prose-img:rounded-lg prose-img:border prose-img:border-white/10"
