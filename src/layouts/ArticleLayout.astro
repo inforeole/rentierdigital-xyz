@@ -50,8 +50,9 @@ const lcpPreload = preloadImage
     ? coverImageUrl.replace(/\.\w+$/, "-480w.avif")
     : undefined;
 
+// Strip <hr> tags — layout handles spacing, markdown --- separators are noise
 // Transform TLDR into styled box — handles both blockquote and plain paragraph
-let processedHtml = htmlContent
+processedHtml = processedHtml
   // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div
   .replace(
     /<blockquote>\s*(<p><strong>TL;DR:?<\/strong>[\s\S]*?)<\/blockquote>/i,
