@@ -41,6 +41,8 @@ const fullOgImage = ogImage.startsWith("http")
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <link rel="canonical" href={canonical} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1, noai, noimageai" />
+<meta name="googlebot" content="index, follow, snippet" />
 {translations.length > 0 && (
   <>
     {translations.map((t) => {
