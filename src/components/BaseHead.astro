@@ -23,6 +23,9 @@ const {
   preloadImage,
 } = Astro.props;
 
+const enSlug = translations.find((t) => t.lang.toLowerCase() === "en")?.slug;
+const xDefaultUrl = lang === "en" ? canonical : enSlug ? `https://rentierdigital.xyz/blog/${enSlug}` : canonical;
+
 const siteName = "Rentier Digital";
 const fullOgImage = ogImage.startsWith("http")
   ? ogImage
@@ -46,7 +49,7 @@ const fullOgImage = ogImage.startsWith("http")
       return <link rel="alternate" hreflang={t.lang.toLowerCase()} href={url} />;
     })}
     <link rel="alternate" hreflang={lang} href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
   </>
 )}
 <link
