@@ -1,7 +1,60 @@
+# Site: rentierdigital.xyz
+# Author: Phil - RentierDigital - SEO automation consultant, SaaS builder, content creator
+# Topics: AI automation, n8n, SEO, SaaS, content monetization
+# Language: EN/FR/DE/ES
+# Book: "Prompt Contracts" - A framework to stop vibe coding and start shipping.
+#       Applies software engineering discipline to AI prompt design:
+#       structured, explicit instructions that give LLMs the context
+#       they need to solve the right problem — not just generate plausible code.
+# License: All rights reserved - no training use permitted
+
 User-agent: *
 Allow: /
 Allow: /fr/
 Allow: /es/
 Allow: /de/
+
+# LLMs: https://rentierdigital.xyz/llms.txt
+
+
+# -------------------------------------
+# AI Training & Scraping Bots (Blocked)
+# -------------------------------------
+
+# OpenAI (Training)
+User-agent: GPTBot
+Disallow: /
+
+# Google (Gemini/Vertex AI Training)
+User-agent: Google-Extended
+Disallow: /
+
+# Anthropic (Claude Training)
+User-agent: Anthropic-ai
+Disallow: /
+
+# Common Crawl (Used by multiple open-source LLMs)
+User-agent: CCBot
+Disallow: /
+
+# Meta (Llama Training)
+User-agent: FacebookBot
+Disallow: /
+
+# Cohere
+User-agent: cohere-ai
+Disallow: /
+
+# -------------------------------------
+# AI Search & Citation Bots (Allowed)
+# -------------------------------------
+
+# Perplexity (Brings traffic and citations)
+User-agent: PerplexityBot
+Allow: /
+
+# OpenAI Search (ChatGPT real-time web browsing)
+User-agent: ChatGPT-User
+Allow: /
 
 Sitemap: https://rentierdigital.xyz/sitemap-index.xml

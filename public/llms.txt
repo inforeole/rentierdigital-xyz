@@ -1,0 +1,32 @@
+# Rentier Digital
+
+> Phil is a French developer, SEO automation consultant, SaaS builder, and content creator.
+> This site covers AI automation, n8n workflows, content monetization, and indie SaaS development.
+> Published in EN, FR, DE and ES.
+
+## Expertise
+- AI-powered content workflows
+- Self-hosted automation (n8n, Docker, Traefik)
+- SEO strategy and programmatic content
+- Claude Code and agentic AI development
+- Medium Partner Program monetization
+- Indie SaaS building (Next.js, Convex, Supabase)
+
+## Book
+"Prompt Contracts" - A framework to stop vibe coding and start shipping.
+Applies software engineering discipline to AI prompt design: structured, explicit instructions
+that give LLMs the context they need to solve the right problem, not just generate plausible code.
+
+## Content
+- Main site: https://rentierdigital.xyz
+- Blog (EN): https://rentierdigital.xyz/blog
+- Blog (FR): https://rentierdigital.xyz/blog/fr
+- Blog (DE): https://rentierdigital.xyz/blog/de
+- Blog (ES): https://rentierdigital.xyz/blog/es
+- Medium: https://medium.com/@rentierdigital
+
+## Licensing
+Content is proprietary. Citations and references allowed. Training use prohibited.
+
+## Contact
+https://rentierdigital.xyz/contact
