@@ -176,25 +176,23 @@ const featured = await getBlogBySlug("claude-code-web-mobile-coding-reality");
       const articleScrollNeeded = track.scrollHeight - viewportArticleHeight;
       section.style.height = (articleScrollNeeded + window.innerHeight) + 'px';
 
-      // Canvas position: starts below hero buttons, slides to top:4rem
-      const heroButtons = document.querySelector('.mt-8.flex.justify-center') as HTMLElement;
-      const startTop = heroButtons ? heroButtons.offsetTop + heroButtons.offsetHeight + 20 : 450;
       const endTop = 64;
-      const sectionOffsetTop = section.offsetTop;
 
       canvasDesktop.style.position = 'fixed';
       canvasDesktop.style.right = (window.innerWidth / 2 - 480 - 32) + 'px';
-      canvasDesktop.style.top = startTop + 'px';
+      canvasDesktop.style.top = endTop + 'px';
       canvasDesktop.style.zIndex = '10';
       canvasDesktop.style.pointerEvents = 'none';
+      canvasDesktop.style.opacity = '0';
+      canvasDesktop.style.transition = 'opacity 0.3s';
 
       function onScrollDesktop() {
-        const scrollProgress = Math.min(1, window.scrollY / (sectionOffsetTop - endTop));
-        canvasDesktop.style.top = (startTop + (endTop - startTop) * scrollProgress) + 'px';
+        const rect = section!.getBoundingClientRect();
+        // Show canvas only when scroll-section is at the top (articles visible)
+        canvasDesktop.style.opacity = rect.top <= endTop ? '1' : '0';
 
-        const rect = section.getBoundingClientRect();
         const scrollTop = Math.max(0, -rect.top);
-        const maxScroll = section.offsetHeight - window.innerHeight;
+        const maxScroll = section!.offsetHeight - window.innerHeight;
         if (maxScroll <= 0) return;
         const progress = Math.min(1, scrollTop / maxScroll);
 
