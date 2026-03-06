@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
-import { getBlogList } from "../lib/convex";
+import { getBlogList, getBlogBySlug } from "../lib/convex";
 
 const articles = await getBlogList();
 articles.sort(
@@ -12,6 +12,8 @@ articles.sort(
 const latest = articles.slice(0, 6);
 // Build a list of ~20 articles by repeating
 const twentyArticles = Array.from({ length: 20 }, (_, i) => latest[i % latest.length]);
+
+const featured = await getBlogBySlug("claude-code-web-mobile-coding-reality");
 ---
 
 <BaseLayout
@@ -43,6 +45,38 @@ const twentyArticles = Array.from({ length: 20 }, (_, i) => latest[i % latest.le
       </a>
     </div>
   </section>
+
+  <!-- Featured article -->
+  {featured && (
+    <section class="mx-auto max-w-2xl px-4 pb-12">
+      <a
+        href={`/blog/${featured.slug}`}
+        class="group block rounded-xl border border-white/10 p-6 transition-colors hover:border-blue-400/40 hover:bg-white/[0.02]"
+      >
+        {featured.cover_image_url && (
+          <img
+            src={featured.cover_image_url}
+            alt={featured.cover_image_alt ?? featured.title}
+            class="mb-4 w-full rounded-lg object-cover"
+            style="max-height: 280px;"
+          />
+        )}
+        <span class="mb-2 inline-block rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400">
+          Latest article
+        </span>
+        <h2 class="mt-2 text-2xl font-bold text-white transition-colors group-hover:text-blue-400">
+          {featured.title}
+        </h2>
+        {featured.hook_first_lines && (
+          <p class="mt-2 text-neutral-400 line-clamp-3">{featured.hook_first_lines}</p>
+        )}
+        <div class="mt-4 flex items-center gap-3 text-sm text-neutral-500">
+          {featured.published_date && <span>{featured.published_date}</span>}
+          {featured.read_time_minutes && <span>{featured.read_time_minutes} min read</span>}
+        </div>
+      </a>
+    </section>
+  )}
 
   <!-- Hacker canvas (desktop only, positioned by JS) -->
   <canvas id="hacker-canvas" class="hidden lg:block rounded-lg" width="480" height="240"></canvas>
