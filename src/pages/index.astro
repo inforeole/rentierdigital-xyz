@@ -10,6 +10,8 @@ articles.sort(
     new Date(a.published_date ?? 0).getTime()
 );
 const latest = articles.slice(0, 6);
+// Build a list of ~20 articles by repeating
+const twentyArticles = Array.from({ length: 20 }, (_, i) => latest[i % latest.length]);
 ---
 
 <BaseLayout
@@ -17,16 +19,16 @@ const latest = articles.slice(0, 6);
   description="Tools, methods, and guides to ship real products with AI. From prompt engineering to production."
 >
   <!-- Hero -->
-  <section class="py-16 text-center">
-    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+  <section class="py-16">
+    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl text-center">
       Build real products<br />
       <span class="text-blue-400">with AI</span>
     </h1>
-    <p class="mx-auto mt-4 max-w-xl text-lg text-neutral-400">
+    <p class="mx-auto mt-4 max-w-xl text-lg text-neutral-400 text-center">
       Guides, tools, and methods for solo builders and non-technical founders
       who want to ship — not just prototype.
     </p>
-    <div class="mt-8 flex justify-center gap-4">
+    <div class="mt-8 flex justify-center gap-4 text-center">
       <a
         href="/blog"
         class="rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
@@ -42,35 +44,200 @@ const latest = articles.slice(0, 6);
     </div>
   </section>
 
-  <!-- Latest articles -->
-  {
-    latest.length > 0 && (
-      <section class="py-8">
-        <div class="mb-6 flex items-center justify-between">
+  <!-- Hacker canvas (desktop only, positioned by JS) -->
+  <canvas id="hacker-canvas" class="hidden lg:block rounded-lg" width="480" height="240"></canvas>
+
+  <!-- MOBILE layout: canvas sticky top + articles scrolling below -->
+  <div class="lg:hidden">
+    <div class="sticky top-0 z-10 bg-[#0a0a0a] px-4 pt-4 pb-6">
+      <canvas id="hacker-canvas-mobile" class="rounded-lg w-full" width="480" height="240"></canvas>
+    </div>
+    <div class="px-4 pb-8">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-xl font-semibold text-white">Latest articles</h2>
+        <a href="/blog" class="text-sm text-neutral-400 transition-colors hover:text-white">
+          View all &rarr;
+        </a>
+      </div>
+      {twentyArticles.slice(0, 10).map((article) => (
+        <div class="mb-4">
+          <ArticleCard
+            title={article.title}
+            slug={article.slug}
+            hook={article.hook_first_lines}
+            themes={article.themes}
+            publishedDate={article.published_date}
+            readTime={article.read_time_minutes}
+            lang="en"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- DESKTOP layout: fixed canvas + scroll-driven articles -->
+  <div id="scroll-section" class="relative hidden lg:block">
+    <div class="sticky top-0 h-screen pt-16 overflow-hidden">
+      <div class="w-1/2">
+        <div class="mb-4 flex items-center justify-between">
           <h2 class="text-xl font-semibold text-white">Latest articles</h2>
-          <a
-            href="/blog"
-            class="text-sm text-neutral-400 transition-colors hover:text-white"
-          >
+          <a href="/blog" class="text-sm text-neutral-400 transition-colors hover:text-white">
             View all &rarr;
           </a>
         </div>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {latest.map((article) => (
-            <ArticleCard
-              title={article.title}
-              slug={article.slug}
-              hook={article.hook_first_lines}
-              themes={article.themes}
-              publishedDate={article.published_date}
-              readTime={article.read_time_minutes}
-              lang="en"
-            />
-          ))}
+        <div class="overflow-hidden" style="height: calc(100vh - 140px);">
+          <div id="articles-track">
+            {twentyArticles.map((article) => (
+              <div class="mb-4">
+                <ArticleCard
+                  title={article.title}
+                  slug={article.slug}
+                  hook={article.hook_first_lines}
+                  themes={article.themes}
+                  publishedDate={article.published_date}
+                  readTime={article.read_time_minutes}
+                  lang="en"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </section>
-    )
-  }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const FRAME_COUNT = 120;
+    const AUDIO_DURATION = 8;
+    const VIDEO_LOOPS = 3;
+    const isDesktop = window.innerWidth >= 1024;
+    const canvasDesktop = document.getElementById('hacker-canvas') as HTMLCanvasElement;
+    const canvasMobile = document.getElementById('hacker-canvas-mobile') as HTMLCanvasElement;
+    const ctxDesktop = canvasDesktop.getContext('2d')!;
+    const ctxMobile = canvasMobile.getContext('2d')!;
+    const section = document.getElementById('scroll-section');
+    const track = isDesktop ? document.getElementById('articles-track') : null;
+
+    const frames: HTMLImageElement[] = [];
+
+    const audio = new Audio('/hacker-audio.m4a');
+    audio.loop = false;
+    audio.preload = 'auto';
+    audio.volume = 0.5;
+    let audioStarted = false;
+
+    function drawFrame(index: number) {
+      const img = frames[index];
+      if (img && img.complete && img.naturalWidth > 0) {
+        ctxDesktop.clearRect(0, 0, canvasDesktop.width, canvasDesktop.height);
+        ctxDesktop.drawImage(img, 0, 0, canvasDesktop.width, canvasDesktop.height);
+        ctxMobile.clearRect(0, 0, canvasMobile.width, canvasMobile.height);
+        ctxMobile.drawImage(img, 0, 0, canvasMobile.width, canvasMobile.height);
+      }
+    }
+
+    if (isDesktop && section && track) {
+      // --- DESKTOP: fixed canvas + scroll-driven articles ---
+      const viewportArticleHeight = window.innerHeight - 140;
+      const articleScrollNeeded = track.scrollHeight - viewportArticleHeight;
+      section.style.height = (articleScrollNeeded + window.innerHeight) + 'px';
+
+      // Canvas position: starts below hero buttons, slides to top:4rem
+      const heroButtons = document.querySelector('.mt-8.flex.justify-center') as HTMLElement;
+      const startTop = heroButtons ? heroButtons.offsetTop + heroButtons.offsetHeight + 20 : 450;
+      const endTop = 64;
+      const sectionOffsetTop = section.offsetTop;
+
+      canvasDesktop.style.position = 'fixed';
+      canvasDesktop.style.right = (window.innerWidth / 2 - 480 - 32) + 'px';
+      canvasDesktop.style.top = startTop + 'px';
+      canvasDesktop.style.zIndex = '10';
+      canvasDesktop.style.pointerEvents = 'none';
+
+      function onScrollDesktop() {
+        const scrollProgress = Math.min(1, window.scrollY / (sectionOffsetTop - endTop));
+        canvasDesktop.style.top = (startTop + (endTop - startTop) * scrollProgress) + 'px';
+
+        const rect = section.getBoundingClientRect();
+        const scrollTop = Math.max(0, -rect.top);
+        const maxScroll = section.offsetHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+        const progress = Math.min(1, scrollTop / maxScroll);
+
+        const maxOffset = track!.scrollHeight - viewportArticleHeight;
+        const articleProgress = Math.min(1, scrollTop / articleScrollNeeded);
+        track!.style.transform = `translateY(-${articleProgress * maxOffset}px)`;
+
+        const frameProgress = (progress * VIDEO_LOOPS) % 1;
+        const frameIndex = Math.floor(frameProgress * FRAME_COUNT) % FRAME_COUNT;
+        drawFrame(frameIndex);
+
+        if (audioStarted) {
+          const targetTime = frameProgress * AUDIO_DURATION;
+          if (Math.abs(audio.currentTime - targetTime) > 0.15) {
+            audio.currentTime = targetTime;
+          }
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        const inSection = section.getBoundingClientRect().top <= 0;
+        if (!audioStarted && inSection) {
+          audio.play().then(() => { audioStarted = true; }).catch(() => {});
+        }
+        if (audioStarted && inSection && audio.paused) audio.play().catch(() => {});
+        if (audioStarted && !inSection && !audio.paused) audio.pause();
+        clearTimeout((window as any).__hackerPause);
+        (window as any).__hackerPause = setTimeout(() => {
+          if (audioStarted && !audio.paused) audio.pause();
+        }, 200);
+      }, { passive: true });
+
+      window.addEventListener('scroll', onScrollDesktop, { passive: true });
+      onScrollDesktop();
+
+    } else {
+      // --- MOBILE: static canvas, simple scroll animation + audio ---
+
+      function onScrollMobile() {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight <= 0) return;
+        const progress = window.scrollY / docHeight;
+        const frameProgress = (progress * VIDEO_LOOPS) % 1;
+        const frameIndex = Math.floor(frameProgress * FRAME_COUNT) % FRAME_COUNT;
+        drawFrame(frameIndex);
+
+        if (audioStarted) {
+          const targetTime = frameProgress * AUDIO_DURATION;
+          if (Math.abs(audio.currentTime - targetTime) > 0.15) {
+            audio.currentTime = targetTime;
+          }
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!audioStarted && window.scrollY > 50) {
+          audio.play().then(() => { audioStarted = true; }).catch(() => {});
+        }
+        if (audioStarted && window.scrollY > 50 && audio.paused) audio.play().catch(() => {});
+        if (audioStarted && window.scrollY <= 50 && !audio.paused) audio.pause();
+        clearTimeout((window as any).__hackerPause);
+        (window as any).__hackerPause = setTimeout(() => {
+          if (audioStarted && !audio.paused) audio.pause();
+        }, 200);
+      }, { passive: true });
+
+      window.addEventListener('scroll', onScrollMobile, { passive: true });
+      onScrollMobile();
+    }
+
+    for (let i = 1; i <= FRAME_COUNT; i++) {
+      const img = new Image();
+      img.src = `/hacker-frames/frame_${String(i).padStart(3, '0')}.avif`;
+      if (i === 1) img.onload = () => drawFrame(0);
+      frames.push(img);
+    }
+  </script>
 
   <!-- JSON-LD WebSite -->
   <script type="application/ld+json" set:html={JSON.stringify({
