@@ -239,13 +239,29 @@ const twentyArticles = Array.from({ length: 20 }, (_, i) => latest[i % latest.le
     }
   </script>
 
-  <!-- JSON-LD WebSite -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Rentier Digital",
-    url: "https://rentierdigital.xyz",
-    description:
-      "Tools, methods, and guides to ship real products with AI.",
-  })} />
+  <!-- JSON-LD WebSite + Organization -->
+  <script type="application/ld+json" set:html={JSON.stringify([
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Rentier Digital",
+      url: "https://rentierdigital.xyz",
+      description: "Tools, methods, and guides to ship real products with AI.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Rentier Digital",
+      url: "https://rentierdigital.xyz",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://rentierdigital.xyz/favicon.png",
+      },
+      sameAs: [
+        "https://medium.com/@rentierdigital",
+        "https://dev.to/rentierdigital",
+        "https://rentierdigital.hashnode.dev",
+      ],
+    },
+  ])} />
 </BaseLayout>
