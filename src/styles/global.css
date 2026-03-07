@@ -25,9 +25,8 @@
   margin: 0.75rem 0;
 }
 
-/* Prevent CLS on prose images that lack width/height attributes */
+/* Let images keep their natural aspect ratio */
 .prose img {
-  aspect-ratio: 16 / 9;
   width: 100%;
   height: auto;
 }
