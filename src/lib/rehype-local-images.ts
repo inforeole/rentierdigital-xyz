@@ -37,7 +37,8 @@ export function rehypeLocalImages() {
         node.properties.decoding = "async";
         Object.assign(node.properties, extraProps);
         if (!node.properties.width) node.properties.width = "768";
-        if (!node.properties.height) node.properties.height = "432";
+        if (!node.properties.height) node.properties.height = "auto";
+        node.properties.style = "width:100%;height:auto";
         return;
       }
 
@@ -57,8 +58,9 @@ export function rehypeLocalImages() {
           loading,
           decoding: "async",
           width: "768",
-          height: "432",
+          height: "auto",
           sizes: "(max-width: 768px) 100vw, 662px",
+          style: "width:100%;height:auto",
           ...extraProps,
         }),
       ]);
