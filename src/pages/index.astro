@@ -9,11 +9,9 @@ articles.sort(
     new Date(b.published_date ?? 0).getTime() -
     new Date(a.published_date ?? 0).getTime()
 );
-const latest = articles.slice(0, 6);
-// Build a list of ~20 articles by repeating
-const twentyArticles = Array.from({ length: 20 }, (_, i) => latest[i % latest.length]);
 
-const featured = await getBlogBySlug("claude-code-web-mobile-coding-reality");
+const featured = articles[0] ? await getBlogBySlug(articles[0].slug) : null;
+const latest = articles.slice(1, 21);
 ---
 
 <BaseLayout
@@ -93,7 +91,7 @@ const featured = await getBlogBySlug("claude-code-web-mobile-coding-reality");
           View all &rarr;
         </a>
       </div>
-      {twentyArticles.slice(0, 10).map((article) => (
+      {latest.map((article) => (
         <div class="mb-4">
           <ArticleCard
             title={article.title}
@@ -121,7 +119,7 @@ const featured = await getBlogBySlug("claude-code-web-mobile-coding-reality");
         </div>
         <div class="overflow-hidden" style="height: calc(100vh - 140px);">
           <div id="articles-track">
-            {twentyArticles.map((article) => (
+            {latest.map((article) => (
               <div class="mb-4">
                 <ArticleCard
                   title={article.title}
