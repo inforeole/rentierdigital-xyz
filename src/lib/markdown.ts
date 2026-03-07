@@ -4,13 +4,15 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeShiki from "@shikijs/rehype";
 import rehypeStringify from "rehype-stringify";
+import rehypeRaw from "rehype-raw";
 import { rehypeLocalImages } from "./rehype-local-images";
 
 export async function renderMarkdown(md: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkRehype)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeLocalImages)
     .use(rehypeShiki, { theme: "github-dark" })
     .use(rehypeStringify)
