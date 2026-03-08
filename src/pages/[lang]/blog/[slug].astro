@@ -46,8 +46,10 @@ const markdownWithoutH1 = content.content_markdown
   .replace(/^# /gm, "## ")
   .replace(/^\[cover image\]\s*$/gim, "");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
-// Don't render cover in layout if markdown already has an inline image (avoids duplicate)
-const markdownHasInlineImage = /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
+// Don't render cover in layout if markdown already contains the cover image (avoids duplicate)
+const markdownHasInlineImage = content.cover_image_url
+  ? markdownWithoutH1.includes(content.cover_image_url)
+  : /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
 const firstImageMatch = markdownWithoutH1.match(/!\[(.*?)\]\((https?:\/\/[^)]+)\)/);
 const firstInlineImageUrl = firstImageMatch
   ? toLocalImagePath(firstImageMatch[2], firstImageMatch[1] || "Illustration")
