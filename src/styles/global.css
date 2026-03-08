@@ -25,6 +25,12 @@
   margin: 0.75rem 0;
 }
 
+/* Horizontal rules — visible separator on dark background */
+.prose hr {
+  border-color: rgba(255, 255, 255, 0.15);
+  margin: 2.5rem 0;
+}
+
 /* Let images keep their natural aspect ratio */
 .prose img {
   width: 100%;

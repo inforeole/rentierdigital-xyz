@@ -52,8 +52,7 @@ const lcpPreload = preloadImage
     ? coverImageUrl.replace(/\.\w+$/, "-480w.avif")
     : undefined;
 
-// Strip <hr> tags — layout handles spacing, markdown --- separators are noise
-let processedHtml = htmlContent.replace(/<hr\s*\/?>/gi, '');
+let processedHtml = htmlContent;
 // Inject subtitle as first italic paragraph (visible to Medium importer)
 if (subtitle) {
   processedHtml = `<p><em>${subtitle}</em></p>\n` + processedHtml;
