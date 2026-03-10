@@ -54,5 +54,8 @@ export function imageFilename(url: string, descriptor?: string): string {
  */
 export function toLocalImagePath(url: string, descriptor?: string): string {
   if (!url.startsWith("http")) return url;
+  // Already rewritten to local blog-images URL by Convex publish — extract path
+  const blogImagesMatch = url.match(/\/blog-images\/(.*)/);
+  if (blogImagesMatch) return `/blog-images/${blogImagesMatch[1]}`;
   return `/blog-images/${imageFilename(url, descriptor)}`;
 }
