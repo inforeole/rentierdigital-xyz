@@ -43,9 +43,13 @@ const markdownWithoutH1 = content.content_markdown
   .replace(/^\[cover image\]\s*$/gim, "");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
 // Don't render cover in layout if markdown already contains the cover image (avoids duplicate)
-const markdownHasInlineImage = content.cover_image_url
-  ? markdownWithoutH1.includes(content.cover_image_url)
-  : /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
+// Compare by hash (8-char md5 suffix) since cover and inline may have different descriptors
+const coverHash = content.cover_image_url?.match(/-([a-f0-9]{8})\.\w+$/)?.[1];
+const markdownHasInlineImage = coverHash
+  ? markdownWithoutH1.includes(coverHash)
+  : content.cover_image_url
+    ? markdownWithoutH1.includes(content.cover_image_url)
+    : /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
 // Extract first inline image for LCP preload
 const firstImageMatch = markdownWithoutH1.match(/!\[(.*?)\]\((https?:\/\/[^)]+)\)/);
 const firstInlineImageUrl = firstImageMatch
