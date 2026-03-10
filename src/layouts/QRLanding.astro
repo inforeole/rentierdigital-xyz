@@ -21,10 +21,6 @@ const bookUrl = "https://amazon.com/dp/PLACEHOLDER";
     <title>{title} — Prompt Contracts</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
-    <script
-      defer
-      data-domain="rentierdigital.xyz"
-      src="https://plausible.io/js/script.js"></script>
   </head>
   <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center justify-center px-4 py-8">
     <div class="w-full max-w-[540px] bg-[#161616] border border-neutral-800 rounded-xl p-8 text-center">
@@ -60,13 +56,11 @@ const bookUrl = "https://amazon.com/dp/PLACEHOLDER";
     <p class="mt-5 text-xs text-neutral-600">&copy; rentierdigital</p>
 
     <script is:inline>
-      document.addEventListener("click", function (e) {
-        var link = e.target.closest("[data-action]");
-        if (!link || !window.plausible) return;
-        window.plausible(link.dataset.action, {
-          props: { page: link.dataset.page || document.title },
-        });
-      });
+      fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: location.pathname.split("/").pop() })
+      }).catch(function(){});
     </script>
   </body>
 </html>

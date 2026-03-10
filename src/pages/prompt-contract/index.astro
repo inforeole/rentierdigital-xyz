@@ -1,6 +1,8 @@
 ---
 import "../../styles/global.css";
 
+const bookUrl = "https://amazon.com/dp/PLACEHOLDER";
+
 const pages = [
   { slug: "repo", title: "The Companion Repository", chapter: "Ch.0 + Ch.8" },
   { slug: "templates", title: "Prompt Contract Templates", chapter: "Ch.1 + Ch.3" },
@@ -18,23 +20,53 @@ const pages = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QR Landing Pages — Prompt Contracts</title>
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <title>Prompt Contracts — The Book</title>
     <meta name="robots" content="noindex, nofollow" />
   </head>
-  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center px-4 py-12">
-    <h1 class="text-2xl font-bold text-white mb-2">QR Landing Pages</h1>
-    <p class="text-neutral-500 mb-8 text-sm">8 sandwich pages — preview index</p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[700px] w-full">
-      {pages.map((p) => (
-        <a
-          href={`/prompt-contract/${p.slug}`}
-          class="block bg-[#161616] border border-neutral-800 rounded-lg p-5 no-underline text-neutral-200 hover:border-violet-600 transition-colors"
-        >
-          <div class="font-semibold text-white">{p.title}</div>
-          <div class="text-xs text-violet-400 mt-0.5">{p.chapter}</div>
-          <div class="text-xs text-neutral-600 mt-2 font-mono">/prompt-contract/{p.slug}</div>
-        </a>
-      ))}
+  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center justify-center px-4 py-12">
+    <div class="w-full max-w-[600px] text-center">
+      <span class="inline-block text-xs font-semibold uppercase tracking-wider text-violet-400 bg-violet-400/10 border border-violet-400/20 rounded-full px-3 py-1 mb-5">
+        The Book
+      </span>
+
+      <h1 class="text-3xl font-bold text-white mb-3">Prompt Contracts</h1>
+      <p class="text-neutral-400 leading-relaxed mb-8 max-w-[480px] mx-auto">
+        Stop vibe coding. Start building with intent. A practical guide to structuring your AI prompts into reliable, repeatable contracts.
+      </p>
+
+      <a
+        href={bookUrl}
+        class="inline-block font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg px-8 py-3.5 transition-colors no-underline mb-10"
+      >
+        Get the book on Amazon
+      </a>
+
+      <hr class="border-neutral-800 mb-8" />
+
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Book Resources</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+        {pages.map((p) => (
+          <a
+            href={`/prompt-contract/${p.slug}`}
+            class="block bg-[#161616] border border-neutral-800 rounded-lg p-4 no-underline text-neutral-200 hover:border-violet-600 transition-colors"
+          >
+            <div class="font-medium text-white text-sm">{p.title}</div>
+            <div class="text-xs text-violet-400 mt-0.5">{p.chapter}</div>
+          </a>
+        ))}
+      </div>
     </div>
+
+    <p class="mt-8 text-xs text-neutral-600">&copy; rentierdigital</p>
+
+    <script is:inline>
+      fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: "index" })
+      }).catch(function(){});
+    </script>
   </body>
 </html>
