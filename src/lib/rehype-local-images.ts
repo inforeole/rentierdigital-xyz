@@ -13,6 +13,8 @@ export function rehypeLocalImages() {
 
       const src = node.properties?.src;
       if (typeof src !== "string" || !src.startsWith("http")) return;
+      // Skip images already pointing to our blog-images CDN
+      if (typeof src === "string" && src.includes("/blog-images/")) return;
 
       // Alt fallback
       const alt = (typeof node.properties.alt === "string" && node.properties.alt.trim() !== "")
