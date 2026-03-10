@@ -17,6 +17,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      filter: (page) => !page.includes("/prompt-contract/"),
       i18n: {
         defaultLocale: "en",
         locales: {

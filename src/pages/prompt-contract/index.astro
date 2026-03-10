@@ -1,0 +1,40 @@
+---
+import "../../styles/global.css";
+
+const pages = [
+  { slug: "repo", title: "The Companion Repository", chapter: "Ch.0 + Ch.8" },
+  { slug: "templates", title: "Prompt Contract Templates", chapter: "Ch.1 + Ch.3" },
+  { slug: "stack", title: "The Full Stack", chapter: "Ch.2 + Ch.5" },
+  { slug: "claude-md", title: "Real CLAUDE.md Examples", chapter: "Ch.2" },
+  { slug: "saas", title: "DreamMiner — Complete SaaS Example", chapter: "Ch.4" },
+  { slug: "cli-tool", title: "QR CLI Tool — Runnable Example", chapter: "Ch.6" },
+  { slug: "automation", title: "n8n Workflow Contracts", chapter: "Ch.6" },
+  { slug: "prototyping", title: "Prototyping Tools", chapter: "Ch.7" },
+];
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Landing Pages — Prompt Contracts</title>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center px-4 py-12">
+    <h1 class="text-2xl font-bold text-white mb-2">QR Landing Pages</h1>
+    <p class="text-neutral-500 mb-8 text-sm">8 sandwich pages — preview index</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[700px] w-full">
+      {pages.map((p) => (
+        <a
+          href={`/prompt-contract/${p.slug}`}
+          class="block bg-[#161616] border border-neutral-800 rounded-lg p-5 no-underline text-neutral-200 hover:border-violet-600 transition-colors"
+        >
+          <div class="font-semibold text-white">{p.title}</div>
+          <div class="text-xs text-violet-400 mt-0.5">{p.chapter}</div>
+          <div class="text-xs text-neutral-600 mt-2 font-mono">/prompt-contract/{p.slug}</div>
+        </a>
+      ))}
+    </div>
+  </body>
+</html>
