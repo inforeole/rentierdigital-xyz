@@ -13,8 +13,8 @@ export function rehypeLocalImages() {
 
       const src = node.properties?.src;
       if (typeof src !== "string" || !src.startsWith("http")) return;
-      // Skip images already pointing to our blog-images CDN
-      if (typeof src === "string" && src.includes("/blog-images/")) return;
+      // Already on blog-images CDN? Extract local path (don't re-hash)
+      const isAlreadyLocal = src.includes("/blog-images/");
 
       // Alt fallback
       const alt = (typeof node.properties.alt === "string" && node.properties.alt.trim() !== "")
@@ -27,8 +27,14 @@ export function rehypeLocalImages() {
       isFirstImage = false;
 
       // Generate descriptive filename using alt text
-      const filename = imageFilename(src, alt);
-      const localSrc = `/blog-images/${filename}`;
+      let localSrc: string;
+      if (isAlreadyLocal) {
+        const pathMatch = src.match(/\/blog-images\/(.*)/);
+        localSrc = pathMatch ? `/blog-images/${pathMatch[1]}` : src;
+      } else {
+        localSrc = `/blog-images/${imageFilename(src, alt)}`;
+      }
+      const filename = localSrc.split("/").pop() || "";
       const ext = filename.split(".").pop()?.toLowerCase();
 
       // SVG/GIF: keep simple <img>, no <picture> wrapper
