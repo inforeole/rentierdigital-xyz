@@ -1,5 +1,5 @@
 ---
-import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
 
@@ -34,24 +34,13 @@ const stats = [
 ];
 ---
 
-<!doctype html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
-    <title>Prompt Contracts — Stop Vibe Coding, Start Shipping Real Software With AI</title>
-    <meta name="description" content="A solo developer's framework for production-quality AI code. The complete system for turning AI coding agents into reliable contractors that deliver to spec." />
-    <meta property="og:title" content="Prompt Contracts — The Book" />
-    <meta property="og:description" content="How I Stopped Vibe Coding and Started Shipping Real Software With AI. A field manual from a solo developer." />
-    <meta property="og:image" content="https://rentierdigital.xyz/prompt-contracts-cover.png" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-  </head>
-  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased">
-
+<BaseLayout
+  title="Prompt Contracts — Stop Vibe Coding, Start Shipping Real Software With AI"
+  description="A solo developer's framework for production-quality AI code. The complete system for turning AI coding agents into reliable contractors that deliver to spec."
+  ogImage="https://rentierdigital.xyz/prompt-contracts-cover.png"
+>
     <!-- Hero -->
-    <section class="flex flex-col items-center px-4 pt-16 pb-12">
+    <section class="flex flex-col items-center pt-8 pb-12">
       <div class="w-full max-w-[900px] flex flex-col md:flex-row items-center gap-10">
         <div class="flex-shrink-0 rounded-lg shadow-2xl shadow-sky-900/20">
           <img
@@ -90,7 +79,7 @@ const stats = [
     </section>
 
     <!-- Social Proof — Medium article stats -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <div class="bg-[#161616] border border-neutral-800 rounded-xl p-6">
           <p class="text-xs uppercase tracking-wider text-neutral-500 mb-4 text-center">
@@ -112,7 +101,7 @@ const stats = [
     </section>
 
     <!-- What readers say -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <h2 class="text-xl font-bold text-white mb-6 text-center">What readers say</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -146,7 +135,7 @@ const stats = [
     </section>
 
     <!-- What's Inside -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <h2 class="text-xl font-bold text-white mb-6 text-center">What's inside</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -187,7 +176,7 @@ const stats = [
     </section>
 
     <!-- Chapters -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <h2 class="text-xl font-bold text-white mb-6 text-center">9 chapters, 260 pages, zero filler</h2>
         <div class="space-y-3">
@@ -205,7 +194,7 @@ const stats = [
     </section>
 
     <!-- The Hook -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[700px] text-center">
         <blockquote class="text-lg text-neutral-300 italic leading-relaxed">
           "The specification is the product. The code is the delivery."
@@ -224,7 +213,7 @@ const stats = [
     </section>
 
     <!-- About the Author -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[700px] bg-[#161616] border border-neutral-800 rounded-xl p-6">
         <h2 class="text-lg font-bold text-white mb-3">About the author</h2>
         <p class="text-sm text-neutral-400 leading-relaxed mb-3">
@@ -237,7 +226,7 @@ const stats = [
     </section>
 
     <!-- Resources -->
-    <section class="flex justify-center px-4 pb-12">
+    <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <h2 class="text-xl font-bold text-white mb-2 text-center">Every chapter comes with runnable code</h2>
         <p class="text-sm text-neutral-500 text-center mb-6">Scan the QR codes inside the book to access templates, workflows, and companion repos</p>
@@ -262,7 +251,7 @@ const stats = [
     </section>
 
     <!-- Final CTA -->
-    <section class="flex justify-center px-4 pb-16">
+    <section class="pb-16">
       <div class="w-full max-w-[700px] text-center">
         <p class="text-neutral-400 mb-4">Your AI has been waiting for better instructions.</p>
         <a
@@ -278,10 +267,6 @@ const stats = [
       </div>
     </section>
 
-    <footer class="text-center pb-8">
-      <p class="text-xs text-neutral-600">&copy; rentierdigital</p>
-    </footer>
-
     <script is:inline>
       fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {
         method: "POST",
@@ -289,5 +274,4 @@ const stats = [
         body: JSON.stringify({ slug: "index" })
       }).catch(function(){});
     </script>
-  </body>
-</html>
+</BaseLayout>
