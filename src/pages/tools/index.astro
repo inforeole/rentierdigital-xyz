@@ -3,11 +3,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const tools = [
   {
-    title: "Prompt Contract",
+    title: "Prompt Contracts — The Book",
     description:
-      "A method (and upcoming book) to structure your AI prompts instead of vibe coding. Go from hoping AI understands to contractualizing what you expect.",
+      "A solo developer's framework for shipping production software with AI. Stop vibe coding, start contractualizing what you expect.",
     status: "available" as const,
-    href: "/blog", // TODO: link to Prompt Contract landing page
+    href: "/prompt-contract",
+    cover: "/prompt-contracts-cover.png",
   },
   {
     title: "Templates & Starter Kits",
@@ -45,23 +46,30 @@ const tools = [
     {
       tools.map((tool) => (
         <div class="rounded-lg border border-white/10 p-6 transition-colors hover:border-white/20">
-          <div class="mb-3 flex items-center gap-2">
-            <h2 class="text-lg font-semibold text-white">{tool.title}</h2>
-            {tool.status === "coming" && (
-              <span class="rounded-full bg-white/5 px-2 py-0.5 text-xs text-neutral-500">
-                Coming soon
-              </span>
+          <div class="flex gap-4">
+            {tool.cover && (
+              <img src={tool.cover} alt={tool.title} class="w-20 flex-shrink-0 rounded-md" />
             )}
+            <div>
+              <div class="mb-3 flex items-center gap-2">
+                <h2 class="text-lg font-semibold text-white">{tool.title}</h2>
+                {tool.status === "coming" && (
+                  <span class="rounded-full bg-white/5 px-2 py-0.5 text-xs text-neutral-500">
+                    Coming soon
+                  </span>
+                )}
+              </div>
+              <p class="text-sm text-neutral-400">{tool.description}</p>
+              {tool.status === "available" && tool.href && (
+                <a
+                  href={tool.href}
+                  class="mt-4 inline-block text-sm text-blue-400 transition-colors hover:text-blue-300"
+                >
+                  Learn more &rarr;
+                </a>
+              )}
+            </div>
           </div>
-          <p class="text-sm text-neutral-400">{tool.description}</p>
-          {tool.status === "available" && tool.href && (
-            <a
-              href={tool.href}
-              class="mt-4 inline-block text-sm text-blue-400 transition-colors hover:text-blue-300"
-            >
-              Learn more &rarr;
-            </a>
-          )}
         </div>
       ))
     }

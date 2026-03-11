@@ -1,17 +1,36 @@
 ---
 import "../../styles/global.css";
 
-const bookUrl = "https://amazon.com/dp/PLACEHOLDER";
+const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
 
-const pages = [
-  { slug: "repo", title: "The Companion Repository", chapter: "Ch.0 + Ch.8" },
-  { slug: "templates", title: "Prompt Contract Templates", chapter: "Ch.1 + Ch.3" },
-  { slug: "stack", title: "The Full Stack", chapter: "Ch.2 + Ch.5" },
-  { slug: "claude-md", title: "Real CLAUDE.md Examples", chapter: "Ch.2" },
-  { slug: "saas", title: "DreamMiner — Complete SaaS Example", chapter: "Ch.4" },
-  { slug: "cli-tool", title: "QR CLI Tool — Runnable Example", chapter: "Ch.6" },
-  { slug: "automation", title: "n8n Workflow Contracts", chapter: "Ch.6" },
-  { slug: "prototyping", title: "Prototyping Tools", chapter: "Ch.7" },
+const chapters = [
+  { num: "0", title: "The Gap Between Demo Code and Production Code", desc: "Stop wasting days debugging AI code that looked right but breaks in prod" },
+  { num: "1", title: "Prompt Contracts: The Framework", desc: "Write a one-page spec, get production-ready code on the first pass" },
+  { num: "2", title: "The Stack and the Brain", desc: "Pick a stack that works together and configure CLAUDE.md so your AI knows your codebase" },
+  { num: "3", title: "The Verification Loop", desc: "Make your AI test its own code before you even look at it" },
+  { num: "4", title: "Ship a SaaS in a Weekend", desc: "Follow a complete build from zero to first paying customer with 95% margins" },
+  { num: "5", title: "Self-Host Your AI Agent for $5/Month", desc: "Cut your AI bill from $200/month to $5 and own your infrastructure" },
+  { num: "6", title: "Automate Like a Maniac", desc: "Build workflows that run your business while you sleep" },
+  { num: "7", title: "Lovable and Bolt Are Toys", desc: "Know when to prototype fast and when to build for real" },
+  { num: "8", title: "Shipping Solo: The Real Game", desc: "Survive burnout, scope creep, and loneliness — from someone who does it daily" },
+];
+
+const resources = [
+  { title: "Companion Repository", chapter: "Ch.0 + Ch.8", desc: "Templates, runnable examples, and the full tool stack from the book.", detail: "10 templates \u00b7 6 runnable examples \u00b7 full stack breakdown" },
+  { title: "Prompt Contract Templates", chapter: "Ch.1 + Ch.3", desc: "10 ready-to-use templates: API routes, database schemas, React components, auth flows, debugging.", detail: "Copy a template \u2192 fill the blanks \u2192 hand to Claude Code \u2192 get working code" },
+  { title: "The Full Stack", chapter: "Ch.2 + Ch.5", desc: "Every tool mentioned in the book with setup links, cost breakdowns, and honest comparisons.", detail: "Convex \u00b7 Clerk \u00b7 Next.js \u00b7 n8n \u00b7 Hostinger \u00b7 and more" },
+  { title: "Real CLAUDE.md Examples", chapter: "Ch.2", desc: "Production CLAUDE.md files from real projects. See how to configure Claude Code for a SaaS app and an automation pipeline.", detail: "SaaS project config \u00b7 Automation project config" },
+  { title: "DreamMiner \u2014 Complete SaaS Example", chapter: "Ch.4", desc: "The full contracts and code from Chapter 4. Stripe webhooks, Convex mutations, auth pages \u2014 all built contract-first.", detail: "4 contracts \u00b7 Convex schema \u00b7 Stripe webhook \u00b7 Next.js pages" },
+  { title: "QR CLI Tool", chapter: "Ch.6", desc: "A batch QR code generator built from a prompt contract. Python CLI with sample CSV and test script. Run it in 2 minutes.", detail: "Python \u00b7 pip install \u2192 run \u2192 QR codes generated" },
+  { title: "n8n Workflow Contracts", chapter: "Ch.6", desc: "Prompt contracts for n8n workflows: content pipelines, cross-platform syndication, monitoring alerts.", detail: "3 contracts \u00b7 feed to Claude Code + n8n-mcp \u2192 workflows built on your instance" },
+  { title: "Prototyping Tools", chapter: "Ch.7", desc: "The tools I use to validate ideas in 20 minutes before building properly. Lovable, v0, and the honest assessment.", detail: "Validate fast \u00b7 build properly \u00b7 no-code for prototypes, contracts for production" },
+];
+
+const stats = [
+  { value: "46K", label: "Views" },
+  { value: "29K", label: "Reads" },
+  { value: "+418", label: "Subscribers" },
+  { value: "+538", label: "Followers" },
 ];
 ---
 
@@ -21,45 +40,247 @@ const pages = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <title>Prompt Contracts — The Book</title>
-    <meta name="robots" content="noindex, nofollow" />
+    <title>Prompt Contracts — Stop Vibe Coding, Start Shipping Real Software With AI</title>
+    <meta name="description" content="A solo developer's framework for production-quality AI code. The complete system for turning AI coding agents into reliable contractors that deliver to spec." />
+    <meta property="og:title" content="Prompt Contracts — The Book" />
+    <meta property="og:description" content="How I Stopped Vibe Coding and Started Shipping Real Software With AI. A field manual from a solo developer." />
+    <meta property="og:image" content="https://rentierdigital.xyz/prompt-contracts-cover.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center justify-center px-4 py-12">
-    <div class="w-full max-w-[600px] text-center">
-      <span class="inline-block text-xs font-semibold uppercase tracking-wider text-violet-400 bg-violet-400/10 border border-violet-400/20 rounded-full px-3 py-1 mb-5">
-        The Book
-      </span>
+  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased">
 
-      <h1 class="text-3xl font-bold text-white mb-3">Prompt Contracts</h1>
-      <p class="text-neutral-400 leading-relaxed mb-8 max-w-[480px] mx-auto">
-        Stop vibe coding. Start building with intent. A practical guide to structuring your AI prompts into reliable, repeatable contracts.
-      </p>
-
-      <a
-        href={bookUrl}
-        class="inline-block font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg px-8 py-3.5 transition-colors no-underline mb-10"
-      >
-        Get the book on Amazon
-      </a>
-
-      <hr class="border-neutral-800 mb-8" />
-
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Book Resources</h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-        {pages.map((p) => (
-          <a
-            href={`/prompt-contract/${p.slug}`}
-            class="block bg-[#161616] border border-neutral-800 rounded-lg p-4 no-underline text-neutral-200 hover:border-violet-600 transition-colors"
-          >
-            <div class="font-medium text-white text-sm">{p.title}</div>
-            <div class="text-xs text-violet-400 mt-0.5">{p.chapter}</div>
-          </a>
-        ))}
+    <!-- Hero -->
+    <section class="flex flex-col items-center px-4 pt-16 pb-12">
+      <div class="w-full max-w-[900px] flex flex-col md:flex-row items-center gap-10">
+        <div class="flex-shrink-0 rounded-lg shadow-2xl shadow-sky-900/20">
+          <img
+            src="/prompt-contracts-cover.png"
+            alt="Prompt Contracts book cover"
+            class="w-[240px] md:w-[280px] block"
+          />
+        </div>
+        <div class="text-center md:text-left">
+          <span class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/20 rounded-full px-3 py-1 mb-4">
+            The Book
+          </span>
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+            Prompt Contracts
+          </h1>
+          <p class="text-lg text-neutral-300 font-medium mb-2">
+            How I Stopped Vibe Coding and Started Shipping Real Software With AI
+          </p>
+          <p class="text-neutral-400 leading-relaxed mb-6 max-w-[480px]">
+            A field manual from a solo developer who ships production software with AI every single day. Not demos. Not proofs of concept. Real products, with real users, paying real money.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            <a
+              href={bookUrl}
+              class="inline-block font-semibold text-white bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline text-center"
+              target="_blank"
+              rel="noopener"
+            >
+              Get the book on Amazon
+            </a>
+          </div>
+          <p class="text-sm text-emerald-400 font-medium mt-3">Free with Kindle Unlimited</p>
+          <p class="text-xs text-neutral-500 mt-1">Or buy it: Kindle $9.99</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <p class="mt-8 text-xs text-neutral-600">&copy; rentierdigital</p>
+    <!-- Social Proof — Medium article stats -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[900px]">
+        <div class="bg-[#161616] border border-neutral-800 rounded-xl p-6">
+          <p class="text-xs uppercase tracking-wider text-neutral-500 mb-4 text-center">
+            The Medium article that started it all
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            {stats.map((s) => (
+              <div>
+                <div class="text-2xl font-bold text-white">{s.value}</div>
+                <div class="text-sm text-neutral-400">{s.label}</div>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-neutral-500 text-center mt-4">
+            63% read ratio &middot; 16.8K from Google &middot; 62% programmers, 48% AI practitioners
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What readers say -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[900px]">
+        <h2 class="text-xl font-bold text-white mb-6 text-center">What readers say</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
+            <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"The better your specs are, the better your product is."</p>
+            <p class="text-xs text-neutral-500">Randall Bownds</p>
+          </div>
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
+            <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"It will build what you say. Do you say what you need?"</p>
+            <p class="text-xs text-neutral-500">Vitaly Hornik</p>
+          </div>
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
+            <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"It's good to know that the practices you encountered are exactly the same ones I use."</p>
+            <p class="text-xs text-neutral-500">artful_dodger <span class="text-sky-400">71 claps</span></p>
+          </div>
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
+            <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"Planning before execution is key."</p>
+            <p class="text-xs text-neutral-500">Manu Gupta <span class="text-sky-400">159 claps</span></p>
+          </div>
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
+            <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"This is an important article. Writing requirements was the precursor to design and coding phases."</p>
+            <p class="text-xs text-neutral-500">Joe Bologna</p>
+          </div>
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
+            <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"Basically it's not possible to vibe code without already knowing how to code?"</p>
+            <p class="text-xs text-neutral-500">Money, Geopolitics &amp; Oil <span class="text-sky-400">117 claps</span></p>
+          </div>
+        </div>
+        <p class="text-xs text-neutral-500 text-center mt-4">From the 67 responses on Medium</p>
+      </div>
+    </section>
+
+    <!-- What's Inside -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[900px]">
+        <h2 class="text-xl font-bold text-white mb-6 text-center">What's inside</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">The complete prompt contract framework with copy-paste templates</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">A full tech stack walkthrough with honest assessments</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">The verification loop: AI tests its own code before you take delivery</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">A weekend SaaS build from zero to first paying customer (95% margins)</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">Replace a $200/month AI subscription with a $5/month self-hosted setup</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">Five automation patterns that survive production</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">Why Lovable and Bolt produce toys, not products</span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="text-sky-400 mt-0.5 flex-shrink-0">&#10003;</span>
+            <span class="text-neutral-300">The honest truth about shipping solo: burnout, scope creep, money</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapters -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[900px]">
+        <h2 class="text-xl font-bold text-white mb-6 text-center">9 chapters, 260 pages, zero filler</h2>
+        <div class="space-y-3">
+          {chapters.map((ch) => (
+            <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4 flex gap-4 items-start">
+              <span class="text-sky-400 font-mono text-sm font-bold mt-0.5 flex-shrink-0 w-6 text-right">{ch.num}</span>
+              <div>
+                <div class="font-medium text-white text-sm">{ch.title}</div>
+                <div class="text-xs text-neutral-400 mt-0.5">{ch.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- The Hook -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[700px] text-center">
+        <blockquote class="text-lg text-neutral-300 italic leading-relaxed">
+          "The specification is the product. The code is the delivery."
+        </blockquote>
+        <div class="mt-6">
+          <a
+            href={bookUrl}
+            class="inline-block font-semibold text-white bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline"
+            target="_blank"
+            rel="noopener"
+          >
+            Get the book on Amazon
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About the Author -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[700px] bg-[#161616] border border-neutral-800 rounded-xl p-6">
+        <h2 class="text-lg font-bold text-white mb-3">About the author</h2>
+        <p class="text-sm text-neutral-400 leading-relaxed mb-3">
+          Phil writes on Medium under <a href="https://medium.com/@rentierdigital" class="text-sky-400 hover:underline" target="_blank" rel="noopener">@rentierdigital</a>. 20 years in software, from French banks to a shrimp fishery in Madagascar. Now a solo developer shipping SaaS products with AI from wherever the Wi-Fi holds.
+        </p>
+        <p class="text-sm text-neutral-400 leading-relaxed">
+          Stack: Next.js, Convex, Clerk, Vercel, n8n. Self-hosted AI agents. Everything in this book has been deployed, broken in production, fixed, and deployed again.
+        </p>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="flex justify-center px-4 pb-12">
+      <div class="w-full max-w-[900px]">
+        <h2 class="text-xl font-bold text-white mb-2 text-center">Every chapter comes with runnable code</h2>
+        <p class="text-sm text-neutral-500 text-center mb-6">Scan the QR codes inside the book to access templates, workflows, and companion repos</p>
+        <div class="space-y-2">
+          {resources.map((r) => (
+            <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
+              <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+                <div>
+                  <span class="font-medium text-white text-sm">{r.title}</span>
+                  <span class="text-xs text-sky-400 ml-2">{r.chapter}</span>
+                </div>
+                <svg class="w-4 h-4 text-neutral-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
+                <p class="text-sm text-neutral-300 mb-1">{r.desc}</p>
+                <p class="text-xs text-neutral-500">{r.detail}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="flex justify-center px-4 pb-16">
+      <div class="w-full max-w-[700px] text-center">
+        <p class="text-neutral-400 mb-4">Your AI has been waiting for better instructions.</p>
+        <a
+          href={bookUrl}
+          class="inline-block font-semibold text-white bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-10 py-4 text-lg transition-colors no-underline"
+          target="_blank"
+          rel="noopener"
+        >
+          Get Prompt Contracts on Amazon
+        </a>
+        <p class="text-sm text-emerald-400 font-medium mt-3">Free with Kindle Unlimited</p>
+        <p class="text-xs text-neutral-500 mt-1">Or buy it: Kindle $9.99</p>
+      </div>
+    </section>
+
+    <footer class="text-center pb-8">
+      <p class="text-xs text-neutral-600">&copy; rentierdigital</p>
+    </footer>
 
     <script is:inline>
       fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {

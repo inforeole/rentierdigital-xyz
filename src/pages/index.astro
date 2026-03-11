@@ -81,8 +81,23 @@ const latest = articles.slice(1, 21);
 
   <!-- MOBILE layout: canvas sticky top + articles scrolling below -->
   <div class="lg:hidden">
-    <div class="sticky top-4 z-10 bg-[#0a0a0a] px-4 pt-4 pb-6">
+    <div class="sticky top-4 z-10 bg-[#0a0a0a] px-4 pt-4 pb-4">
       <canvas id="hacker-canvas-mobile" class="rounded-lg w-full" width="480" height="240"></canvas>
+      <a
+        href="/prompt-contract"
+        class="group mt-3 flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-3 transition-colors hover:border-sky-400/40 no-underline"
+      >
+        <img
+          src="/prompt-contracts-cover.png"
+          alt="Prompt Contracts — book cover"
+          class="w-14 flex-shrink-0 rounded-md"
+        />
+        <div>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/20 rounded-full px-2.5 py-0.5">New book</span>
+          <h3 class="mt-1 text-sm font-bold text-white transition-colors group-hover:text-sky-400">Prompt Contracts</h3>
+          <p class="mt-0.5 text-xs text-neutral-400">Stop vibe coding. Ship real software with AI.</p>
+        </div>
+      </a>
     </div>
     <div class="px-4 pb-8">
       <div class="mb-4 flex items-center justify-between">
@@ -138,6 +153,25 @@ const latest = articles.slice(1, 21);
     </div>
   </div>
 
+  <!-- Book promo (desktop, positioned by JS below canvas) -->
+  <a
+    id="book-promo-desktop"
+    href="/prompt-contract"
+    class="hidden lg:flex group items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-sky-400/40 no-underline"
+    style="width: 480px;"
+  >
+    <img
+      src="/prompt-contracts-cover.png"
+      alt="Prompt Contracts — book cover"
+      class="w-20 flex-shrink-0 rounded-md"
+    />
+    <div>
+      <span class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/20 rounded-full px-2.5 py-0.5">New book</span>
+      <h3 class="mt-1.5 text-base font-bold text-white transition-colors group-hover:text-sky-400">Prompt Contracts</h3>
+      <p class="mt-0.5 text-xs text-neutral-400">Stop vibe coding. Ship real software with AI.</p>
+    </div>
+  </a>
+
   <script>
     const FRAME_COUNT = 120;
     const AUDIO_DURATION = 8;
@@ -184,10 +218,22 @@ const latest = articles.slice(1, 21);
       canvasDesktop.style.opacity = '0';
       canvasDesktop.style.transition = 'opacity 0.3s';
 
+      const bookPromo = document.getElementById('book-promo-desktop');
+      if (bookPromo) {
+        bookPromo.style.position = 'fixed';
+        bookPromo.style.right = canvasDesktop.style.right;
+        bookPromo.style.top = (endTop + 240 + 32) + 'px';
+        bookPromo.style.zIndex = '10';
+        bookPromo.style.opacity = '0';
+        bookPromo.style.transition = 'opacity 0.3s';
+      }
+
       function onScrollDesktop() {
         const rect = section!.getBoundingClientRect();
-        // Show canvas only when scroll-section is at the top (articles visible)
-        canvasDesktop.style.opacity = rect.top <= endTop ? '1' : '0';
+        // Show canvas + book promo only when scroll-section is at the top
+        const visible = rect.top <= endTop ? '1' : '0';
+        canvasDesktop.style.opacity = visible;
+        if (bookPromo) bookPromo.style.opacity = visible;
 
         const scrollTop = Math.max(0, -rect.top);
         const maxScroll = section!.offsetHeight - window.innerHeight;
