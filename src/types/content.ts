@@ -7,7 +7,6 @@ export interface ContentListItem {
   hook_first_lines: string | null;
   lang: "EN" | "FR" | "ES" | "DE";
   type: string;
-  themes: string[];
   tags: string[];
   published_date: string | null;
   word_count: number | null;
@@ -24,8 +23,7 @@ export interface ContentFull {
   hook_first_lines?: string;
   lang: "EN" | "FR" | "ES" | "DE";
   type: string;
-  themes: string[];
-  tags?: string[];
+  tags: string[];
   status: "draft" | "ready" | "published" | "archived";
   published_date?: string;
   word_count?: number;

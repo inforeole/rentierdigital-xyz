@@ -15,12 +15,12 @@ export async function getStaticPaths() {
         .filter((a) => a.slug !== article.slug)
         .map((a) => ({
           ...a,
-          commonThemes: a.themes.filter((t: string) =>
-            article.themes.includes(t)
+          commonTags: (a.tags ?? []).filter((t: string) =>
+            (article.tags ?? []).includes(t)
           ).length,
         }))
-        .filter((a) => a.commonThemes > 0)
-        .sort((a, b) => b.commonThemes - a.commonThemes)
+        .filter((a) => a.commonTags > 0)
+        .sort((a, b) => b.commonTags - a.commonTags)
         .slice(0, 3);
       paths.push({
         params: { lang, slug: article.slug },
@@ -72,7 +72,7 @@ const canonical = `https://rentierdigital.xyz/${langCode}/blog/${content.slug}`;
   description={description}
   publishedDate={content.published_date}
   readTime={content.read_time_minutes}
-  themes={content.themes}
+  tags={content.tags}
   canonical={canonical}
   htmlContent={htmlContent}
   related={related}

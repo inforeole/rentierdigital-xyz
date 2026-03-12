@@ -3,13 +3,13 @@ interface Props {
   title: string;
   slug: string;
   hook?: string | null;
-  themes: string[];
+  tags: string[];
   publishedDate?: string | null;
   readTime?: number | null;
   lang?: string;
 }
 
-const { title, slug, hook, themes, publishedDate, readTime, lang } = Astro.props;
+const { title, slug, hook, tags, publishedDate, readTime, lang } = Astro.props;
 const blogPrefix = lang && lang !== "en" ? `/${lang}/blog` : "/blog";
 ---
 
@@ -25,9 +25,9 @@ const blogPrefix = lang && lang !== "en" ? `/${lang}/blog` : "/blog";
   {hook && <p class="mt-2 line-clamp-2 text-sm text-neutral-400">{hook}</p>}
   <div class="mt-3 flex flex-wrap items-center gap-2">
     {
-      themes.slice(0, 3).map((theme) => (
+      (tags ?? []).slice(0, 3).map((tag) => (
         <span class="rounded-full bg-white/5 px-2.5 py-0.5 text-xs text-neutral-400">
-          {theme}
+          {tag}
         </span>
       ))
     }
