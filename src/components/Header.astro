@@ -34,8 +34,19 @@ const langs = [
           </a>
         ))
       }
-      <div id="search" class="hidden sm:block">
-        <Search />
+      <div id="search-wrapper" class="relative hidden sm:block">
+        <button
+          id="search-toggle"
+          class="text-sm text-neutral-400 transition-colors hover:text-white"
+          aria-label="Search"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+        <div id="search-panel" class="absolute right-0 top-full mt-2 hidden w-[320px] rounded-md border border-white/10 bg-[#1a1a1a] p-2 shadow-lg z-50">
+          <Search />
+        </div>
       </div>
       <div class="relative" id="lang-switcher">
         <button
@@ -66,6 +77,19 @@ const langs = [
           menu?.classList.toggle('hidden');
         });
         document.addEventListener('click', () => menu?.classList.add('hidden'));
+
+        const searchToggle = document.getElementById('search-toggle');
+        const searchPanel = document.getElementById('search-panel');
+        searchToggle?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          searchPanel?.classList.toggle('hidden');
+          if (!searchPanel?.classList.contains('hidden')) {
+            const input = searchPanel?.querySelector('input');
+            input?.focus();
+          }
+        });
+        searchPanel?.addEventListener('click', (e) => e.stopPropagation());
+        document.addEventListener('click', () => searchPanel?.classList.add('hidden'));
       </script>
     </div>
   </nav>
