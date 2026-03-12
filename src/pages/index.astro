@@ -52,12 +52,28 @@ const latest = articles.slice(1, 21);
         class="group block rounded-xl border border-white/10 p-6 transition-colors hover:border-blue-400/40 hover:bg-white/[0.02]"
       >
         {featured.cover_image_url && (
-          <img
-            src={featured.cover_image_url}
-            alt={featured.cover_image_alt ?? featured.title}
-            class="mb-4 w-full rounded-lg object-cover"
-            style="max-height: 280px;"
-          />
+          /\.(svg|gif)$/i.test(featured.cover_image_url) ? (
+            <img
+              src={featured.cover_image_url}
+              alt={featured.cover_image_alt ?? featured.title}
+              class="mb-4 w-full rounded-lg object-cover"
+              style="max-height: 280px;"
+            />
+          ) : (
+            <picture>
+              <source
+                srcset={`${featured.cover_image_url.replace(/\.\w+$/, '-480w.avif')} 480w, ${featured.cover_image_url.replace(/\.\w+$/, '.avif')} 768w`}
+                type="image/avif"
+                sizes="(max-width: 768px) 100vw, 662px"
+              />
+              <img
+                src={featured.cover_image_url}
+                alt={featured.cover_image_alt ?? featured.title}
+                class="mb-4 w-full rounded-lg object-cover"
+                style="max-height: 280px;"
+              />
+            </picture>
+          )
         )}
         <span class="mb-2 inline-block rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400">
           Latest article
