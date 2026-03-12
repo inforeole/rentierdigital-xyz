@@ -16,7 +16,7 @@ export async function getStaticPaths() {
         .map((a) => ({
           ...a,
           commonTags: (a.tags ?? []).filter((t: string) =>
-            (article.tags ?? []).includes(t)
+            (article.tags ?? []).some((at: string) => at.toLowerCase() === t.toLowerCase())
           ).length,
         }))
         .filter((a) => a.commonTags > 0)
