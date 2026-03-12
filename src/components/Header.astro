@@ -1,4 +1,6 @@
 ---
+import Search from "./Search.astro";
+
 const navItems = [
   { href: "/blog", label: "Blog" },
   { href: "/tools", label: "Tools" },
@@ -32,7 +34,9 @@ const langs = [
           </a>
         ))
       }
-      <div id="search" class="hidden sm:block"></div>
+      <div id="search" class="hidden sm:block">
+        <Search />
+      </div>
       <div class="relative" id="lang-switcher">
         <button
           class="text-sm text-neutral-400 transition-colors hover:text-white"

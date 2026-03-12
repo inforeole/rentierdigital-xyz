@@ -1,12 +1,11 @@
 <div id="pagefind-search"></div>
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-<script>
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline>
   window.addEventListener("DOMContentLoaded", () => {
-    import("/pagefind/pagefind-ui.js").then((module) => {
-      new module.PagefindUI({
-        element: "#pagefind-search",
-        showSubResults: true,
-      });
+    new PagefindUI({
+      element: "#pagefind-search",
+      showSubResults: true,
     });
   });
 </script>
