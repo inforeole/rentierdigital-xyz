@@ -75,11 +75,14 @@ processedHtml = processedHtml
     '<div class="tldr-box">$1</div>'
   );
 
-// Strip <figure data-cover> from markdown (cover is rendered by the template with optimized <picture>)
-processedHtml = processedHtml.replace(
-  /<figure\s+data-cover[^>]*>[\s\S]*?<\/figure>/gi,
-  ''
-);
+// Strip <figure data-cover> only when layout will render its own optimized <picture>.
+// When hideCoverImage is true, the inline figure IS the cover — keep it.
+if (!hideCoverImage) {
+  processedHtml = processedHtml.replace(
+    /<figure\s+data-cover[^>]*>[\s\S]*?<\/figure>/gi,
+    ''
+  );
+}
 
 // Inject cover image after TL;DR box (with italic caption)
 if (coverImageUrl && !hideCoverImage) {
