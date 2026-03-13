@@ -17,7 +17,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes("/prompt-contract/"),
+      filter: (page) => !page.includes("/test-avif"),
       i18n: {
         defaultLocale: "en",
         locales: {
