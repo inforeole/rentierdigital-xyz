@@ -17,7 +17,7 @@ export function rehypeLocalImages() {
       const isAlreadyLocal = src.includes("/blog-images/");
 
       // Alt fallback
-      const alt = (typeof node.properties.alt === "string" && node.properties.alt.trim() !== "")
+      const alt = (typeof node.properties?.alt === "string" && node.properties.alt.trim() !== "")
         ? node.properties.alt
         : "Illustration";
 

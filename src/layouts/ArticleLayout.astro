@@ -52,27 +52,34 @@ const lcpPreload = preloadImage
     ? coverImageUrl.replace(/\.\w+$/, "-480w.avif")
     : undefined;
 
+// Escape HTML special chars for safe use in attributes and content
+function escapeHtml(text: string): string {
+  return text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 let processedHtml = htmlContent;
 // Inject subtitle as first italic paragraph (visible to Medium importer)
 if (subtitle) {
   processedHtml = `<p><em>${subtitle}</em></p>\n` + processedHtml;
 }
 // Style first bold paragraph as subtitle (same sans-serif font as h1)
+// Use function replacement to avoid $N backreference interpretation in content
 processedHtml = processedHtml.replace(
   /^(\s*<p><strong>)([\s\S]*?)(<\/strong><\/p>)/i,
-  '<p class="subtitle">$2</p>'
+  (_match, _p1, p2) => `<p class="subtitle">${p2}</p>`
 );
 // Transform TLDR into styled box — handles both blockquote and plain paragraph
+// Function replacements prevent $N in content from being interpreted as backreferences
 processedHtml = processedHtml
   // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div
   .replace(
     /<blockquote>\s*(<p><strong>TL;DR:?<\/strong>[\s\S]*?)<\/blockquote>/i,
-    '<div class="tldr-box">$1</div>'
+    (_match, p1) => `<div class="tldr-box">${p1}</div>`
   )
   // Case 2: TLDR as a plain paragraph → wrap in tldr-box div
   .replace(
     /(?<!<div class="tldr-box">)(<p><strong>TL;DR:?<\/strong>[\s\S]*?<\/p>)/i,
-    '<div class="tldr-box">$1</div>'
+    (_match, p1) => `<div class="tldr-box">${p1}</div>`
   );
 
 // Strip <figure data-cover> only when layout will render its own optimized <picture>.
@@ -86,20 +93,20 @@ if (!hideCoverImage) {
 
 // Inject cover image after TL;DR box (with italic caption)
 if (coverImageUrl && !hideCoverImage) {
-  const altText = coverImageAlt || title;
+  const altText = escapeHtml(coverImageAlt || title);
   const isSvgOrGif = /\.(svg|gif)$/i.test(coverImageUrl);
   const imgTag = isSvgOrGif
     ? `<img src="${coverImageUrl}" alt="${altText}" width="768" height="432" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" />`
     : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><img src="${coverImageUrl}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
   const captionHtml = coverImageAlt
-    ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-500">${coverImageAlt}</figcaption>`
+    ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-500">${escapeHtml(coverImageAlt)}</figcaption>`
     : '';
   const figureHtml = `<figure class="my-8">${imgTag}${captionHtml}</figure>`;
 
   if (processedHtml.includes('class="tldr-box"')) {
     processedHtml = processedHtml.replace(
       /(<div class="tldr-box">[\s\S]*?<\/div>)/i,
-      `$1\n${figureHtml}`
+      (match) => `${match}\n${figureHtml}`
     );
   } else {
     // Fallback: insert before the first h2
