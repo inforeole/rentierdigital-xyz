@@ -8,7 +8,7 @@ const tools = [
       "A solo developer's framework for shipping production software with AI. Stop vibe coding, start contractualizing what you expect.",
     status: "available" as const,
     href: "/prompt-contract",
-    cover: "/prompt-contracts-cover.png",
+    cover: "/prompt-contracts-cover-thumb.avif",
   },
   {
     title: "Templates & Starter Kits",
@@ -48,13 +48,13 @@ const tools = [
         <div class="rounded-lg border border-white/10 p-6 transition-colors hover:border-white/20">
           <div class="flex gap-4">
             {tool.cover && (
-              <img src={tool.cover} alt={tool.title} class="w-20 flex-shrink-0 rounded-md" />
+              <img src={tool.cover} alt={tool.title} class="w-20 flex-shrink-0 rounded-md" width="80" height="115" />
             )}
             <div>
               <div class="mb-3 flex items-center gap-2">
                 <h2 class="text-lg font-semibold text-white">{tool.title}</h2>
                 {tool.status === "coming" && (
-                  <span class="rounded-full bg-white/5 px-2 py-0.5 text-xs text-neutral-500">
+                  <span class="rounded-full bg-white/5 px-2 py-0.5 text-xs text-neutral-400">
                     Coming soon
                   </span>
                 )}

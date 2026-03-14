@@ -48,12 +48,12 @@ const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
 
       <hr class="border-neutral-800 my-5" />
 
-      <a href={bookUrl} class="text-sm text-violet-400 hover:underline no-underline" data-action="book-click">
+      <a href={bookUrl} class="text-sm text-violet-400 underline" data-action="book-click">
         Get the book on Amazon (paperback & Kindle)
       </a>
     </div>
 
-    <p class="mt-5 text-xs text-neutral-600">&copy; rentierdigital</p>
+    <p class="mt-5 text-xs text-neutral-400">&copy; rentierdigital</p>
 
     <script is:inline>
       fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {

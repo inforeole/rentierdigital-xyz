@@ -24,12 +24,12 @@ function pageUrl(page: number): string {
           Previous
         </a>
       ) : (
-        <span class="rounded-md border border-white/5 px-4 py-2 text-sm text-neutral-600">
+        <span class="rounded-md border border-white/5 px-4 py-2 text-sm text-neutral-600" aria-disabled="true">
           Previous
         </span>
       )}
 
-      <span class="text-sm text-neutral-500">
+      <span class="text-sm text-neutral-400">
         {currentPage} / {totalPages}
       </span>
 
@@ -41,7 +41,7 @@ function pageUrl(page: number): string {
           Next
         </a>
       ) : (
-        <span class="rounded-md border border-white/5 px-4 py-2 text-sm text-neutral-600">
+        <span class="rounded-md border border-white/5 px-4 py-2 text-sm text-neutral-600" aria-disabled="true">
           Next
         </span>
       )}

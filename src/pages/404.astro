@@ -9,16 +9,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       id="terminal"
       class="w-full max-w-xl rounded-lg border border-white/10 bg-neutral-900/50 p-6 font-mono text-sm text-green-400"
     >
-      <div class="terminal-line"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Searching for "<span id="path-slot">/unknown</span>"...</span></div>
-      <div class="terminal-line"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Scanning 42 published articles...</span></div>
-      <div class="terminal-line"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Checking redirects...</span></div>
-      <div class="terminal-line text-red-400"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Page not found.</span></div>
+      <div class="terminal-line"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Searching for "<span id="path-slot">/unknown</span>"...</span></div>
+      <div class="terminal-line"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Scanning 42 published articles...</span></div>
+      <div class="terminal-line"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Checking redirects...</span></div>
+      <div class="terminal-line text-red-400"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Page not found.</span></div>
       <div class="terminal-line empty">&nbsp;</div>
-      <div class="terminal-line"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Diagnosis: This page was never built.</span></div>
-      <div class="terminal-line"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Probably someone vibe-coded the URL.</span></div>
+      <div class="terminal-line"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Diagnosis: This page was never built.</span></div>
+      <div class="terminal-line"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Probably someone vibe-coded the URL.</span></div>
       <div class="terminal-line empty">&nbsp;</div>
-      <div class="terminal-line"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Recommended fix:</span></div>
-      <div class="terminal-line text-white font-bold"><span class="prompt text-neutral-500">&gt; </span><span class="typed">Stop guessing. Start shipping.</span></div>
+      <div class="terminal-line"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Recommended fix:</span></div>
+      <div class="terminal-line text-white font-bold"><span class="prompt text-neutral-400">&gt; </span><span class="typed">Stop guessing. Start shipping.</span></div>
       <span id="cursor" class="hidden w-2 h-4 bg-green-400 animate-pulse ml-0.5 align-middle"></span>
     </div>
 
@@ -29,9 +29,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       class="group mt-8 flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-sky-400/40 no-underline max-w-xl w-full"
     >
       <img
-        src="/prompt-contracts-cover.png"
+        src="/prompt-contracts-cover-thumb.avif"
         alt="Prompt Contracts — book cover"
         class="w-20 flex-shrink-0 rounded-md"
+        width="80"
+        height="115"
         loading="lazy"
       />
       <div>
@@ -51,7 +53,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <a
       id="back-link"
       href="/blog"
-      class="mt-6 text-sm text-neutral-500 transition-colors hover:text-neutral-300"
+      class="mt-6 text-sm text-neutral-400 transition-colors hover:text-neutral-300"
     >
       or go back to the blog
     </a>

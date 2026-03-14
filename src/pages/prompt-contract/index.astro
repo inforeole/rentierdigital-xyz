@@ -37,16 +37,18 @@ const stats = [
 <BaseLayout
   title="Prompt Contracts Book — Stop Vibe Coding, Ship Real Software With AI"
   description="The prompt contracts book: a practical framework to turn AI coding agents into reliable contractors. 9 chapters, 10 templates, runnable code. Free on Kindle Unlimited or $9.99 on Amazon."
-  ogImage="https://rentierdigital.xyz/prompt-contracts-cover.png"
+  ogImage="https://rentierdigital.xyz/prompt-contracts-cover.avif"
 >
     <!-- Hero -->
     <section class="flex flex-col items-center pt-8 pb-12">
       <div class="w-full max-w-[900px] flex flex-col md:flex-row items-center gap-10">
         <div class="flex-shrink-0 rounded-lg shadow-2xl shadow-sky-900/20">
           <img
-            src="/prompt-contracts-cover.png"
+            src="/prompt-contracts-cover-md.avif"
             alt="Prompt Contracts book cover"
             class="w-[240px] md:w-[280px] block"
+            width="280"
+            height="401"
           />
         </div>
         <div class="text-center md:text-left">
@@ -65,7 +67,7 @@ const stats = [
           <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
             <a
               href={bookUrl}
-              class="inline-block font-semibold text-white bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline text-center"
+              class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline text-center"
               target="_blank"
               rel="noopener"
             >
@@ -73,7 +75,7 @@ const stats = [
             </a>
           </div>
           <p class="text-sm text-emerald-400 font-medium mt-3">Free with Kindle Unlimited</p>
-          <p class="text-xs text-neutral-500 mt-1">Or buy it: Kindle $9.99</p>
+          <p class="text-xs text-neutral-400 mt-1">Or buy it: Kindle $9.99</p>
         </div>
       </div>
     </section>
@@ -91,7 +93,7 @@ const stats = [
     <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <div class="bg-[#161616] border border-neutral-800 rounded-xl p-6">
-          <p class="text-xs uppercase tracking-wider text-neutral-500 mb-4 text-center">
+          <p class="text-xs uppercase tracking-wider text-neutral-400 mb-4 text-center">
             The Medium article that started it all
           </p>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
@@ -102,7 +104,7 @@ const stats = [
               </div>
             ))}
           </div>
-          <p class="text-xs text-neutral-500 text-center mt-4">
+          <p class="text-xs text-neutral-400 text-center mt-4">
             63% read ratio &middot; 16.8K from Google &middot; 62% programmers, 48% AI practitioners
           </p>
         </div>
@@ -116,30 +118,30 @@ const stats = [
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
             <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"The better your specs are, the better your product is."</p>
-            <p class="text-xs text-neutral-500">Randall Bownds</p>
+            <p class="text-xs text-neutral-400">Randall Bownds</p>
           </div>
           <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
             <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"It will build what you say. Do you say what you need?"</p>
-            <p class="text-xs text-neutral-500">Vitaly Hornik</p>
+            <p class="text-xs text-neutral-400">Vitaly Hornik</p>
           </div>
           <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
             <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"It's good to know that the practices you encountered are exactly the same ones I use."</p>
-            <p class="text-xs text-neutral-500">artful_dodger <span class="text-sky-400">71 claps</span></p>
+            <p class="text-xs text-neutral-400">artful_dodger <span class="text-sky-400">71 claps</span></p>
           </div>
           <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
             <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"Planning before execution is key."</p>
-            <p class="text-xs text-neutral-500">Manu Gupta <span class="text-sky-400">159 claps</span></p>
+            <p class="text-xs text-neutral-400">Manu Gupta <span class="text-sky-400">159 claps</span></p>
           </div>
           <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
             <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"This is an important article. Writing requirements was the precursor to design and coding phases."</p>
-            <p class="text-xs text-neutral-500">Joe Bologna</p>
+            <p class="text-xs text-neutral-400">Joe Bologna</p>
           </div>
           <div class="bg-[#161616] border border-neutral-800 rounded-lg p-5">
             <p class="text-sm text-neutral-300 italic leading-relaxed mb-3">"Basically it's not possible to vibe code without already knowing how to code?"</p>
-            <p class="text-xs text-neutral-500">Money, Geopolitics &amp; Oil <span class="text-sky-400">117 claps</span></p>
+            <p class="text-xs text-neutral-400">Money, Geopolitics &amp; Oil <span class="text-sky-400">117 claps</span></p>
           </div>
         </div>
-        <p class="text-xs text-neutral-500 text-center mt-4">From the 67 responses on Medium</p>
+        <p class="text-xs text-neutral-400 text-center mt-4">From the 67 responses on Medium</p>
       </div>
     </section>
 
@@ -211,7 +213,7 @@ const stats = [
         <div class="mt-6">
           <a
             href={bookUrl}
-            class="inline-block font-semibold text-white bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline"
+            class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline"
             target="_blank"
             rel="noopener"
           >
@@ -226,7 +228,7 @@ const stats = [
       <div class="w-full max-w-[700px] bg-[#161616] border border-neutral-800 rounded-xl p-6">
         <h2 class="text-lg font-bold text-white mb-3">About the author</h2>
         <p class="text-sm text-neutral-400 leading-relaxed mb-3">
-          Phil writes on Medium under <a href="https://medium.com/@rentierdigital" class="text-sky-400 hover:underline" target="_blank" rel="noopener">@rentierdigital</a>. 20 years in software, from French banks to a shrimp fishery in Madagascar. Now a solo developer shipping SaaS products with AI from wherever the Wi-Fi holds.
+          Phil writes on Medium under <a href="https://medium.com/@rentierdigital" class="text-sky-400 underline" target="_blank" rel="noopener">@rentierdigital</a>. 20 years in software, from French banks to a shrimp fishery in Madagascar. Now a solo developer shipping SaaS products with AI from wherever the Wi-Fi holds.
         </p>
         <p class="text-sm text-neutral-400 leading-relaxed">
           Stack: Next.js, Convex, Clerk, Vercel, n8n. Self-hosted AI agents. Everything in this book has been deployed, broken in production, fixed, and deployed again.
@@ -238,7 +240,7 @@ const stats = [
     <section class="pb-12">
       <div class="w-full max-w-[900px]">
         <h2 class="text-xl font-bold text-white mb-2 text-center">Every chapter comes with runnable code</h2>
-        <p class="text-sm text-neutral-500 text-center mb-6">Scan the QR codes inside the book to access templates, workflows, and companion repos</p>
+        <p class="text-sm text-neutral-400 text-center mb-6">Scan the QR codes inside the book to access templates, workflows, and companion repos</p>
         <div class="space-y-2">
           {resources.map((r) => (
             <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
@@ -247,11 +249,11 @@ const stats = [
                   <span class="font-medium text-white text-sm">{r.title}</span>
                   <span class="text-xs text-sky-400 ml-2">{r.chapter}</span>
                 </div>
-                <svg class="w-4 h-4 text-neutral-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
               </summary>
               <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
                 <p class="text-sm text-neutral-300 mb-1">{r.desc}</p>
-                <p class="text-xs text-neutral-500">{r.detail}</p>
+                <p class="text-xs text-neutral-400">{r.detail}</p>
               </div>
             </details>
           ))}
@@ -265,14 +267,14 @@ const stats = [
         <p class="text-neutral-400 mb-4">Your AI has been waiting for better instructions.</p>
         <a
           href={bookUrl}
-          class="inline-block font-semibold text-white bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-10 py-4 text-lg transition-colors no-underline"
+          class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-10 py-4 text-lg transition-colors no-underline"
           target="_blank"
           rel="noopener"
         >
           Get Prompt Contracts on Amazon
         </a>
         <p class="text-sm text-emerald-400 font-medium mt-3">Free with Kindle Unlimited</p>
-        <p class="text-xs text-neutral-500 mt-1">Or buy it: Kindle $9.99</p>
+        <p class="text-xs text-neutral-400 mt-1">Or buy it: Kindle $9.99</p>
       </div>
     </section>
 
@@ -284,7 +286,7 @@ const stats = [
           <details class="group bg-[#161616] border border-neutral-800 rounded-lg" open>
             <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
               <span class="font-medium text-white text-sm">What is a prompt contract?</span>
-              <svg class="w-4 h-4 text-neutral-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </summary>
             <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
               <p class="text-sm text-neutral-300">A prompt contract is a structured specification you write before giving a task to an AI coding agent. It defines the tech stack, inputs, outputs, constraints, and acceptance criteria so the AI delivers working code on the first pass instead of generating throwaway demos.</p>
@@ -293,7 +295,7 @@ const stats = [
           <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
             <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
               <span class="font-medium text-white text-sm">Do I need coding experience to use this book?</span>
-              <svg class="w-4 h-4 text-neutral-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </summary>
             <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
               <p class="text-sm text-neutral-300">You need enough technical understanding to describe what you want built. You don't need to write code yourself, but you need to understand concepts like APIs, databases, and deployment. The book covers how to specify requirements clearly enough that AI does the implementation.</p>
@@ -302,7 +304,7 @@ const stats = [
           <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
             <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
               <span class="font-medium text-white text-sm">How is this different from vibe coding?</span>
-              <svg class="w-4 h-4 text-neutral-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </summary>
             <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
               <p class="text-sm text-neutral-300">Vibe coding is typing a loose prompt and hoping the AI figures it out. It works for demos but breaks in production. Prompt contracts flip the process: you invest 10 minutes writing a clear spec, and the AI delivers production-grade code that handles edge cases, error states, and real-world constraints.</p>
@@ -311,7 +313,7 @@ const stats = [
           <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
             <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
               <span class="font-medium text-white text-sm">Which AI tools does this work with?</span>
-              <svg class="w-4 h-4 text-neutral-500 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </summary>
             <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
               <p class="text-sm text-neutral-300">The examples use Claude Code, but the prompt contract framework works with any AI coding agent: Cursor, GitHub Copilot, Windsurf, or ChatGPT. The principle is the same: better input specifications produce better output code, regardless of the tool.</p>
@@ -333,7 +335,7 @@ const stats = [
         "url": "https://medium.com/@rentierdigital"
       },
       "url": "https://rentierdigital.xyz/prompt-contract",
-      "image": "https://rentierdigital.xyz/prompt-contracts-cover.png",
+      "image": "https://rentierdigital.xyz/prompt-contracts-cover.avif",
       "description": "A practical framework for turning AI coding agents into reliable contractors that deliver production-quality code to spec. 9 chapters, 260 pages, 10 templates.",
       "numberOfPages": 260,
       "bookFormat": "EBook",
