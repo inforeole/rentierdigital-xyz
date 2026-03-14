@@ -60,13 +60,14 @@ const latest = articles.slice(1, 21);
               style="max-height: 280px;"
               width="768"
               height="432"
+              fetchpriority="high"
             />
           ) : (
             <picture>
               <source
                 srcset={`${featured.cover_image_url.replace(/\.\w+$/, '-480w.avif')} 480w, ${featured.cover_image_url.replace(/\.\w+$/, '.avif')} 768w`}
                 type="image/avif"
-                sizes="(max-width: 768px) 100vw, 662px"
+                sizes="(max-width: 768px) calc(100vw - 2rem), 500px"
               />
               <img
                 src={featured.cover_image_url}
@@ -75,6 +76,8 @@ const latest = articles.slice(1, 21);
                 style="max-height: 280px;"
                 width="768"
                 height="432"
+                sizes="(max-width: 768px) calc(100vw - 2rem), 500px"
+                fetchpriority="high"
               />
             </picture>
           )
