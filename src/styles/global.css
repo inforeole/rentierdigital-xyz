@@ -36,3 +36,8 @@
   width: 100%;
   height: auto;
 }
+
+/* Center figcaptions under images */
+.prose figcaption {
+  text-align: center;
+}
