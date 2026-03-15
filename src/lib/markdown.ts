@@ -16,7 +16,7 @@ export async function renderMarkdown(md: string): Promise<string> {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeLocalImages)
-    .use(rehypeShiki, { theme: "github-dark" })
+    .use(rehypeShiki, { theme: "github-dark-default" })
     .use(rehypeStringify)
     .process(md);
   return String(result);
