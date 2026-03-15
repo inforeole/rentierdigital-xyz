@@ -18,6 +18,7 @@ interface Props {
   seoTargetKeyword?: string;
   coverImageUrl?: string;
   coverImageAlt?: string;
+  coverCaption?: string;
   hideCoverImage?: boolean;
   lang?: string;
   translations?: { lang: string; slug: string; title: string }[];
@@ -39,6 +40,7 @@ const {
   seoTargetKeyword,
   coverImageUrl,
   coverImageAlt,
+  coverCaption,
   hideCoverImage = false,
   lang,
   translations,
@@ -94,8 +96,9 @@ if (coverImageUrl && !hideCoverImage) {
   const imgTag = isSvgOrGif
     ? `<img src="${coverImageUrl}" alt="${altText}" width="768" height="432" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" />`
     : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><img src="${coverImageUrl}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
-  const captionHtml = coverImageAlt
-    ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-400">${escapeHtml(coverImageAlt)}</figcaption>`
+  const captionText = coverCaption || coverImageAlt;
+  const captionHtml = captionText
+    ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-400">${escapeHtml(captionText)}</figcaption>`
     : '';
   const figureHtml = `<figure class="my-8">${imgTag}${captionHtml}</figure>`;
 

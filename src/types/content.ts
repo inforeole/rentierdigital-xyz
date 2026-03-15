@@ -35,5 +35,6 @@ export interface ContentFull {
   seo_target_keyword?: string;
   cover_image_url?: string;
   cover_image_alt?: string;
+  cover_caption?: string;
   translations?: { lang: string; slug: string; title: string }[];
 }

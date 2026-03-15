@@ -79,6 +79,7 @@ const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
   coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url, content.slug) : undefined}
   hideCoverImage={markdownHasInlineImage}
   coverImageAlt={content.cover_image_alt}
+  coverCaption={content.cover_caption}
   lang="en"
   translations={content.translations}
   preloadImage={markdownHasInlineImage ? firstInlineImageUrl : undefined}
