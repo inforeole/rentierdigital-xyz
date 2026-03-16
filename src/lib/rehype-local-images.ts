@@ -3,6 +3,8 @@ import { h } from "hastscript";
 import { imageFilename } from "./image-utils";
 import type { Root, Element, Parent } from "hast";
 
+const BUILD_CACHE_BUST = `v=${Date.now()}`;
+
 export function rehypeLocalImages() {
   return (tree: Root) => {
     let isFirstImage = true;
@@ -39,7 +41,7 @@ export function rehypeLocalImages() {
 
       // SVG/GIF: keep simple <img>, no <picture> wrapper
       if (ext === "svg" || ext === "gif") {
-        node.properties.src = localSrc;
+        node.properties.src = `${localSrc}?${BUILD_CACHE_BUST}`;
         node.properties.alt = alt;
         node.properties.loading = loading;
         node.properties.decoding = "async";
@@ -52,8 +54,8 @@ export function rehypeLocalImages() {
 
       // Other formats: wrap in <picture> with AVIF srcset (480w + 768w)
       const base = filename.replace(/\.\w+$/, "");
-      const avif768 = `/blog-images/${base}.avif`;
-      const avif480 = `/blog-images/${base}-480w.avif`;
+      const avif768 = `/blog-images/${base}.avif?${BUILD_CACHE_BUST}`;
+      const avif480 = `/blog-images/${base}-480w.avif?${BUILD_CACHE_BUST}`;
       const pictureNode = h("picture", [
         h("source", {
           srcSet: `${avif480} 480w, ${avif768} 768w`,
@@ -61,7 +63,7 @@ export function rehypeLocalImages() {
           sizes: "(max-width: 768px) 100vw, 662px",
         }),
         h("img", {
-          src: localSrc,
+          src: `${localSrc}?${BUILD_CACHE_BUST}`,
           alt,
           loading,
           decoding: "async",
