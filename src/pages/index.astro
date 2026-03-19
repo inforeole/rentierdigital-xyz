@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
+import NewsletterCta from "../components/NewsletterCta.astro";
 import { getBlogList, getBlogBySlug } from "../lib/convex";
 
 const articles = await getBlogList();
@@ -145,6 +146,10 @@ const cacheBust = `v=${Date.now()}`;
           />
         </div>
       ))}
+      <!-- Newsletter CTA mobile — before footer -->
+      <div class="mt-6 mb-4">
+        <NewsletterCta utmMedium="homepage-mobile" />
+      </div>
     </div>
   </div>
 
@@ -200,6 +205,11 @@ const cacheBust = `v=${Date.now()}`;
     </div>
   </a>
 
+  <!-- Newsletter CTA (desktop, positioned by JS below book promo) -->
+  <div id="newsletter-cta-desktop" class="hidden lg:block" style="width: 480px;">
+    <NewsletterCta utmMedium="homepage-sidebar" />
+  </div>
+
   <script>
     const FRAME_COUNT = 120;
     const AUDIO_DURATION = 8;
@@ -247,6 +257,7 @@ const cacheBust = `v=${Date.now()}`;
       canvasDesktop.style.transition = 'opacity 0.3s';
 
       const bookPromo = document.getElementById('book-promo-desktop');
+      const nlCta = document.getElementById('newsletter-cta-desktop');
       if (bookPromo) {
         bookPromo.style.position = 'fixed';
         bookPromo.style.right = canvasDesktop.style.right;
@@ -255,6 +266,14 @@ const cacheBust = `v=${Date.now()}`;
         bookPromo.style.opacity = '0';
         bookPromo.style.transition = 'opacity 0.3s';
       }
+      if (nlCta) {
+        nlCta.style.position = 'fixed';
+        nlCta.style.right = canvasDesktop.style.right;
+        nlCta.style.top = (endTop + 240 + 32 + 130) + 'px';
+        nlCta.style.zIndex = '10';
+        nlCta.style.opacity = '0';
+        nlCta.style.transition = 'opacity 0.3s';
+      }
 
       function onScrollDesktop() {
         const rect = section!.getBoundingClientRect();
@@ -262,6 +281,7 @@ const cacheBust = `v=${Date.now()}`;
         const visible = rect.top <= endTop ? '1' : '0';
         canvasDesktop.style.opacity = visible;
         if (bookPromo) bookPromo.style.opacity = visible;
+        if (nlCta) nlCta.style.opacity = visible;
 
         const scrollTop = Math.max(0, -rect.top);
         const maxScroll = section!.offsetHeight - window.innerHeight;

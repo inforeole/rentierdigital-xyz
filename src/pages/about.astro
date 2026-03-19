@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import NewsletterCta from "../components/NewsletterCta.astro";
 ---
 
 <BaseLayout
@@ -89,4 +90,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       Find me on <a href="https://github.com/rentierdigital">GitHub</a>.
     </p>
   </article>
+
+  <div class="mx-auto mt-10 max-w-md">
+    <NewsletterCta utmMedium="about-page" />
+  </div>
 </BaseLayout>

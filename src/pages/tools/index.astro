@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsletterCta from "../../components/NewsletterCta.astro";
 
 const tools = [
   {
@@ -73,5 +74,9 @@ const tools = [
         </div>
       ))
     }
+  </div>
+
+  <div class="mx-auto mt-10 max-w-md">
+    <NewsletterCta utmMedium="tools-page" />
   </div>
 </BaseLayout>

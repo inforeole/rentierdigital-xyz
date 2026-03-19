@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import NewsletterCta from "../components/NewsletterCta.astro";
 ---
 
 <BaseLayout title="404 — Page Not Found" description="Page not found.">
@@ -49,6 +50,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </a>
 
+    <!-- Newsletter CTA -->
+    <div id="newsletter-cta-404" class="mt-8 max-w-xl w-full">
+      <NewsletterCta utmMedium="404-page" />
+    </div>
+
     <!-- Back link (visible by default for no-JS) -->
     <a
       id="back-link"
@@ -63,6 +69,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const lines = document.querySelectorAll<HTMLElement>('.terminal-line');
     const cursor = document.getElementById('cursor')!;
     const bookCta = document.getElementById('book-cta')!;
+    const nlCta404 = document.getElementById('newsletter-cta-404')!;
     const backLink = document.getElementById('back-link')!;
     const pathSlot = document.getElementById('path-slot')!;
 
@@ -78,6 +85,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       // Hide lines, CTA, back link — then animate
       lines.forEach(l => l.style.display = 'none');
       bookCta.style.opacity = '0';
+      nlCta404.style.opacity = '0';
       backLink.style.opacity = '0';
       cursor.classList.remove('hidden');
       cursor.classList.add('inline-block');
@@ -124,7 +132,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         cursor.style.display = 'none';
         bookCta.style.transition = 'opacity 300ms ease';
         bookCta.style.opacity = '1';
-        backLink.style.transition = 'opacity 300ms ease 150ms';
+        nlCta404.style.transition = 'opacity 300ms ease 150ms';
+        nlCta404.style.opacity = '1';
+        backLink.style.transition = 'opacity 300ms ease 300ms';
         backLink.style.opacity = '1';
       }
 
