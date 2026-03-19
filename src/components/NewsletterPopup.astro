@@ -1,0 +1,94 @@
+---
+// Newsletter subscribe popup — triggers after 30s or 50% scroll (first wins)
+// Once per session (sessionStorage), ESC to dismiss
+---
+
+<div id="nl-popup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm">
+  <div class="relative mx-4 w-full max-w-md rounded-xl border border-white/10 bg-[#111] p-6 shadow-2xl sm:p-8">
+    <button
+      id="nl-close"
+      class="absolute right-3 top-3 text-neutral-500 transition-colors hover:text-white"
+      aria-label="Close"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <div class="text-center">
+      <div class="mb-3 text-3xl">⚡</div>
+      <h3 class="text-xl font-bold text-white sm:text-2xl">
+        The Agent Engineering Stack
+      </h3>
+      <p class="mt-2 text-sm text-neutral-400 sm:text-base">
+        3 production-tested blueprints to ship AI agents that actually work. Free.
+      </p>
+    </div>
+
+    <a
+      id="nl-cta"
+      href="https://rentierdigital.beehiiv.com/subscribe?utm_source=astro&utm_medium=popup&utm_campaign=blog"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-500"
+    >
+      Get the Stack →
+    </a>
+
+    <p class="mt-3 text-center text-xs text-neutral-500">
+      One email per week. Unsubscribe anytime.
+    </p>
+  </div>
+</div>
+
+<script>
+  const KEY = "nl-popup-shown";
+  const DELAY_MS = 30_000;
+  const SCROLL_PCT = 0.5;
+
+  function dismiss(): void {
+    sessionStorage.setItem(KEY, "1");
+    const el = document.getElementById("nl-popup");
+    if (el) el.classList.replace("flex", "hidden");
+  }
+
+  function show(): void {
+    const el = document.getElementById("nl-popup");
+    if (el && !el.classList.contains("flex")) {
+      el.classList.replace("hidden", "flex");
+    }
+  }
+
+  if (!sessionStorage.getItem(KEY)) {
+    let shown = false;
+
+    function triggerOnce() {
+      if (!shown) { shown = true; show(); cleanup(); }
+    }
+
+    const timer = setTimeout(triggerOnce, DELAY_MS);
+
+    function onScroll() {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      if (pct >= SCROLL_PCT) triggerOnce();
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    function cleanup() {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+    }
+
+    // Close: X button, backdrop click, ESC key
+    document.getElementById("nl-close")?.addEventListener("click", dismiss);
+    document.getElementById("nl-popup")?.addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) dismiss();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") dismiss();
+    });
+
+    // CTA click = mark as shown (don't re-show this session)
+    document.getElementById("nl-cta")?.addEventListener("click", () => {
+      sessionStorage.setItem(KEY, "1");
+    });
+  }
+</script>
