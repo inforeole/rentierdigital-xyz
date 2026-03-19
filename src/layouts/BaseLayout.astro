@@ -15,6 +15,7 @@ interface Props {
   lang?: string;
   translations?: { lang: string; slug: string; title: string }[];
   preloadImage?: string;
+  hideNewsletterPopup?: boolean;
 }
 
 const props = Astro.props;
@@ -36,6 +37,6 @@ const htmlLang = props.lang || "en";
       <slot />
     </main>
     <Footer />
-    <NewsletterPopup />
+    {!props.hideNewsletterPopup && <NewsletterPopup />}
   </body>
 </html>
