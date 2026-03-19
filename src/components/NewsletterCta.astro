@@ -1,12 +1,9 @@
 ---
-// Inline newsletter CTA — static block (not popup)
-// Desktop: sidebar right column (sticky)
-// Mobile: full-width before footer
+// Inline newsletter CTA — embedded form (sidebar + mobile)
 interface Props {
-  utmCampaign?: string;
+  utmMedium?: string;
 }
-const { utmCampaign = "blog" } = Astro.props;
-const href = `https://rentierdigital.beehiiv.com/subscribe?utm_source=astro&utm_medium=sidebar&utm_campaign=${utmCampaign}`;
+const { utmMedium = "sidebar" } = Astro.props;
 ---
 
 <aside class="rounded-xl border border-white/10 bg-[#111] p-5">
@@ -17,15 +14,62 @@ const href = `https://rentierdigital.beehiiv.com/subscribe?utm_source=astro&utm_
       3 production-tested blueprints to ship AI agents that actually work. Free.
     </p>
   </div>
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="mt-4 block w-full rounded-lg bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-blue-500"
-  >
-    Get the Stack →
-  </a>
+  <form class="nl-form-inline mt-4" data-utm={utmMedium}>
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="your@email.com"
+      class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-neutral-500 outline-none focus:border-blue-500"
+    />
+    <button
+      type="submit"
+      class="mt-2 w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
+    >
+      Get the Stack →
+    </button>
+    <p class="nl-msg-inline mt-2 hidden text-center text-sm"></p>
+  </form>
   <p class="mt-2 text-center text-xs text-neutral-500">
     One email per week. Unsubscribe anytime.
   </p>
 </aside>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>(".nl-form-inline").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = form.querySelector(".nl-msg-inline") as HTMLElement;
+      const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
+      const email = new FormData(form).get("email") as string;
+      const utm = form.dataset.utm || "sidebar";
+
+      btn.disabled = true;
+      btn.textContent = "...";
+
+      try {
+        const res = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, utm_source: "astro", utm_medium: utm, utm_campaign: "blog" }),
+        });
+
+        if (res.ok) {
+          msg.textContent = "Check your inbox!";
+          msg.className = "nl-msg-inline mt-2 text-center text-sm text-green-400";
+          btn.textContent = "Done!";
+        } else {
+          msg.textContent = "Something went wrong. Try again.";
+          msg.className = "nl-msg-inline mt-2 text-center text-sm text-red-400";
+          btn.disabled = false;
+          btn.textContent = "Get the Stack →";
+        }
+      } catch {
+        msg.textContent = "Network error. Try again.";
+        msg.className = "nl-msg-inline mt-2 text-center text-sm text-red-400";
+        btn.disabled = false;
+        btn.textContent = "Get the Stack →";
+      }
+    });
+  });
+</script>

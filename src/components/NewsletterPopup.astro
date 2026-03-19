@@ -1,5 +1,5 @@
 ---
-// Newsletter subscribe popup — triggers after 30s or 50% scroll (first wins)
+// Newsletter subscribe popup — embedded form, triggers after 30s or 50% scroll
 // Once per session (sessionStorage), ESC to dismiss
 ---
 
@@ -23,15 +23,24 @@
       </p>
     </div>
 
-    <a
-      id="nl-cta"
-      href="https://rentierdigital.beehiiv.com/subscribe?utm_source=astro&utm_medium=popup&utm_campaign=blog"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="mt-6 block w-full rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-500"
-    >
-      Get the Stack →
-    </a>
+    <form id="nl-form-popup" class="mt-6">
+      <div class="flex gap-2">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none focus:border-blue-500"
+        />
+        <button
+          type="submit"
+          class="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
+        >
+          Get it
+        </button>
+      </div>
+      <p id="nl-msg-popup" class="mt-2 hidden text-center text-sm"></p>
+    </form>
 
     <p class="mt-3 text-center text-xs text-neutral-500">
       One email per week. Unsubscribe anytime.
@@ -50,18 +59,62 @@
     if (el) el.classList.replace("flex", "hidden");
   }
 
-  function show(): void {
+  function showPopup(): void {
     const el = document.getElementById("nl-popup");
     if (el && !el.classList.contains("flex")) {
       el.classList.replace("hidden", "flex");
     }
   }
 
+  async function handleSubmit(form: HTMLFormElement, msgId: string, utm_medium: string) {
+    const msg = document.getElementById(msgId);
+    const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
+    const email = new FormData(form).get("email") as string;
+
+    btn.disabled = true;
+    btn.textContent = "...";
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, utm_source: "astro", utm_medium, utm_campaign: "blog" }),
+      });
+
+      if (msg) {
+        if (res.ok) {
+          msg.textContent = "Check your inbox!";
+          msg.className = "mt-2 text-center text-sm text-green-400";
+          sessionStorage.setItem(KEY, "1");
+          setTimeout(dismiss, 2000);
+        } else {
+          msg.textContent = "Something went wrong. Try again.";
+          msg.className = "mt-2 text-center text-sm text-red-400";
+          btn.disabled = false;
+          btn.textContent = "Get it";
+        }
+      }
+    } catch {
+      if (msg) {
+        msg.textContent = "Network error. Try again.";
+        msg.className = "mt-2 text-center text-sm text-red-400";
+      }
+      btn.disabled = false;
+      btn.textContent = "Get it";
+    }
+  }
+
+  // Form submit
+  document.getElementById("nl-form-popup")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    handleSubmit(e.target as HTMLFormElement, "nl-msg-popup", "popup");
+  });
+
   if (!sessionStorage.getItem(KEY)) {
     let shown = false;
 
     function triggerOnce() {
-      if (!shown) { shown = true; show(); cleanup(); }
+      if (!shown) { shown = true; showPopup(); cleanup(); }
     }
 
     const timer = setTimeout(triggerOnce, DELAY_MS);
@@ -84,11 +137,6 @@
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") dismiss();
-    });
-
-    // CTA click = mark as shown (don't re-show this session)
-    document.getElementById("nl-cta")?.addEventListener("click", () => {
-      sessionStorage.setItem(KEY, "1");
     });
   }
 </script>
