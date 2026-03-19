@@ -18,12 +18,6 @@ const tools = [
     status: "coming" as const,
   },
   {
-    title: "Newsletter",
-    description:
-      "Weekly insights on building with AI, curated tools, and real-world case studies.",
-    status: "coming" as const,
-  },
-  {
     title: "CTO Services",
     description:
       "Technical co-founding, architecture, and hands-on development for non-technical founders.",
@@ -74,9 +68,7 @@ const tools = [
         </div>
       ))
     }
-  </div>
-
-  <div class="mx-auto mt-10 max-w-md">
+    <!-- Newsletter CTA replaces the "coming soon" card -->
     <NewsletterCta utmMedium="tools-page" />
   </div>
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import Pagination from "../../components/Pagination.astro";
+import NewsletterCta from "../../components/NewsletterCta.astro";
 import { getBlogList } from "../../lib/convex";
 
 const PAGE_SIZE = 12;
@@ -36,6 +37,10 @@ const pageArticles = articles.slice(0, PAGE_SIZE);
         />
       ))
     }
+  </div>
+
+  <div class="mx-auto mt-10 max-w-md">
+    <NewsletterCta utmMedium="blog-listing" />
   </div>
 
   <Pagination currentPage={1} totalPages={totalPages} />
