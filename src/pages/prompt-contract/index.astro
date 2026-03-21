@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
+const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/track";
 
 const chapters = [
   { num: "0", title: "The Gap Between Demo Code and Production Code", desc: "Stop wasting days debugging AI code that looked right but breaks in prod" },
@@ -405,8 +406,8 @@ const stats = [
     }
     </script>
 
-    <script is:inline>
-      fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {
+    <script define:vars={{ qrTrackUrl }}>
+      fetch(qrTrackUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug: "index" })
