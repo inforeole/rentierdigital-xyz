@@ -9,7 +9,6 @@ interface Props {
 }
 
 const { title, description, githubUrl, ctaText } = Astro.props;
-const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
 const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/track";
 ---
 
@@ -38,7 +37,7 @@ const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/
 
       <a
         href={githubUrl}
-        class="block w-full text-center font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg py-3.5 transition-colors mb-4 no-underline"
+        class="block w-full text-center font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg py-3.5 transition-colors no-underline"
         target="_blank"
         rel="noopener"
         data-action="cta-click"
@@ -46,18 +45,28 @@ const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/
       >
         {ctaText}
       </a>
+    </div>
 
-      <hr class="border-neutral-800 my-5" />
-
-      <a href={bookUrl} class="text-sm text-violet-400 underline" data-action="book-click">
-        Get the book on Amazon (paperback & Kindle)
-      </a>
-
-      <p class="mt-4 text-sm text-neutral-400">
-        <a href="https://rentierdigital.beehiiv.com" class="text-violet-400 underline" target="_blank" rel="noopener" data-action="newsletter-click">
-          Subscribe to the newsletter
-        </a> — weekly AI &amp; solo builder tips
-      </p>
+    <!-- Newsletter block -->
+    <div class="w-full max-w-[540px] mt-4 bg-gradient-to-br from-emerald-950/60 to-emerald-900/30 border border-emerald-700/30 rounded-xl p-6">
+      <div class="flex items-center gap-5">
+        <img src="/prompt-contracts-cover-thumb.avif" alt="Prompt Contracts" class="w-20 h-auto rounded-md shadow-lg flex-shrink-0" />
+        <div class="text-left">
+          <h2 class="text-lg font-bold text-emerald-300 mb-1">Level up your builds</h2>
+          <p class="text-sm text-neutral-400 mb-3">
+            Weekly tips on AI tools, solo building, and shipping faster. No fluff.
+          </p>
+          <a
+            href="https://rentierdigital.beehiiv.com"
+            class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg px-6 py-2.5 transition-colors no-underline text-sm"
+            target="_blank"
+            rel="noopener"
+            data-action="newsletter-click"
+          >
+            Subscribe — it's free
+          </a>
+        </div>
+      </div>
     </div>
 
     <p class="mt-5 text-xs text-neutral-400">&copy; rentierdigital</p>
