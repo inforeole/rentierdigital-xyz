@@ -112,12 +112,35 @@
 
   if (!sessionStorage.getItem(KEY)) {
     let shown = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let idleTimer: ReturnType<typeof setTimeout> | null = null;
+    const IDLE_MS = 10_000; // reset if idle 10s
 
     function triggerOnce() {
       if (!shown) { shown = true; showPopup(); cleanup(); }
     }
 
-    const timer = setTimeout(triggerOnce, DELAY_MS);
+    function startDelayTimer() {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(triggerOnce, DELAY_MS);
+    }
+
+    function onActivity() {
+      if (shown) return;
+      // (Re)start the popup timer on first/continued activity
+      if (!timer) startDelayTimer();
+      // Reset idle watcher
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        // User went idle — pause the popup timer
+        if (timer) { clearTimeout(timer); timer = null; }
+      }, IDLE_MS);
+    }
+
+    const activityEvents = ["mousemove", "keydown", "scroll", "touchstart", "click"] as const;
+    activityEvents.forEach((evt) =>
+      window.addEventListener(evt, onActivity, { passive: true })
+    );
 
     function onScroll() {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
@@ -126,8 +149,12 @@
     window.addEventListener("scroll", onScroll, { passive: true });
 
     function cleanup() {
-      clearTimeout(timer);
+      if (timer) clearTimeout(timer);
+      if (idleTimer) clearTimeout(idleTimer);
       window.removeEventListener("scroll", onScroll);
+      activityEvents.forEach((evt) =>
+        window.removeEventListener(evt, onActivity)
+      );
     }
 
     // Close: X button, backdrop click, ESC key
