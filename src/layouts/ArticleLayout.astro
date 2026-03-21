@@ -72,12 +72,12 @@ processedHtml = processedHtml.replace(
 processedHtml = processedHtml
   // Case 1: TLDR inside a blockquote → replace blockquote with tldr-box div
   .replace(
-    /<blockquote>\s*(<p><strong>TL;DR:?<\/strong>[\s\S]*?)<\/blockquote>/i,
+    /<blockquote>\s*(<p><strong>TL;?DR:?<\/strong>[\s\S]*?)<\/blockquote>/i,
     (_match, p1) => `<div class="tldr-box">${p1}</div>`
   )
   // Case 2: TLDR as a plain paragraph → wrap in tldr-box div
   .replace(
-    /(?<!<div class="tldr-box">)(<p><strong>TL;DR:?<\/strong>[\s\S]*?<\/p>)/i,
+    /(?<!<div class="tldr-box">)(<p><strong>TL;?DR:?<\/strong>[\s\S]*?<\/p>)/i,
     (_match, p1) => `<div class="tldr-box">${p1}</div>`
   );
 
