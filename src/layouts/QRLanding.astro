@@ -10,6 +10,7 @@ interface Props {
 
 const { title, description, githubUrl, ctaText } = Astro.props;
 const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
+const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/track";
 ---
 
 <!doctype html>
@@ -51,12 +52,18 @@ const bookUrl = "https://www.amazon.com/dp/B0GS3PN5PW";
       <a href={bookUrl} class="text-sm text-violet-400 underline" data-action="book-click">
         Get the book on Amazon (paperback & Kindle)
       </a>
+
+      <p class="mt-4 text-sm text-neutral-400">
+        <a href="https://rentierdigital.beehiiv.com" class="text-violet-400 underline" target="_blank" rel="noopener" data-action="newsletter-click">
+          Subscribe to the newsletter
+        </a> — weekly AI &amp; solo builder tips
+      </p>
     </div>
 
     <p class="mt-5 text-xs text-neutral-400">&copy; rentierdigital</p>
 
-    <script is:inline>
-      fetch("https://convexrentienr-actions.neoracines.com/api/qr/track", {
+    <script define:vars={{ qrTrackUrl }}>
+      fetch(qrTrackUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug: location.pathname.split("/").pop() })
