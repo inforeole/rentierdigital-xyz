@@ -24,6 +24,7 @@ interface Props {
   lang?: string;
   translations?: { lang: string; slug: string; title: string }[];
   preloadImage?: string;
+  updatedAt?: string | null;
 }
 
 const {
@@ -46,7 +47,13 @@ const {
   lang,
   translations,
   preloadImage,
+  updatedAt,
 } = Astro.props;
+
+// Compute real dateModified from updated_at or fall back to publishedDate
+const dateModified = updatedAt
+  ? new Date(updatedAt).toISOString().split("T")[0]
+  : publishedDate;
 
 // LCP image preload: inline image if cover hidden, otherwise cover
 const lcpPreload = preloadImage
@@ -91,13 +98,12 @@ if (!hideCoverImage) {
 }
 
 // Inject cover image after TL;DR box (with italic caption)
-const cacheBust = `v=${Date.now()}`;
 if (coverImageUrl && !hideCoverImage) {
   const altText = escapeHtml(coverImageAlt || title);
   const isSvgOrGif = /\.(svg|gif)$/i.test(coverImageUrl);
   const imgTag = isSvgOrGif
-    ? `<img src="${coverImageUrl}?${cacheBust}" alt="${altText}" width="768" height="432" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" />`
-    : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')}?${cacheBust} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')}?${cacheBust} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><img src="${coverImageUrl}?${cacheBust}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
+    ? `<img src="${coverImageUrl}" alt="${altText}" width="768" height="432" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" />`
+    : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><img src="${coverImageUrl}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
   const captionText = coverCaption || coverImageAlt;
   const captionHtml = captionText
     ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-400">${escapeHtml(captionText)}</figcaption>`
@@ -134,7 +140,7 @@ const jsonLd = seoSchemaJsonld
       headline: title,
       description,
       datePublished: publishedDate,
-      dateModified: publishedDate,
+      dateModified: dateModified,
       ...(fullCoverImage ? { image: [fullCoverImage] } : {}),
       author: {
         "@type": "Person",
@@ -216,4 +222,13 @@ if (!jsonLd.publisher?.logo) {
 
   {seoTargetKeyword && <meta name="keywords" content={seoTargetKeyword} />}
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://rentierdigital.xyz/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `https://rentierdigital.xyz${lang && lang !== "en" ? `/${lang}` : ""}/blog` },
+      { "@type": "ListItem", position: 3, name: title },
+    ],
+  })} />
 </BaseLayout>

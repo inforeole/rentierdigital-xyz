@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.rentierdigital.xyz" }],
+      "destination": "https://rentierdigital.xyz/:path",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/prompt-contracts-cover-(.*).avif",

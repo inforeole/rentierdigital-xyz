@@ -12,6 +12,7 @@ export interface ContentListItem {
   word_count: number | null;
   read_time_minutes: number | null;
   translation_group_id?: string | null;
+  updated_at?: string | null;
 }
 
 // synced from convex/schema.ts — contents table (full)

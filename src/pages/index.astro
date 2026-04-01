@@ -13,7 +13,6 @@ articles.sort(
 
 const featured = articles[0] ? await getBlogBySlug(articles[0].slug) : null;
 const latest = articles.slice(1, 21);
-const cacheBust = `v=${Date.now()}`;
 ---
 
 <BaseLayout
@@ -56,7 +55,7 @@ const cacheBust = `v=${Date.now()}`;
         {featured.cover_image_url && (
           /\.(svg|gif)$/i.test(featured.cover_image_url) ? (
             <img
-              src={`${featured.cover_image_url}?${cacheBust}`}
+              src={`${featured.cover_image_url}`}
               alt={featured.cover_image_alt ?? featured.title}
               class="mb-4 w-full rounded-lg object-cover"
               style="max-height: 280px;"
@@ -67,12 +66,12 @@ const cacheBust = `v=${Date.now()}`;
           ) : (
             <picture>
               <source
-                srcset={`${featured.cover_image_url.replace(/\.\w+$/, '-480w.avif')}?${cacheBust} 480w, ${featured.cover_image_url.replace(/\.\w+$/, '.avif')}?${cacheBust} 768w`}
+                srcset={`${featured.cover_image_url.replace(/\.\w+$/, '-480w.avif')} 480w, ${featured.cover_image_url.replace(/\.\w+$/, '.avif')} 768w`}
                 type="image/avif"
                 sizes="(max-width: 768px) calc(100vw - 2rem), 500px"
               />
               <img
-                src={`${featured.cover_image_url}?${cacheBust}`}
+                src={`${featured.cover_image_url}`}
                 alt={featured.cover_image_alt ?? featured.title}
                 class="mb-4 w-full rounded-lg object-cover"
                 style="max-height: 280px;"
