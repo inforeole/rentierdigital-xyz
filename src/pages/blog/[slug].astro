@@ -45,11 +45,13 @@ const htmlContent = await renderMarkdown(markdownWithoutH1);
 // Don't render cover in layout if markdown already contains the cover image (avoids duplicate)
 // Compare by hash (8-char md5 suffix) since cover and inline may have different descriptors
 const coverHash = content.cover_image_url?.match(/-([a-f0-9]{8})\.\w+$/)?.[1];
-const markdownHasInlineImage = coverHash
-  ? markdownWithoutH1.includes(coverHash)
-  : content.cover_image_url
-    ? markdownWithoutH1.includes(content.cover_image_url)
-    : /!\[.*?\]\(.*?\)/.test(markdownWithoutH1);
+// Also detect HTML <figure>/<img> in the intro (before first heading) to avoid cover+illustration stacking
+const introMd = markdownWithoutH1.slice(0, markdownWithoutH1.search(/^##\s/m) >>> 0 || 2000);
+const hasEarlyHtmlImage = /<(?:figure|img)\s/i.test(introMd);
+const markdownHasInlineImage = (coverHash ? markdownWithoutH1.includes(coverHash) : false)
+  || (content.cover_image_url ? markdownWithoutH1.includes(content.cover_image_url) : false)
+  || /!\[.*?\]\(.*?\)/.test(markdownWithoutH1)
+  || hasEarlyHtmlImage;
 // Extract first inline image for LCP preload
 const firstImageMatch = markdownWithoutH1.match(/!\[(.*?)\]\((https?:\/\/[^)]+)\)/);
 const firstInlineImageUrl = firstImageMatch
