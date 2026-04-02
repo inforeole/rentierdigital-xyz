@@ -51,9 +51,11 @@ const {
 } = Astro.props;
 
 // Compute real dateModified from updated_at or fall back to publishedDate
-const dateModified = updatedAt
+// dateModified must always be >= datePublished for valid JSON-LD
+const rawModified = updatedAt
   ? new Date(updatedAt).toISOString().split("T")[0]
   : publishedDate;
+const dateModified = (publishedDate && rawModified < publishedDate) ? publishedDate : rawModified;
 
 // LCP image preload: inline image if cover hidden, otherwise cover
 const lcpPreload = preloadImage
@@ -165,6 +167,7 @@ const jsonLd = seoSchemaJsonld
 if (!jsonLd["@context"]) jsonLd["@context"] = "https://schema.org";
 if (!jsonLd.mainEntityOfPage) jsonLd.mainEntityOfPage = { "@type": "WebPage", "@id": canonical };
 if (!jsonLd.dateModified && jsonLd.datePublished) jsonLd.dateModified = jsonLd.datePublished;
+if (jsonLd.dateModified && jsonLd.datePublished && jsonLd.dateModified < jsonLd.datePublished) jsonLd.dateModified = jsonLd.datePublished;
 if (!jsonLd.image && fullCoverImage) jsonLd.image = [fullCoverImage];
 if (!jsonLd.publisher?.logo) {
   jsonLd.publisher = { ...jsonLd.publisher, logo: { "@type": "ImageObject", url: "https://rentierdigital.xyz/favicon.png" } };
