@@ -105,7 +105,7 @@ if (coverImageUrl && !hideCoverImage) {
   const isSvgOrGif = /\.(svg|gif)$/i.test(coverImageUrl);
   const imgTag = isSvgOrGif
     ? `<img src="${coverImageUrl}" alt="${altText}" width="768" height="432" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" />`
-    : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><img src="${coverImageUrl}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
+    : `<picture><source srcset="${coverImageUrl.replace(/\.\w+$/, '-480w.avif')} 480w, ${coverImageUrl.replace(/\.\w+$/, '.avif')} 768w" type="image/avif" sizes="(max-width: 768px) 100vw, 662px" /><source srcset="${coverImageUrl}" type="image/${coverImageUrl.match(/\.(\w+)$/)?.[1] === 'jpg' ? 'jpeg' : coverImageUrl.match(/\.(\w+)$/)?.[1] || 'png'}" /><img src="${coverImageUrl}" alt="${altText}" width="768" height="432" sizes="(max-width: 768px) 100vw, 662px" class="w-full rounded-lg border border-white/10 object-cover" fetchpriority="high" /></picture>`;
   const captionText = coverCaption || coverImageAlt;
   const captionHtml = captionText
     ? `<figcaption class="mt-2 text-center text-sm italic text-neutral-400">${escapeHtml(captionText)}</figcaption>`
