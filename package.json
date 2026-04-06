@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/convert-avif.mjs && astro build && npx pagefind --site dist",
+    "build": "bun scripts/convert-avif.mjs && astro build && bunx pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },

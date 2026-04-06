@@ -1,4 +1,5 @@
 {
+  "buildCommand": "bun --bun run build",
   "redirects": [
     {
       "source": "/:path(.*)",
