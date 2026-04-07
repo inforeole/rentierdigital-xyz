@@ -277,7 +277,7 @@ const latest = articles.slice(1, 21);
       function onScrollDesktop() {
         const rect = section!.getBoundingClientRect();
         // Show canvas + book promo only when scroll-section is at the top
-        const visible = rect.top <= endTop ? '1' : '0';
+        const visible = (rect.top <= endTop && rect.bottom > window.innerHeight) ? '1' : '0';
         canvasDesktop.style.opacity = visible;
         if (bookPromo) bookPromo.style.opacity = visible;
         if (nlCta) nlCta.style.opacity = visible;
