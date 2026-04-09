@@ -8,6 +8,12 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/go/:slug",
+      "destination": "https://convexrentienr-actions.neoracines.com/api/go/:slug"
+    }
+  ],
   "headers": [
     {
       "source": "/prompt-contracts-cover-(.*).avif",
