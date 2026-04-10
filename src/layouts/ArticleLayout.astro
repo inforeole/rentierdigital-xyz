@@ -97,6 +97,21 @@ if (!hideCoverImage) {
     /<figure\s+data-cover[^>]*>[\s\S]*?<\/figure>/gi,
     ''
   );
+  // Move infographic figures out of the intro (before first <h2>) to avoid
+  // stacking cover + infographic. Relocate them right after the first <h2> block.
+  const h2Pos = processedHtml.indexOf('<h2');
+  if (h2Pos > -1) {
+    const intro = processedHtml.slice(0, h2Pos);
+    const rest = processedHtml.slice(h2Pos);
+    const infographicRe = /<figure\s+data-source="infographic"[^>]*>[\s\S]*?<\/figure>/gi;
+    const infographics: string[] = [];
+    const cleanedIntro = intro.replace(infographicRe, (match) => { infographics.push(match); return ''; });
+    if (infographics.length > 0) {
+      // Insert after the closing tag of the first <h2>...</h2>
+      const afterH2 = rest.replace(/(<\/h2>)/, (m) => `${m}\n${infographics.join('\n')}`);
+      processedHtml = cleanedIntro + afterH2;
+    }
+  }
 }
 
 // Inject cover image after TL;DR box (with italic caption)
