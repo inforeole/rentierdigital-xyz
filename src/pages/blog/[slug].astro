@@ -40,7 +40,8 @@ if (!content) {
 const markdownWithoutH1 = content.content_markdown
   .replace(/^#\s+.+\n*/m, "")
   .replace(/^# /gm, "## ")
-  .replace(/^\[cover image\]\s*$/gim, "");
+  .replace(/^\[cover image\]\s*$/gim, "")
+  .replace(/\[COVER[:\s][^\]]*\]\s*/gi, "");
 const htmlContent = await renderMarkdown(markdownWithoutH1);
 // Don't render cover in layout if markdown already contains the cover image (avoids duplicate)
 // Compare by hash (8-char md5 suffix) since cover and inline may have different descriptors
