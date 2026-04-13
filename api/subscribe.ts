@@ -71,19 +71,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // the lead-magnet automation via the journeys API so they get
   // the kit email even though the "Signed up" trigger won't fire.
   const automationId = CAMPAIGN_AUTOMATIONS[campaign];
+  let journeyDebug: { status?: number; body?: unknown } | undefined;
   if (automationId && status === "active") {
-    fetch(
-      `https://api.beehiiv.com/v2/publications/${PUB_ID}/automations/${automationId}/journeys`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: subscriberEmail }),
-      }
-    ).catch(() => {}); // fire-and-forget, don't block the response
+    try {
+      const jRes = await fetch(
+        `https://api.beehiiv.com/v2/publications/${PUB_ID}/automations/${automationId}/journeys`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: subscriberEmail }),
+        }
+      );
+      journeyDebug = { status: jRes.status, body: await jRes.json().catch(() => null) };
+    } catch (e) {
+      journeyDebug = { status: 0, body: String(e) };
+    }
   }
 
-  return res.status(200).json({ ok: true, id: data.data?.id });
+  return res.status(200).json({ ok: true, id: data.data?.id, subscriberStatus: status, journeyDebug });
 }
