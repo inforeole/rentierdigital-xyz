@@ -45,6 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify({
         email: email.trim().toLowerCase(),
         send_welcome_email: true,
+        double_opt_in: true,
         utm_source: sanitizeUtm(utm_source, "astro"),
         utm_medium: sanitizeUtm(utm_medium, "embed"),
         utm_campaign: campaign,
@@ -58,5 +59,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const data = await response.json();
-  return res.status(200).json({ ok: true, id: data.data?.id });
+  // "validating" = new subscriber pending confirmation
+  // "active" = already confirmed (existing subscriber)
+  const status = data.data?.status;
+  return res.status(200).json({
+    ok: true,
+    id: data.data?.id,
+    confirmed: status === "active",
+  });
 }
