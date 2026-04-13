@@ -25,6 +25,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: "Server misconfigured" });
   }
 
+  const campaign = sanitizeUtm(utm_campaign, "blog");
+
+  // Map lead-magnet campaigns to beehiiv tags so automations
+  // trigger for both new AND existing subscribers.
+  const CAMPAIGN_TAGS: Record<string, string> = {
+    "forgejo-kit": "forgejo-kit",
+  };
+  const tags = CAMPAIGN_TAGS[campaign] ? [CAMPAIGN_TAGS[campaign]] : [];
+
   const response = await fetch(
     `https://api.beehiiv.com/v2/publications/${PUB_ID}/subscriptions`,
     {
@@ -38,7 +47,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         send_welcome_email: true,
         utm_source: sanitizeUtm(utm_source, "astro"),
         utm_medium: sanitizeUtm(utm_medium, "embed"),
-        utm_campaign: sanitizeUtm(utm_campaign, "blog"),
+        utm_campaign: campaign,
+        ...(tags.length > 0 && { tags }),
       }),
     }
   );
