@@ -59,12 +59,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const data = await response.json();
-  // "validating" = new subscriber pending confirmation
-  // "active" = already confirmed (existing subscriber)
-  const status = data.data?.status;
-  return res.status(200).json({
-    ok: true,
-    id: data.data?.id,
-    confirmed: status === "active",
-  });
+  return res.status(200).json({ ok: true, id: data.data?.id });
 }

@@ -111,23 +111,8 @@ const description = "A Docker kit that sets up Forgejo with pull-only GitHub mir
           });
 
           if (res.ok) {
-            const data = await res.json();
+            msg.textContent = "Thanks! Check your inbox — the kit is on its way.";
             msg.className = "mt-2 text-center text-sm text-emerald-400";
-
-            if (data.confirmed) {
-              // Existing subscriber — already verified, show kit link
-              const link = document.createElement("a");
-              link.href = "https://github.com/rentierdigital/forgejo-mirror-kit";
-              link.target = "_blank";
-              link.rel = "noopener";
-              link.className = "underline font-semibold text-white hover:text-emerald-300";
-              link.textContent = "forgejo-mirror-kit on GitHub";
-              msg.textContent = "";
-              msg.append("Here's your kit: ", link);
-            } else {
-              // New subscriber — needs email confirmation first
-              msg.textContent = "Check your inbox and confirm your email — we'll send the kit right after.";
-            }
             btn.textContent = "Done!";
           } else {
             msg.textContent = "Something went wrong. Try again.";
