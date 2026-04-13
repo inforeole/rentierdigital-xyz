@@ -1,0 +1,132 @@
+---
+import "../../styles/global.css";
+
+const title = "Mirror Your GitHub Repos in 5 Minutes";
+const description = "A Docker kit that sets up Forgejo with pull-only GitHub mirroring. 3 files, zero exotic dependencies.";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <title>{title} — Rentier Digital</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <script
+      defer
+      data-domain="rentierdigital.xyz"
+      src="https://plausible.io/js/script.js"></script>
+  </head>
+  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center justify-center px-4 py-12">
+
+    <div class="w-full max-w-lg">
+      <!-- Main card -->
+      <div class="rounded-xl border border-neutral-800 bg-[#161616] p-8">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-full px-3 py-1 mb-5">
+          Free Kit
+        </span>
+
+        <h1 class="text-2xl font-bold text-white leading-tight mb-3">
+          {title}
+        </h1>
+
+        <p class="text-[0.95rem] leading-relaxed text-neutral-400 mb-6">
+          Forgejo + PostgreSQL, every line commented. Clone, edit 3 variables,
+          <code class="text-emerald-400 text-sm">docker compose up</code>. Done.
+        </p>
+
+        <!-- What's inside -->
+        <ul class="space-y-2 mb-8 text-sm text-neutral-300">
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 mt-0.5">&#10003;</span>
+            <span><strong class="text-white">docker-compose.yml</strong> &mdash; Forgejo + Postgres, ready to run</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 mt-0.5">&#10003;</span>
+            <span><strong class="text-white">forgejo/app.ini</strong> &mdash; mirror interval 8h, unnecessary features off</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 mt-0.5">&#10003;</span>
+            <span><strong class="text-white">.env.example</strong> &mdash; 3 variables, no secrets committed</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-400 mt-0.5">&#10003;</span>
+            <span><strong class="text-white">Follow-up email</strong> &mdash; what happens when GitHub goes down</span>
+          </li>
+        </ul>
+
+        <!-- Email form -->
+        <form id="kit-form" class="space-y-3">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none focus:border-emerald-500"
+          />
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-emerald-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-500 disabled:opacity-50"
+          >
+            Get the Forgejo Mirror Kit
+          </button>
+          <p id="kit-msg" class="hidden text-center text-sm"></p>
+        </form>
+
+        <p class="mt-4 text-center text-xs text-neutral-500">
+          You'll also get one email per week on AI tools &amp; solo building. Unsubscribe anytime.
+        </p>
+      </div>
+
+      <p class="mt-6 text-center text-xs text-neutral-500">
+        &copy; <a href="https://rentierdigital.xyz" class="underline hover:text-neutral-300">rentierdigital</a>
+      </p>
+    </div>
+
+    <script>
+      const form = document.getElementById("kit-form") as HTMLFormElement;
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const msg = document.getElementById("kit-msg") as HTMLElement;
+        const btn = form.querySelector("button[type=submit]") as HTMLButtonElement;
+        const email = new FormData(form).get("email") as string;
+
+        btn.disabled = true;
+        btn.textContent = "...";
+
+        try {
+          const res = await fetch("/api/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email,
+              utm_source: "astro",
+              utm_medium: "landing",
+              utm_campaign: "forgejo-kit",
+            }),
+          });
+
+          if (res.ok) {
+            msg.textContent = "Check your inbox — the kit is on its way.";
+            msg.className = "mt-2 text-center text-sm text-emerald-400";
+            btn.textContent = "Done!";
+          } else {
+            msg.textContent = "Something went wrong. Try again.";
+            msg.className = "mt-2 text-center text-sm text-red-400";
+            btn.disabled = false;
+            btn.textContent = "Get the Forgejo Mirror Kit";
+          }
+        } catch {
+          msg.textContent = "Network error. Try again.";
+          msg.className = "mt-2 text-center text-sm text-red-400";
+          btn.disabled = false;
+          btn.textContent = "Get the Forgejo Mirror Kit";
+        }
+      });
+    </script>
+  </body>
+</html>
