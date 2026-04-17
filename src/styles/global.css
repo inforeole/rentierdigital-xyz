@@ -41,3 +41,19 @@
 .prose figcaption {
   text-align: center;
 }
+
+/* Inline code — Medium-style pill, no backticks, works on dark bg */
+.prose :where(code):not(:where([class~="not-prose"] *, pre *))::before,
+.prose :where(code):not(:where([class~="not-prose"] *, pre *))::after {
+  content: none;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *, pre *)) {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e5e5e5;
+  padding: 0.1em 0.35em;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+  font-weight: 400;
+}
