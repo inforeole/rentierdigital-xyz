@@ -15,11 +15,11 @@ try {
     const src = join(dir, file);
     const dest = join(dir, file.replace(/\.\w+$/, ".avif"));
 
-    // Skip if AVIF already exists and is newer
+    // Skip if AVIF already exists. mtime check unreliable on CI (git clone
+    // doesn't preserve mtimes — files get extraction-order timestamps).
     try {
-      const srcStat = await stat(src);
-      const destStat = await stat(dest);
-      if (destStat.mtimeMs >= srcStat.mtimeMs) continue;
+      await stat(dest);
+      continue;
     } catch {
       // dest doesn't exist, convert
     }
