@@ -1,11 +1,6 @@
 {
   "buildCommand": "bun --bun run build",
-  "rewrites": [
-    {
-      "source": "/go/:slug",
-      "destination": "https://convexrentienr-actions.neoracines.com/api/go/:slug"
-    }
-  ],
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:path(.*)",

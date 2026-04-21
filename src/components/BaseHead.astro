@@ -1,4 +1,6 @@
 ---
+import { buildAlternateLinks } from "../lib/hreflang";
+
 interface Props {
   title: string;
   description: string;
@@ -7,6 +9,7 @@ interface Props {
   ogType?: "website" | "article";
   publishedTime?: string;
   lang?: string;
+  slug?: string;
   translations?: { lang: string; slug: string; title: string }[];
   preloadImage?: string;
 }
@@ -19,12 +22,14 @@ const {
   ogType = "website",
   publishedTime,
   lang = "en",
+  slug,
   translations = [],
   preloadImage,
 } = Astro.props;
 
-const enSlug = translations.find((t) => t.lang.toLowerCase() === "en")?.slug;
-const xDefaultUrl = lang === "en" ? canonical : enSlug ? `https://rentierdigital.xyz/blog/${enSlug}` : canonical;
+const alternateLinks = slug && translations.length > 0
+  ? buildAlternateLinks(lang, slug, translations)
+  : [];
 
 const siteName = "Rentier Digital";
 const fullOgImage = ogImage.startsWith("http")
@@ -43,17 +48,9 @@ const fullOgImage = ogImage.startsWith("http")
 <link rel="canonical" href={canonical} />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1, noai, noimageai" />
 <meta name="googlebot" content="index, follow, snippet" />
-{translations.length > 0 && (
-  <>
-    {translations.map((t) => {
-      const prefix = t.lang.toLowerCase() === "en" ? "" : `/${t.lang.toLowerCase()}`;
-      const url = `https://rentierdigital.xyz${prefix}/blog/${t.slug}`;
-      return <link rel="alternate" hreflang={t.lang.toLowerCase()} href={url} />;
-    })}
-    <link rel="alternate" hreflang={lang} href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
-  </>
-)}
+{alternateLinks.map((a) => (
+  <link rel="alternate" hreflang={a.lang} href={a.url} />
+))}
 <link
   rel="alternate"
   type="application/rss+xml"

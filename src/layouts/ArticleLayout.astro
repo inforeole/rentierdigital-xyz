@@ -22,6 +22,7 @@ interface Props {
   coverCaption?: string;
   hideCoverImage?: boolean;
   lang?: string;
+  slug?: string;
   translations?: { lang: string; slug: string; title: string }[];
   preloadImage?: string;
   updatedAt?: string | null;
@@ -45,6 +46,7 @@ const {
   coverCaption,
   hideCoverImage = false,
   lang,
+  slug,
   translations,
   preloadImage,
   updatedAt,
@@ -197,6 +199,7 @@ if (!jsonLd.publisher?.logo) {
   ogType="article"
   publishedTime={publishedDate}
   lang={lang}
+  slug={slug}
   translations={translations}
   preloadImage={lcpPreload}
 >
