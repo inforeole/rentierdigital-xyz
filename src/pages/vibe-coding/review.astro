@@ -1,0 +1,221 @@
+---
+import "../../styles/global.css";
+
+const convexUrl = import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "";
+const qrTrackUrl = `${convexUrl}/api/qr/track`;
+const reviewUrl = `${convexUrl}/api/book-review/feedback`;
+const SLUG = "review";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <title>Did the book help? — Vibe Coding For Real</title>
+    <meta name="description" content="Quick feedback on Vibe Coding For Real." />
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center justify-center px-4 py-8">
+    <div class="w-full max-w-[540px] bg-[#161616] border border-neutral-800 rounded-xl p-8 text-center">
+      <span class="inline-block text-xs font-semibold uppercase tracking-wider text-violet-400 bg-violet-400/10 border border-violet-400/20 rounded-full px-3 py-1 mb-5">
+        Vibe Coding For Real
+      </span>
+
+      <!-- View 1: rating choice -->
+      <div id="view-rating">
+        <h1 class="text-2xl font-bold text-white mb-3 leading-tight">Did the book help you?</h1>
+        <p class="text-[0.95rem] leading-relaxed text-neutral-400 mb-6">
+          Tap a thumb. Takes 2 seconds.
+        </p>
+
+        <div class="grid grid-cols-2 gap-3">
+          <button
+            id="btn-up"
+            type="button"
+            class="flex flex-col items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg py-6 transition-colors"
+          >
+            <span class="text-3xl">👍</span>
+            <span class="text-sm">Yes, it helped</span>
+          </button>
+          <button
+            id="btn-down"
+            type="button"
+            class="flex flex-col items-center justify-center gap-2 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-lg py-6 transition-colors"
+          >
+            <span class="text-3xl">👎</span>
+            <span class="text-sm">Not really</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- View 2: feedback form (down only) -->
+      <div id="view-feedback" class="hidden">
+        <h1 class="text-2xl font-bold text-white mb-3 leading-tight">What went wrong?</h1>
+        <p class="text-[0.95rem] leading-relaxed text-neutral-400 mb-5">
+          Be blunt. I read every reply.
+        </p>
+        <textarea
+          id="feedback-text"
+          rows="5"
+          maxlength="2000"
+          placeholder="Anything specific — chapters that lost you, code that broke, missing topics…"
+          class="w-full bg-[#0a0a0a] border border-neutral-700 rounded-lg p-3 text-sm text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-violet-500 mb-4"
+        ></textarea>
+        <button
+          id="btn-submit-feedback"
+          type="button"
+          class="block w-full text-center font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg py-3.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Send feedback
+        </button>
+        <button
+          id="btn-skip-feedback"
+          type="button"
+          class="block w-full mt-2 text-center text-sm text-neutral-500 hover:text-neutral-300 underline-offset-2 hover:underline transition-colors"
+        >
+          Skip, just record the thumbs down
+        </button>
+      </div>
+
+      <!-- View 3: thank-you -->
+      <div id="view-thanks" class="hidden">
+        <div class="text-5xl mb-4">🙏</div>
+        <h1 class="text-2xl font-bold text-white mb-3 leading-tight">Thanks!</h1>
+        <p class="text-[0.95rem] leading-relaxed text-neutral-400" id="thanks-msg">
+          Your feedback is in. It really helps.
+        </p>
+      </div>
+
+      <!-- View 4: error -->
+      <div id="view-error" class="hidden">
+        <h1 class="text-2xl font-bold text-rose-400 mb-3">Something broke.</h1>
+        <p class="text-sm text-neutral-400 mb-4" id="error-msg">Try again in a moment.</p>
+        <button
+          id="btn-retry"
+          type="button"
+          class="text-sm text-violet-400 hover:text-violet-300 underline"
+        >
+          Reload
+        </button>
+      </div>
+    </div>
+
+    <!-- Newsletter block -->
+    <div class="w-full max-w-[540px] mt-4 bg-gradient-to-br from-emerald-950/60 to-emerald-900/30 border border-emerald-700/30 rounded-xl p-6">
+      <div class="flex items-center gap-5">
+        <img src="/prompt-contracts-cover-thumb.avif" alt="Rentier Digital" class="w-20 h-auto rounded-md shadow-lg flex-shrink-0" />
+        <div class="text-left">
+          <h2 class="text-lg font-bold text-emerald-300 mb-1">Build with intent</h2>
+          <p class="text-sm text-neutral-400 mb-3">
+            Weekly tips on AI tools, solo building, and shipping faster. No fluff.
+          </p>
+          <a
+            href="https://rentierdigital.beehiiv.com"
+            class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg px-6 py-2.5 transition-colors no-underline text-sm"
+            target="_blank"
+            rel="noopener"
+          >
+            Subscribe — it's free
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-5 text-xs text-neutral-400">&copy; rentierdigital</p>
+
+    <script define:vars={{ qrTrackUrl, reviewUrl, SLUG }}>
+      // Track scan
+      fetch(qrTrackUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: SLUG }),
+      }).catch(function () {});
+
+      const views = {
+        rating: document.getElementById("view-rating"),
+        feedback: document.getElementById("view-feedback"),
+        thanks: document.getElementById("view-thanks"),
+        error: document.getElementById("view-error"),
+      };
+
+      function show(name) {
+        Object.entries(views).forEach(function (entry) {
+          entry[1].classList.toggle("hidden", entry[0] !== name);
+        });
+      }
+
+      function showError(msg) {
+        document.getElementById("error-msg").textContent = msg || "Try again in a moment.";
+        show("error");
+      }
+
+      async function postFeedback(rating, feedback) {
+        const res = await fetch(reviewUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ slug: SLUG, rating: rating, feedback: feedback }),
+        });
+        if (!res.ok) {
+          const text = await res.text().catch(function () { return ""; });
+          throw new Error("HTTP " + res.status + (text ? ": " + text : ""));
+        }
+        return res.json();
+      }
+
+      document.getElementById("btn-up").addEventListener("click", async function () {
+        const btn = this;
+        btn.disabled = true;
+        btn.textContent = "...";
+        try {
+          const data = await postFeedback("up");
+          if (data.redirect_url) {
+            window.location.href = data.redirect_url;
+          } else {
+            document.getElementById("thanks-msg").textContent = "Glad it helped!";
+            show("thanks");
+          }
+        } catch (err) {
+          showError(err && err.message ? err.message : "Network error");
+        }
+      });
+
+      document.getElementById("btn-down").addEventListener("click", function () {
+        show("feedback");
+      });
+
+      document.getElementById("btn-submit-feedback").addEventListener("click", async function () {
+        const btn = this;
+        const text = (document.getElementById("feedback-text").value || "").trim();
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+        try {
+          await postFeedback("down", text || undefined);
+          document.getElementById("thanks-msg").textContent = text
+            ? "Got it — your notes are in."
+            : "Got it — thumbs down recorded.";
+          show("thanks");
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = "Send feedback";
+          showError(err && err.message ? err.message : "Network error");
+        }
+      });
+
+      document.getElementById("btn-skip-feedback").addEventListener("click", async function () {
+        try {
+          await postFeedback("down");
+          document.getElementById("thanks-msg").textContent = "Got it — thumbs down recorded.";
+          show("thanks");
+        } catch (err) {
+          showError(err && err.message ? err.message : "Network error");
+        }
+      });
+
+      document.getElementById("btn-retry").addEventListener("click", function () {
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

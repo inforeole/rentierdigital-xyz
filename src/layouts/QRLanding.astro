@@ -6,9 +6,11 @@ interface Props {
   description: string;
   githubUrl: string;
   ctaText: string;
+  trackSlug?: string;
+  brand?: string;
 }
 
-const { title, description, githubUrl, ctaText } = Astro.props;
+const { title, description, githubUrl, ctaText, trackSlug, brand = "Prompt Contracts" } = Astro.props;
 const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/track";
 ---
 
@@ -18,14 +20,14 @@ const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <title>{title} — Prompt Contracts</title>
+    <title>{title} — {brand}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="noindex, nofollow" />
   </head>
   <body class="min-h-screen bg-[#0a0a0a] text-neutral-200 antialiased flex flex-col items-center justify-center px-4 py-8">
     <div class="w-full max-w-[540px] bg-[#161616] border border-neutral-800 rounded-xl p-8 text-center">
       <span class="inline-block text-xs font-semibold uppercase tracking-wider text-violet-400 bg-violet-400/10 border border-violet-400/20 rounded-full px-3 py-1 mb-5">
-        Prompt Contracts
+        {brand}
       </span>
 
       <h1 class="text-2xl font-bold text-white mb-3 leading-tight">{title}</h1>
@@ -71,11 +73,11 @@ const qrTrackUrl = (import.meta.env.PUBLIC_CONVEX_ACTIONS_URL || "") + "/api/qr/
 
     <p class="mt-5 text-xs text-neutral-400">&copy; rentierdigital</p>
 
-    <script define:vars={{ qrTrackUrl }}>
+    <script define:vars={{ qrTrackUrl, trackSlug }}>
       fetch(qrTrackUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: location.pathname.split("/").pop() })
+        body: JSON.stringify({ slug: trackSlug || location.pathname.split("/").pop() })
       }).catch(function(){});
     </script>
   </body>
