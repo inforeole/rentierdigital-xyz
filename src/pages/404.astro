@@ -23,11 +23,11 @@ import NewsletterCta from "../components/NewsletterCta.astro";
       <span id="cursor" class="hidden w-2 h-4 bg-green-400 animate-pulse ml-0.5 align-middle"></span>
     </div>
 
-    <!-- Book promo CTA (visible by default for no-JS, JS hides then fades in) -->
+    <!-- Book promo CTAs (visible by default for no-JS, JS hides then fades in) -->
     <a
-      id="book-cta"
+      id="book-cta-1"
       href="/prompt-contract"
-      class="group mt-8 flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-sky-400/40 no-underline max-w-xl w-full"
+      class="book-cta group mt-8 flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-sky-400/40 no-underline max-w-xl w-full"
     >
       <img
         src="/prompt-contracts-cover-thumb.avif"
@@ -39,13 +39,41 @@ import NewsletterCta from "../components/NewsletterCta.astro";
       />
       <div>
         <span class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/20 rounded-full px-2.5 py-0.5">
-          New book
+          If you want sharper AI dialogues
         </span>
         <h3 class="mt-1.5 text-base font-bold text-white transition-colors group-hover:text-sky-400">
           Prompt Contracts
         </h3>
         <p class="mt-0.5 text-xs text-neutral-400">
           Stop vibe coding. Ship real software with AI.
+        </p>
+      </div>
+    </a>
+
+    <a
+      id="book-cta-2"
+      href="https://www.amazon.com/dp/B0GYQHLSCB"
+      target="_blank"
+      rel="noopener"
+      class="book-cta group mt-4 flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-amber-400/40 no-underline max-w-xl w-full"
+    >
+      <img
+        src="/vibe-coding-cover-thumb.avif"
+        alt="Vibe Coding, For Real — book cover"
+        class="w-20 flex-shrink-0 rounded-md"
+        width="80"
+        height="115"
+        loading="lazy"
+      />
+      <div>
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
+          If you want the full picture
+        </span>
+        <h3 class="mt-1.5 text-base font-bold text-white transition-colors group-hover:text-amber-400">
+          Vibe Coding, For Real
+        </h3>
+        <p class="mt-0.5 text-xs text-neutral-400">
+          From demo to live app — the step-by-step method for builders who hit the wall.
         </p>
       </div>
     </a>
@@ -68,7 +96,7 @@ import NewsletterCta from "../components/NewsletterCta.astro";
   <script>
     const lines = document.querySelectorAll<HTMLElement>('.terminal-line');
     const cursor = document.getElementById('cursor')!;
-    const bookCta = document.getElementById('book-cta')!;
+    const bookCtas = document.querySelectorAll<HTMLElement>('.book-cta');
     const nlCta404 = document.getElementById('newsletter-cta-404')!;
     const backLink = document.getElementById('back-link')!;
     const pathSlot = document.getElementById('path-slot')!;
@@ -82,9 +110,9 @@ import NewsletterCta from "../components/NewsletterCta.astro";
       // Everything already visible from HTML — just hide the cursor
       cursor.style.display = 'none';
     } else {
-      // Hide lines, CTA, back link — then animate
+      // Hide lines, CTAs, back link — then animate
       lines.forEach(l => l.style.display = 'none');
-      bookCta.style.opacity = '0';
+      bookCtas.forEach(b => b.style.opacity = '0');
       nlCta404.style.opacity = '0';
       backLink.style.opacity = '0';
       cursor.classList.remove('hidden');
@@ -128,13 +156,15 @@ import NewsletterCta from "../components/NewsletterCta.astro";
           await new Promise(r => setTimeout(r, LINE_PAUSE));
         }
 
-        // Hide cursor, reveal CTA and back link
+        // Hide cursor, reveal CTAs and back link
         cursor.style.display = 'none';
-        bookCta.style.transition = 'opacity 300ms ease';
-        bookCta.style.opacity = '1';
-        nlCta404.style.transition = 'opacity 300ms ease 150ms';
+        bookCtas.forEach((b, i) => {
+          b.style.transition = `opacity 300ms ease ${i * 100}ms`;
+          b.style.opacity = '1';
+        });
+        nlCta404.style.transition = 'opacity 300ms ease 300ms';
         nlCta404.style.opacity = '1';
-        backLink.style.transition = 'opacity 300ms ease 300ms';
+        backLink.style.transition = 'opacity 300ms ease 450ms';
         backLink.style.opacity = '1';
       }
 
