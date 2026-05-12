@@ -1,0 +1,176 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const books = [
+  {
+    slug: "/vibe-coding",
+    amazon: "https://www.amazon.com/dp/B0GYQHLSCB",
+    cover: "/vibe-coding-cover-md.avif",
+    coverAlt: "Vibe Coding, For Real — book cover",
+    tag: "The on-ramp",
+    tagColor: "violet",
+    title: "Vibe Coding, For Real",
+    subtitle: "From Demo to Live App, the Step-by-Step Method for Builders Who Hit the Wall",
+    pitch:
+      "You opened Cursor. You typed “build me an app.” Something appeared. It looked real. You tried to add login — and the whole thing fell apart. This book is the bridge: 12 chapters, 70+ prompts, one shipped CRM. Next.js · Supabase · Stripe · Vercel. You don't write a single line of code — the AI does. You specify, push back, verify.",
+    audience: "Beginners, non-coders, builders who got stuck after the first demo.",
+    cta: "Read more →",
+  },
+  {
+    slug: "/prompt-contract",
+    amazon: "https://www.amazon.com/dp/B0GS3PN5PW",
+    cover: "/prompt-contracts-cover-md.avif",
+    coverAlt: "Prompt Contracts — book cover",
+    tag: "The advanced framework",
+    tagColor: "sky",
+    title: "Prompt Contracts",
+    subtitle: "How I Stopped Vibe Coding and Started Shipping Real Software With AI",
+    pitch:
+      "A prompt contract is a one-page specification you write before handing a task to an AI coding agent. It defines the stack, constraints, inputs, outputs, and acceptance criteria so the AI delivers production-ready code on the first pass. 9 chapters, 260 pages, 10 copy-paste templates, runnable examples — from solo SaaS in a weekend to self-hosted AI agents for $5/month.",
+    audience: "Developers already shipping, who want production-grade specs that survive real users.",
+    cta: "Read more →",
+  },
+];
+
+const colorMap = {
+  violet: {
+    badge: "text-violet-400 bg-violet-400/10 border-violet-400/20",
+    hover: "hover:border-violet-400/40",
+    titleHover: "group-hover:text-violet-400",
+  },
+  sky: {
+    badge: "text-sky-400 bg-sky-400/10 border-sky-400/20",
+    hover: "hover:border-sky-400/40",
+    titleHover: "group-hover:text-sky-400",
+  },
+} as const;
+---
+
+<BaseLayout
+  title="Books — Rentier Digital"
+  description="Two books from Phil at Rentier Digital. Vibe Coding, For Real is the step-by-step method for non-coders. Prompt Contracts is the advanced framework for developers shipping with AI."
+  ogImage="https://rentierdigital.xyz/og-default.png"
+>
+  <!-- Hero -->
+  <section class="pt-12 pb-8 text-center">
+    <span class="inline-block text-xs font-semibold uppercase tracking-wider text-neutral-400 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4">
+      Books
+    </span>
+    <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">
+      Two books. One method. From your first deploy to production-grade.
+    </h1>
+    <p class="text-neutral-400 max-w-[640px] mx-auto leading-relaxed">
+      Both are about shipping real software with AI — without writing code yourself. Start with <strong class="text-violet-300">Vibe Coding, For Real</strong> if you've never deployed anything. Jump to <strong class="text-sky-300">Prompt Contracts</strong> if you already ship and want the full framework.
+    </p>
+  </section>
+
+  <!-- Books -->
+  <section class="pb-16">
+    <div class="w-full max-w-[900px] mx-auto space-y-6">
+      {books.map((book) => {
+        const c = colorMap[book.tagColor as keyof typeof colorMap];
+        return (
+          <article class={`group bg-[#161616] border border-neutral-800 ${c.hover} rounded-2xl p-6 md:p-8 transition-colors`}>
+            <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+              <a href={book.slug} class="flex-shrink-0 block no-underline">
+                <img
+                  src={book.cover}
+                  alt={book.coverAlt}
+                  class="w-[200px] md:w-[220px] rounded-md shadow-2xl shadow-black/40 block"
+                  width="220"
+                  height="315"
+                  loading="lazy"
+                />
+              </a>
+              <div class="flex-1 text-center md:text-left">
+                <span class={`inline-block text-xs font-semibold uppercase tracking-wider border rounded-full px-3 py-1 mb-3 ${c.badge}`}>
+                  {book.tag}
+                </span>
+                <h2 class={`text-2xl font-bold text-white mb-2 leading-tight transition-colors ${c.titleHover}`}>
+                  <a href={book.slug} class="no-underline text-inherit">{book.title}</a>
+                </h2>
+                <p class="text-neutral-300 font-medium mb-3">{book.subtitle}</p>
+                <p class="text-sm text-neutral-400 leading-relaxed mb-4">{book.pitch}</p>
+                <p class="text-xs uppercase tracking-wider text-neutral-500 mb-4">
+                  For: <span class="text-neutral-300 normal-case">{book.audience}</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start items-center">
+                  <a
+                    href={book.amazon}
+                    class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-6 py-3 transition-colors no-underline text-sm"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Get on Amazon
+                  </a>
+                  <a
+                    href={book.slug}
+                    class="inline-block font-medium text-neutral-300 hover:text-white px-4 py-3 transition-colors no-underline text-sm"
+                  >
+                    {book.cta}
+                  </a>
+                </div>
+                <p class="text-xs text-emerald-400 font-medium mt-3 text-center md:text-left">
+                  Free with Kindle Unlimited
+                </p>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Which one for you -->
+  <section class="pb-16">
+    <div class="w-full max-w-[900px] mx-auto">
+      <h2 class="text-xl font-bold text-white mb-6 text-center">Which one should you read first?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-[#161616] border border-violet-400/20 rounded-xl p-6">
+          <div class="text-violet-400 font-semibold text-sm mb-2">Start with Vibe Coding, For Real if…</div>
+          <ul class="text-sm text-neutral-300 space-y-2">
+            <li class="flex gap-2"><span class="text-violet-400">→</span><span>You've never used Git, Supabase, or Vercel</span></li>
+            <li class="flex gap-2"><span class="text-violet-400">→</span><span>You tried Cursor or Lovable and got a demo that broke</span></li>
+            <li class="flex gap-2"><span class="text-violet-400">→</span><span>You want to walk through one full project, end to end</span></li>
+            <li class="flex gap-2"><span class="text-violet-400">→</span><span>You don't write code and don't plan to</span></li>
+          </ul>
+        </div>
+        <div class="bg-[#161616] border border-sky-400/20 rounded-xl p-6">
+          <div class="text-sky-400 font-semibold text-sm mb-2">Read Prompt Contracts if…</div>
+          <ul class="text-sm text-neutral-300 space-y-2">
+            <li class="flex gap-2"><span class="text-sky-400">→</span><span>You already ship and want production-grade specs</span></li>
+            <li class="flex gap-2"><span class="text-sky-400">→</span><span>You want templates for APIs, schemas, components, auth</span></li>
+            <li class="flex gap-2"><span class="text-sky-400">→</span><span>You're tired of AI demos that break under real load</span></li>
+            <li class="flex gap-2"><span class="text-sky-400">→</span><span>You want to self-host an AI agent for $5/month</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-center text-sm text-neutral-400 mt-6">
+        Best path: <strong class="text-violet-300">Vibe Coding, For Real</strong> first, then <strong class="text-sky-300">Prompt Contracts</strong> when the method clicks.
+      </p>
+    </div>
+  </section>
+
+  <!-- JSON-LD ItemList -->
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Books by Phil — Rentier Digital",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://rentierdigital.xyz/vibe-coding",
+        "name": "Vibe Coding, For Real"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://rentierdigital.xyz/prompt-contract",
+        "name": "Prompt Contracts"
+      }
+    ]
+  }
+  </script>
+</BaseLayout>

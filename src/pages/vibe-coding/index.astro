@@ -1,0 +1,391 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const bookUrl = "https://www.amazon.com/dp/B0GYQHLSCB";
+
+const chapters = [
+  { num: "0", title: "Introduction — Deck vs House", desc: "Why your AI demo collapsed the moment a real user touched it — and the method that fixes it" },
+  { num: "1", title: "Setup & First Deploy", desc: "GitHub, Supabase, Vercel — your app is live within the first chapter" },
+  { num: "2", title: "How a Web App Works", desc: "Frontend, backend, database — every concept explained without a single line of code in the book" },
+  { num: "3", title: "Designing Your Interface", desc: "From sketch to clickable layout — design before code, every time" },
+  { num: "4", title: "Your First Feature: Clients", desc: "The Blueprint Method, applied for the first time — full CRUD, your way" },
+  { num: "5", title: "Data That Flows: Job Sites & Quotes", desc: "Relations, validation, and PDF export — the AI writes it, you steer it" },
+  { num: "6", title: "Authentication", desc: "Real login, password reset, email verification — Supabase Auth done right" },
+  { num: "7", title: "Multi-Tenant Data", desc: "Row Level Security — the single hardest thing to get right, demystified" },
+  { num: "8", title: "Testing", desc: "Make the AI test its own code before you even look at it" },
+  { num: "9", title: "Dashboard & Polish", desc: "Charts, navigation, mobile — the difference between a demo and a product" },
+  { num: "10", title: "Payments", desc: "Stripe checkout, webhooks, subscription state — money flows in" },
+  { num: "11", title: "Going Live", desc: "Domain, monitoring, error tracking — your CRM is in production" },
+  { num: "12", title: "When Things Break", desc: "Where the method runs out — honest limits and what to do next" },
+];
+
+const audience = [
+  { yes: true, text: "You tried “vibe coding” and got a beautiful demo that collapsed when a real user touched it" },
+  { yes: true, text: "You don’t know how to code, but you’ll read carefully and push back when the AI does something stupid" },
+  { yes: true, text: "You want to ship a real product, not collect another 47 unfinished tutorials" },
+  { yes: true, text: "You’ve never used the terminal, Git, Supabase, or Vercel — perfect, that’s the starting line" },
+  { yes: false, text: "Senior developers who want production-grade specs — read Prompt Contracts instead, it’s the advanced framework" },
+  { yes: false, text: "People who want a magic button — there is no shortcut, the method takes practice" },
+  { yes: false, text: "Lovable / Bolt loyalists who never want to leave a cloud builder — this book uses real tools the AI can edit directly" },
+];
+---
+
+<BaseLayout
+  title="Vibe Coding, For Real — The Step-by-Step Method to Ship Real Apps With AI"
+  description="The Blueprint Method: 12 chapters, 70+ prompts, one shipped SaaS. Build a real CRM with Next.js + Supabase + Stripe + Vercel — without writing a line of code yourself. Free with Kindle Unlimited or $9.99 on Amazon."
+  ogImage="https://rentierdigital.xyz/vibe-coding-cover.avif"
+>
+  <!-- Hero -->
+  <section class="flex flex-col items-center pt-8 pb-12">
+    <div class="w-full max-w-[900px] flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-shrink-0 rounded-lg shadow-2xl shadow-violet-900/20">
+        <img
+          src="/vibe-coding-cover-md.avif"
+          alt="Vibe Coding, For Real — book cover"
+          class="w-[240px] md:w-[280px] block rounded-md"
+          width="280"
+          height="401"
+        />
+      </div>
+      <div class="text-center md:text-left">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider text-violet-400 bg-violet-400/10 border border-violet-400/20 rounded-full px-3 py-1 mb-4">
+          The Book
+        </span>
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+          Vibe Coding, For Real
+        </h1>
+        <p class="text-lg text-neutral-300 font-medium mb-2">
+          From Demo to Live App, the Step-by-Step Method for Builders Who Hit the Wall
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-6 max-w-[480px]">
+          You opened Cursor. You typed "build me an app." Something appeared. It looked real. You tried to add login — and the whole thing fell apart. This book is the bridge between a demo and a shippable product.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+          <a
+            href={bookUrl}
+            class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline text-center"
+            target="_blank"
+            rel="noopener"
+          >
+            Get the book on Amazon
+          </a>
+        </div>
+        <p class="text-sm text-emerald-400 font-medium mt-3">Free with Kindle Unlimited</p>
+        <p class="text-xs text-neutral-400 mt-1">Or buy it: Kindle $9.99 · Paperback $19.99</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO intro -->
+  <section class="pb-12">
+    <div class="w-full max-w-[700px]">
+      <p class="text-neutral-400 leading-relaxed text-sm">
+        <strong class="text-neutral-200">Vibe Coding, For Real</strong> teaches the <em>Blueprint Method</em> — a repeatable 8-step process you apply twelve times across the book, on the same project, until it becomes muscle memory. You don't write a single line of code. The AI writes everything. Your job is to specify, push back, and verify. By the end, you'll have shipped a real CRM for independent artisans: clients, job sites, quotes with PDF export, multi-user authentication, dashboard, payments, deployed live. Same stack as a real production SaaS — Next.js, Supabase, Stripe, Vercel.
+      </p>
+    </div>
+  </section>
+
+  <!-- What you ship -->
+  <section class="pb-12">
+    <div class="w-full max-w-[900px]">
+      <div class="bg-[#161616] border border-neutral-800 rounded-xl p-6">
+        <p class="text-xs uppercase tracking-wider text-neutral-400 mb-4 text-center">
+          What you ship by the end of the book
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="text-2xl font-bold text-white">12</div>
+            <div class="text-sm text-neutral-400">Chapters</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">70+</div>
+            <div class="text-sm text-neutral-400">Prompts</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">~15h</div>
+            <div class="text-sm text-neutral-400">Focused work</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">1</div>
+            <div class="text-sm text-neutral-400">Shipped SaaS</div>
+          </div>
+        </div>
+        <p class="text-xs text-neutral-400 text-center mt-4">
+          A working CRM · multi-tenant auth · PDF quotes · Stripe payments · live in production
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="pb-12">
+    <div class="w-full max-w-[900px]">
+      <h2 class="text-xl font-bold text-white mb-6 text-center">Who this book is for</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {audience.map((a) => (
+          <div class="flex gap-3 items-start">
+            <span class={`mt-0.5 flex-shrink-0 ${a.yes ? "text-emerald-400" : "text-rose-400"}`}>
+              {a.yes ? "✓" : "✗"}
+            </span>
+            <span class="text-neutral-300">{a.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- The Blueprint Method -->
+  <section class="pb-12">
+    <div class="w-full max-w-[900px]">
+      <h2 class="text-xl font-bold text-white mb-2 text-center">The Blueprint Method</h2>
+      <p class="text-sm text-neutral-400 text-center mb-6">8 steps, applied 12 times, until it becomes muscle memory</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">01 · GLOBAL SPEC</div>
+          <p class="text-sm text-neutral-300">Broad description of the feature, in plain words. No tech jargon yet.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">02 · IMPLICATIONS</div>
+          <p class="text-sm text-neutral-300">Ask the AI what this implies technically — database, routes, security.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">03 · DETAILED SPEC</div>
+          <p class="text-sm text-neutral-300">Fields, validation, edge cases, error states — written in the spec, not discovered in prod.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">04 · BUILD</div>
+          <p class="text-sm text-neutral-300">Hand the spec to the AI. Code appears.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">05 · EXPLAIN</div>
+          <p class="text-sm text-neutral-300">Ask the AI to explain what it built and why. You learn while it talks.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">06 · VERIFY</div>
+          <p class="text-sm text-neutral-300">Happy path, edge cases, and "what could go wrong" — before a user finds out.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">07 · WHAT BREAKS</div>
+          <p class="text-sm text-neutral-300">Topic-specific traps the AI walks straight into if you don't stop it.</p>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4">
+          <div class="text-violet-400 font-mono text-xs mb-1">08 · NON-REGRESSION</div>
+          <p class="text-sm text-neutral-300">Re-run the earlier chapters' features. Nothing silently broke.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapters -->
+  <section class="pb-12">
+    <div class="w-full max-w-[900px]">
+      <h2 class="text-xl font-bold text-white mb-6 text-center">13 chapters, one shipped app, zero filler</h2>
+      <div class="space-y-3">
+        {chapters.map((ch) => (
+          <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4 flex gap-4 items-start">
+            <span class="text-violet-400 font-mono text-sm font-bold mt-0.5 flex-shrink-0 w-6 text-right">{ch.num}</span>
+            <div>
+              <div class="font-medium text-white text-sm">{ch.title}</div>
+              <div class="text-xs text-neutral-400 mt-0.5">{ch.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="pb-12">
+    <div class="w-full max-w-[700px]">
+      <h2 class="text-xl font-bold text-white mb-4 text-center">The stack you'll learn to ship on</h2>
+      <p class="text-sm text-neutral-400 text-center mb-6">Real production tools, not toy environments. The same stack as a paid SaaS.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4 text-center">
+          <div class="font-bold text-white text-sm">Next.js</div>
+          <div class="text-xs text-neutral-400 mt-1">App framework</div>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4 text-center">
+          <div class="font-bold text-white text-sm">Supabase</div>
+          <div class="text-xs text-neutral-400 mt-1">DB + Auth + RLS</div>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4 text-center">
+          <div class="font-bold text-white text-sm">Stripe</div>
+          <div class="text-xs text-neutral-400 mt-1">Payments</div>
+        </div>
+        <div class="bg-[#161616] border border-neutral-800 rounded-lg p-4 text-center">
+          <div class="font-bold text-white text-sm">Vercel</div>
+          <div class="text-xs text-neutral-400 mt-1">Hosting</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hook -->
+  <section class="pb-12">
+    <div class="w-full max-w-[700px] text-center">
+      <blockquote class="text-lg text-neutral-300 italic leading-relaxed">
+        "A demo is a deck. A real app is a house. Same wood, completely different process."
+      </blockquote>
+      <div class="mt-6">
+        <a
+          href={bookUrl}
+          class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-8 py-3.5 transition-colors no-underline"
+          target="_blank"
+          rel="noopener"
+        >
+          Get Vibe Coding, For Real on Amazon
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About the author -->
+  <section class="pb-12">
+    <div class="w-full max-w-[700px] bg-[#161616] border border-neutral-800 rounded-xl p-6">
+      <h2 class="text-lg font-bold text-white mb-3">About the author</h2>
+      <p class="text-sm text-neutral-400 leading-relaxed mb-3">
+        Phil writes on Medium under <a href="https://medium.com/@rentierdigital" class="text-violet-400 underline" target="_blank" rel="noopener">@rentierdigital</a>. 20 years in software, from French banks to a shrimp fishery in Madagascar. Now a solo developer shipping SaaS products with AI from wherever the Wi-Fi holds.
+      </p>
+      <p class="text-sm text-neutral-400 leading-relaxed">
+        Stack: Next.js, Convex, Clerk, Vercel, n8n. Self-hosted AI agents. Everything in this book has been deployed, broken in production, fixed, and deployed again — twice over.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cross-link to Prompt Contracts -->
+  <section class="pb-12">
+    <div class="w-full max-w-[700px]">
+      <a
+        href="/prompt-contract"
+        class="group block bg-[#161616] border border-neutral-800 hover:border-sky-400/40 rounded-xl p-6 transition-colors no-underline"
+      >
+        <div class="flex items-center gap-5">
+          <img
+            src="/prompt-contracts-cover-thumb.avif"
+            alt="Prompt Contracts — book cover"
+            class="w-20 flex-shrink-0 rounded-md"
+            width="80"
+            height="115"
+          />
+          <div>
+            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/20 rounded-full px-2.5 py-0.5">
+              Next book
+            </span>
+            <h3 class="mt-1.5 text-lg font-bold text-white group-hover:text-sky-400 transition-colors">
+              Already shipping? Read Prompt Contracts.
+            </h3>
+            <p class="mt-1 text-sm text-neutral-400">
+              The advanced framework for developers who want production-grade specs that survive real users.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="pb-16">
+    <div class="w-full max-w-[700px] text-center">
+      <p class="text-neutral-400 mb-4">Stop collecting tutorials. Build something real.</p>
+      <a
+        href={bookUrl}
+        class="inline-block font-semibold text-black bg-[#FF9900] hover:bg-[#e88a00] rounded-lg px-10 py-4 text-lg transition-colors no-underline"
+        target="_blank"
+        rel="noopener"
+      >
+        Get Vibe Coding, For Real on Amazon
+      </a>
+      <p class="text-sm text-emerald-400 font-medium mt-3">Free with Kindle Unlimited</p>
+      <p class="text-xs text-neutral-400 mt-1">Or buy it: Kindle $9.99 · Paperback $19.99</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pb-16">
+    <div class="w-full max-w-[700px]">
+      <h2 class="text-xl font-bold text-white mb-6 text-center">Frequently asked questions</h2>
+      <div class="space-y-4">
+        <details class="group bg-[#161616] border border-neutral-800 rounded-lg" open>
+          <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+            <span class="font-medium text-white text-sm">Do I need to know how to code?</span>
+            <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
+            <p class="text-sm text-neutral-300">No. You don't write a single line of code in this book. The AI writes everything. Your job is to specify clearly, push back when the AI suggests something stupid, and verify that what it built actually works. That is the entire skill the book teaches.</p>
+          </div>
+        </details>
+        <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
+          <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+            <span class="font-medium text-white text-sm">How is this different from Prompt Contracts?</span>
+            <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
+            <p class="text-sm text-neutral-300">Vibe Coding, For Real is the on-ramp — one project, walked end to end, designed for someone who has never used Git, Supabase, or Vercel. Prompt Contracts is the advanced framework, written for developers who already ship and want production-grade specs. Start here if you're new, read Prompt Contracts after.</p>
+          </div>
+        </details>
+        <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
+          <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+            <span class="font-medium text-white text-sm">Which AI tools does the method work with?</span>
+            <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
+            <p class="text-sm text-neutral-300">The examples use Claude Code. Cursor and Codex CLI work just as well. The Blueprint Method is tool-agnostic: it teaches what to say, in what order, and how to verify — the underlying AI can change.</p>
+          </div>
+        </details>
+        <details class="group bg-[#161616] border border-neutral-800 rounded-lg">
+          <summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+            <span class="font-medium text-white text-sm">Is there a companion repo?</span>
+            <svg class="w-4 h-4 text-neutral-400 transition-transform group-open:rotate-180 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-4 pb-4 border-t border-neutral-800 pt-3">
+            <p class="text-sm text-neutral-300">Yes — the full CRM is open source. Every prompt published in the book produced the code that runs there, and every code path is e2e tested. If you get stuck on a chapter, the repo is your reference implementation.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON-LD: Book -->
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Vibe Coding, For Real: From Demo to Live App, the Step-by-Step Method for Builders Who Hit the Wall",
+    "author": {
+      "@type": "Person",
+      "name": "Phil",
+      "url": "https://medium.com/@rentierdigital"
+    },
+    "url": "https://rentierdigital.xyz/vibe-coding",
+    "image": "https://rentierdigital.xyz/vibe-coding-cover.avif",
+    "description": "The Blueprint Method: 12 chapters, 70+ prompts, one shipped SaaS. Build a real CRM with Next.js + Supabase + Stripe + Vercel — without writing a line of code yourself.",
+    "bookFormat": "EBook",
+    "inLanguage": "en",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "9.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.amazon.com/dp/B0GYQHLSCB",
+        "seller": { "@type": "Organization", "name": "Amazon" }
+      },
+      {
+        "@type": "Offer",
+        "price": "19.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.amazon.com/dp/B0GYQHLSCB",
+        "description": "Paperback"
+      },
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free with Kindle Unlimited",
+        "url": "https://www.amazon.com/dp/B0GYQHLSCB"
+      }
+    ]
+  }
+  </script>
+</BaseLayout>
