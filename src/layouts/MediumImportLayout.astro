@@ -1,0 +1,72 @@
+---
+/**
+ * Minimal HTML layout served when an article is in `prepa_medium` status.
+ *
+ * Goal: Medium's "Import a story" parser picks up title, subtitle, body,
+ * lists, blockquotes, and links cleanly. The rich Astro template confuses
+ * the parser (loses subtitle, strips links inside <em><blockquote>).
+ *
+ * The URL stays the same as the published version so the canonical
+ * Medium attaches points to the right page once the article is published.
+ */
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  canonical: string;
+  htmlContent: string;
+  coverImageUrl?: string;
+  coverImageAlt?: string;
+  publishedDate?: string;
+  lang?: string;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  canonical,
+  htmlContent,
+  coverImageUrl,
+  coverImageAlt,
+  publishedDate,
+  lang = "en",
+} = Astro.props;
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+---
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {coverImageUrl && <meta property="og:image" content={coverImageUrl} />}
+    {publishedDate && <meta property="article:published_time" content={publishedDate} />}
+    <meta name="robots" content="noindex, follow" />
+  </head>
+  <body>
+    <article>
+      <h1>{title}</h1>
+      {subtitle && <h2>{subtitle}</h2>}
+      {coverImageUrl && (
+        <figure>
+          <img src={coverImageUrl} alt={coverImageAlt ?? title} />
+        </figure>
+      )}
+      <div set:html={htmlContent} />
+    </article>
+  </body>
+</html>

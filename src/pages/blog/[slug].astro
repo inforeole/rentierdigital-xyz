@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import MediumImportLayout from "../../layouts/MediumImportLayout.astro";
 import { getBlogList, getBlogBySlug } from "../../lib/convex";
 import { renderMarkdown } from "../../lib/markdown";
 import { toLocalImagePath } from "../../lib/image-utils";
@@ -68,26 +69,40 @@ const description = (
 const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
 ---
 
-<ArticleLayout
-  title={content.title}
-  subtitle={content.subtitle}
-  seoTitle={content.seo_meta_title}
-  description={description}
-  publishedDate={content.published_date}
-  readTime={content.read_time_minutes}
-  tags={content.tags}
-  canonical={canonical}
-  htmlContent={htmlContent}
-  related={related}
-  seoSchemaJsonld={content.seo_schema_jsonld}
-  seoTargetKeyword={content.seo_target_keyword}
-  coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url, content.slug) : undefined}
-  hideCoverImage={markdownHasInlineImage}
-  coverImageAlt={content.cover_image_alt}
-  coverCaption={content.cover_caption}
-  lang="en"
-  slug={content.slug}
-  translations={content.translations}
-  preloadImage={markdownHasInlineImage ? firstInlineImageUrl : undefined}
-  updatedAt={content.updated_at}
-/>
+{content.status === "prepa_medium" ? (
+  <MediumImportLayout
+    title={content.title}
+    subtitle={content.subtitle}
+    description={description}
+    canonical={canonical}
+    htmlContent={htmlContent}
+    coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url, content.slug) : undefined}
+    coverImageAlt={content.cover_image_alt}
+    publishedDate={content.published_date}
+    lang="en"
+  />
+) : (
+  <ArticleLayout
+    title={content.title}
+    subtitle={content.subtitle}
+    seoTitle={content.seo_meta_title}
+    description={description}
+    publishedDate={content.published_date}
+    readTime={content.read_time_minutes}
+    tags={content.tags}
+    canonical={canonical}
+    htmlContent={htmlContent}
+    related={related}
+    seoSchemaJsonld={content.seo_schema_jsonld}
+    seoTargetKeyword={content.seo_target_keyword}
+    coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url, content.slug) : undefined}
+    hideCoverImage={markdownHasInlineImage}
+    coverImageAlt={content.cover_image_alt}
+    coverCaption={content.cover_caption}
+    lang="en"
+    slug={content.slug}
+    translations={content.translations}
+    preloadImage={markdownHasInlineImage ? firstInlineImageUrl : undefined}
+    updatedAt={content.updated_at}
+  />
+)}

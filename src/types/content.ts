@@ -25,7 +25,7 @@ export interface ContentFull {
   lang: "EN" | "FR" | "ES" | "DE";
   type: string;
   tags: string[];
-  status: "draft" | "ready" | "published" | "archived";
+  status: "draft" | "ready" | "prepa_medium" | "published" | "archived";
   published_date?: string;
   word_count?: number;
   read_time_minutes?: number;
