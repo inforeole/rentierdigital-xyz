@@ -40,6 +40,30 @@ function escapeHtml(text: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
+
+// Insert the cover image right after the TLDR paragraph so the Medium reader
+// gets context (title → subtitle → TLDR → cover → body). When no TLDR is
+// present (rare), fall back to inserting it at the top of the content.
+function insertCoverAfterTldr(html: string, coverUrl: string, altText: string): string {
+  const img = `<figure><img src="${coverUrl}" alt="${escapeHtml(altText)}" /></figure>`;
+  // Match a paragraph that starts with **TLDR**/**TL;DR** (any colon placement).
+  // The markdown renderer outputs `<p><strong>TLDR:</strong> ...</p>` or
+  // `<p><strong>TL;DR</strong>: ...</p>`. Match until the closing </p>.
+  const tldrParagraph = /<p>\s*<strong>TL;?DR:?<\/strong>:?[\s\S]*?<\/p>/i;
+  if (tldrParagraph.test(html)) {
+    return html.replace(tldrParagraph, (m) => `${m}\n${img}`);
+  }
+  // Also accept the H2 form (## TL;DR) rendered as <h2>TL;DR</h2><p>…</p>
+  const tldrHeading = /<h2[^>]*>\s*TL;?DR\s*<\/h2>\s*<p>[\s\S]*?<\/p>/i;
+  if (tldrHeading.test(html)) {
+    return html.replace(tldrHeading, (m) => `${m}\n${img}`);
+  }
+  return `${img}\n${html}`;
+}
+
+const renderedHtml = coverImageUrl
+  ? insertCoverAfterTldr(htmlContent, coverImageUrl, coverImageAlt ?? title)
+  : htmlContent;
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -60,13 +84,8 @@ function escapeHtml(text: string): string {
   <body>
     <article>
       <h1>{title}</h1>
-      {subtitle && <h2>{subtitle}</h2>}
-      {coverImageUrl && (
-        <figure>
-          <img src={coverImageUrl} alt={coverImageAlt ?? title} />
-        </figure>
-      )}
-      <div set:html={htmlContent} />
+      {subtitle && <h4>{subtitle}</h4>}
+      <div set:html={renderedHtml} />
     </article>
   </body>
 </html>
