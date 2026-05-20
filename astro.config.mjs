@@ -18,8 +18,23 @@ async function fetchHreflangMap() {
 
   const byGroup = new Map();
   for (const lang of LANGS) {
-    const res = await fetch(`${convex}/api/blog?lang=${lang}`);
-    if (!res.ok) throw new Error(`[hreflang] /api/blog?lang=${lang} failed: ${res.status}`);
+    let res;
+    let lastErr;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        res = await fetch(`${convex}/api/blog?lang=${lang}`);
+        if (res.ok) break;
+        lastErr = new Error(`status ${res.status}`);
+      } catch (e) {
+        lastErr = e;
+      }
+      if (attempt < 3) {
+        const backoff = 1000 * 2 ** (attempt - 1);
+        console.warn(`[hreflang] /api/blog?lang=${lang} attempt ${attempt} failed (${lastErr?.message}), retrying in ${backoff}ms`);
+        await new Promise((r) => setTimeout(r, backoff));
+      }
+    }
+    if (!res || !res.ok) throw new Error(`[hreflang] /api/blog?lang=${lang} failed after 3 attempts: ${lastErr?.message}`);
     const items = await res.json();
     for (const it of items) {
       if (!it.translation_group_id) continue;
