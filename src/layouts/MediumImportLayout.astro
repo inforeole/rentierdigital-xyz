@@ -84,7 +84,7 @@ const renderedHtml = coverImageUrl
   <body>
     <article>
       <h1>{title}</h1>
-      {subtitle && <h4>{subtitle}</h4>}
+      {subtitle && <p>{subtitle}</p>}
       <div set:html={renderedHtml} />
     </article>
   </body>
