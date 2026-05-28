@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { readdir, stat, rename } from "node:fs/promises";
+import { readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
 
 const dir = "public/blog-images";
@@ -24,12 +24,12 @@ try {
       // dest doesn't exist, convert
     }
 
-    // Resize source to 768w max (in-place) — no point shipping a 4000px fallback
-    const meta = await sharp(src).metadata();
-    if (meta.width && meta.width > 768) {
-      await sharp(src).resize({ width: 768, withoutEnlargement: true }).toFile(src + ".tmp");
-      await rename(src + ".tmp", src);
-    }
+    // NOTE: on ne resize PLUS le PNG source in-place. Muter un fichier tracké
+    // pendant le build salit le worktree à chaque run (cause des diffs git
+    // parasites). Le <picture> sert l'AVIF 480w/768w en priorité (~95% des
+    // navigateurs) ; le PNG n'est qu'un fallback rare, sa taille native est
+    // acceptable. Les AVIF dérivés ci-dessous sont resizés à la volée sans
+    // toucher la source.
 
     // Full size (768w)
     await sharp(src).resize({ width: 768, withoutEnlargement: true }).avif({ quality: 40 }).toFile(dest);
@@ -37,7 +37,7 @@ try {
     const mobileDest = join(dir, file.replace(/\.\w+$/, "-480w.avif"));
     await sharp(src).resize({ width: 480, withoutEnlargement: true }).avif({ quality: 35 }).toFile(mobileDest);
     converted++;
-    console.log(`Converted: ${file} → ${file.replace(/\.\w+$/, ".avif")} + 480w + source resized`);
+    console.log(`Converted: ${file} → ${file.replace(/\.\w+$/, ".avif")} + 480w`);
   }
 
   console.log(`Done: ${converted} converted, ${images.length - converted} skipped`);
