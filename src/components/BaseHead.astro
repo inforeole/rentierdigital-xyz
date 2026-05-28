@@ -40,14 +40,13 @@ const fullOgImage = ogImage.startsWith("http")
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 {preloadImage && <link rel="preload" as="image" type="image/avif" href={preloadImage} fetchpriority="high" />}
-<link rel="preconnect" href="https://plausible.io" />
 <link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <link rel="canonical" href={canonical} />
 <meta name="p:domain_verify" content="e9ebbde8f2e34ef647dda3afb7b816f9" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1, noai, noimageai" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="googlebot" content="index, follow, snippet" />
 {alternateLinks.map((a) => (
   <link rel="alternate" hreflang={a.lang} href={a.url} />

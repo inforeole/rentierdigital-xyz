@@ -13,6 +13,14 @@
     {
       "source": "/go/:slug",
       "destination": "https://convexrentienr-actions.neoracines.com/api/go/:slug"
+    },
+    {
+      "source": "/js/script.js",
+      "destination": "https://plausible.io/js/script.js"
+    },
+    {
+      "source": "/api/event",
+      "destination": "https://plausible.io/api/event"
     }
   ],
   "headers": [

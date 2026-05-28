@@ -71,7 +71,7 @@ export default defineConfig({
   site: "https://rentierdigital.xyz",
   trailingSlash: "never",
   build: {
-    inlineStylesheets: "always",
+    inlineStylesheets: "auto",
   },
   i18n: {
     defaultLocale: "en",
