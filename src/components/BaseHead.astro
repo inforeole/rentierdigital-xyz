@@ -11,6 +11,7 @@ interface Props {
   lang?: string;
   slug?: string;
   translations?: { lang: string; slug: string; title: string }[];
+  hreflangLinks?: { lang: string; url: string }[];
   preloadImage?: string;
 }
 
@@ -24,6 +25,7 @@ const {
   lang = "en",
   slug,
   translations = [],
+  hreflangLinks = [],
   preloadImage,
 } = Astro.props;
 
@@ -49,6 +51,9 @@ const fullOgImage = ogImage.startsWith("http")
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="googlebot" content="index, follow, snippet" />
 {alternateLinks.map((a) => (
+  <link rel="alternate" hreflang={a.lang} href={a.url} />
+))}
+{hreflangLinks.map((a) => (
   <link rel="alternate" hreflang={a.lang} href={a.url} />
 ))}
 <link

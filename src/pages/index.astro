@@ -18,12 +18,16 @@ const latest = articles.slice(1, 21);
 <BaseLayout
   title="Rentier Digital — Build with AI"
   description="Tools, methods, and guides to ship real products with AI. From prompt engineering to production."
+  hreflangLinks={[
+    { lang: "en", url: "https://rentierdigital.xyz/" },
+    { lang: "x-default", url: "https://rentierdigital.xyz/" },
+  ]}
 >
   <!-- Hero -->
   <section class="py-8 sm:py-16">
     <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl text-center">
-      Build real products<br />
-      <span class="text-blue-400">with AI</span>
+      Build real products{" "}
+      <span class="block text-blue-400">with AI</span>
     </h1>
     <p class="mx-auto mt-4 max-w-xl text-lg text-neutral-400 text-center">
       Guides, tools, and methods for solo builders and non-technical founders
@@ -145,7 +149,7 @@ const latest = articles.slice(1, 21);
     <div class="px-4 pb-8">
       <div class="mb-4 flex items-center justify-between">
         <h2 class="text-xl font-semibold text-white">Latest articles</h2>
-        <a href="/blog" class="text-sm text-neutral-400 transition-colors hover:text-white">
+        <a href="/blog" aria-label="View all articles on the blog" class="text-sm text-neutral-400 transition-colors hover:text-white">
           View all &rarr;
         </a>
       </div>
@@ -175,7 +179,7 @@ const latest = articles.slice(1, 21);
       <div class="w-1/2">
         <div class="mb-4 flex items-center justify-between">
           <h2 class="text-xl font-semibold text-white">Latest articles</h2>
-          <a href="/blog" class="text-sm text-neutral-400 transition-colors hover:text-white">
+          <a href="/blog" aria-label="View all articles on the blog" class="text-sm text-neutral-400 transition-colors hover:text-white">
             View all &rarr;
           </a>
         </div>
@@ -408,6 +412,18 @@ const latest = articles.slice(1, 21);
         "https://dev.to/rentierdigital",
         "https://rentierdigital.hashnode.dev",
       ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: [featured, ...latest]
+        .filter(Boolean)
+        .map((a, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `https://rentierdigital.xyz/blog/${a.slug}`,
+          name: a.title,
+        })),
     },
   ])} />
 </BaseLayout>
