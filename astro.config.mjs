@@ -85,7 +85,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes("/test-avif") &&
-        !page.includes("/links") &&
+        !page.includes("/wizard-links") &&
         !page.includes("/go/"),
       serialize(item) {
         const links = hreflangMap?.get(item.url);
