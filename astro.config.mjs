@@ -83,7 +83,10 @@ export default defineConfig({
   integrations: [
     hreflangIntegration,
     sitemap({
-      filter: (page) => !page.includes("/test-avif"),
+      filter: (page) =>
+        !page.includes("/test-avif") &&
+        !page.includes("/links") &&
+        !page.includes("/go/"),
       serialize(item) {
         const links = hreflangMap?.get(item.url);
         if (links && links.length > 0) item.links = links;
