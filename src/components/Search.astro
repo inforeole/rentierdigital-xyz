@@ -6,6 +6,56 @@
     new PagefindUI({
       element: "#pagefind-search",
       showSubResults: true,
+      showImages: false,
     });
   });
 </script>
+
+<style>
+  #pagefind-search {
+    --pagefind-ui-scale: 0.8;
+    --pagefind-ui-primary: #ffffff;
+    --pagefind-ui-text: #e5e5e5;
+    --pagefind-ui-background: transparent;
+    --pagefind-ui-border: rgba(255, 255, 255, 0.15);
+    --pagefind-ui-tag: rgba(255, 255, 255, 0.08);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 6px;
+    --pagefind-ui-font: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Result titles — full white, pas le gris par défaut */
+  #pagefind-search :global(.pagefind-ui__result-title) {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Excerpts — gris clair lisible */
+  #pagefind-search :global(.pagefind-ui__result-excerpt) {
+    color: #a3a3a3;
+  }
+
+  /* Highlight du terme recherché */
+  #pagefind-search :global(mark) {
+    background-color: rgba(250, 204, 21, 0.3);
+    color: #fde68a;
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+
+  /* Input — fond légèrement visible */
+  #pagefind-search :global(.pagefind-ui__search-input) {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #e5e5e5;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  #pagefind-search :global(.pagefind-ui__search-input::placeholder) {
+    color: #737373;
+  }
+
+  /* Résultats — fond légèrement distinct */
+  #pagefind-search :global(.pagefind-ui__result) {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+</style>
