@@ -1,7 +1,7 @@
 # Site: rentierdigital.xyz
 # Author: Phil - RentierDigital - SEO automation consultant, SaaS builder, content creator
 # Topics: AI automation, n8n, SEO, SaaS, content monetization
-# Language: EN/FR/DE/ES
+# Language: EN
 # Book: "Prompt Contracts" - A framework to stop vibe coding and start shipping.
 #       Applies software engineering discipline to AI prompt design:
 #       structured, explicit instructions that give LLMs the context
@@ -10,9 +10,6 @@
 
 User-agent: *
 Allow: /
-Allow: /fr/
-Allow: /es/
-Allow: /de/
 
 # LLMs: https://rentierdigital.xyz/llms.txt
 
