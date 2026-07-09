@@ -4,9 +4,2204 @@
   "redirects": [
     {
       "source": "/:path(.*)",
-      "has": [{ "type": "host", "value": "www.rentierdigital.xyz" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.rentierdigital.xyz"
+        }
+      ],
       "destination": "https://rentierdigital.xyz/:path",
       "permanent": true
+    },
+    {
+      "source": "/de/blog/title-tags-warum-73-aller-websites-aus-der-ki-suche-verschwinden-werden-und-sie",
+      "destination": "/blog/title-tags-ai-search-optimization",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/de-manuscrito-kindle-a-audiolibro-en-una-tarde-guia-completa-de-elevencreative",
+      "destination": "/blog/elevenlabs-studio-audiobook-creation-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/die-quitgpt-bewegung-erreichte-1-5-millionen-nutzer-die-echte-migration-hat-noch",
+      "destination": "/blog/the-quitgpt-movement-hit-1-5-million-the-real-migration-hasn-t-started-yet",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-non-developpeurs-utilisent-claude-code-d-une-facon-que-la-plupart-des-devs",
+      "destination": "/blog/non-developers-claude-code-productivity",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/sie-haben-einen-dritten-stapel-technischer-schulden-niemand-hat-ein-tool-gebaut",
+      "destination": "/blog/hidden-technical-debt-free-saas-dependencies",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/ingenierie-des-harnais-d-agents-ia-ce-que-8-mois-en-production-m-ont-appris",
+      "destination": "/blog/everyone-s-discovering-agent-harnesses-i-ve-been-building-mine-for-8-months",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/mein-mcp-server-hat-claude-belogen-claude-hat-es-als-fakt-wiederholt-zu-100",
+      "destination": "/blog/mcp-server-security-red-team-testing",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-agent-ia-souffre-d-alzheimer-la-psychologie-a-resolu-ce-probleme-il-y-a-25",
+      "destination": "/blog/ai-agent-memory-loss-psychology-fix",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/der-chef-von-claude-code-hat-aufgehort-zu-prompten-das-ist-kein-tipp-das-ist",
+      "destination": "/blog/loop-engineering-ai-coding-evolution",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-arrete-le-coding-a-l-instinct-et-cree-une-vraie-app-la-methode-que",
+      "destination": "/blog/stop-vibe-coding-build-real-apps-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-ia-que-vous-utilisez-cache-une-personnalite-secrete-anthropic-vient-de",
+      "destination": "/blog/ai-model-distillation-hidden-behaviors",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/todos-los-tutoriales-de-claude-code-te-ensenan-las-mismas-5-cosas-ninguna-sirve",
+      "destination": "/blog/every-claude-code-tutorial-teaches-you-the-same-5-things-none-of-them-matter-in-production",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ihr-claude-code-projekt-ist-nicht-eingerichtet-es-sieht-nur-so-aus",
+      "destination": "/blog/claude-code-init-audit-mode-documentation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/warum-ki-agenten-lugen-ich-habe-die-architektur-analysiert-jetzt-kann-ich-es",
+      "destination": "/blog/why-ai-agents-lie-architecture",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/elegir-una-base-de-datos-para-tu-saas-no-es-una-decision-son-4",
+      "destination": "/blog/saas-database-architecture-decisions",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/bloomberg-affirme-que-l-ia-de-programmation-provoque-une-panique-de-productivite",
+      "destination": "/blog/bloomberg-ai-coding-productivity-panic",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/descubri-el-mejor-uso-de-claude-fable-5-me-costo-el-75-de-mi-cuota-mensual",
+      "destination": "/blog/claude-fable-5-ultracode-review-quota-management",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/deine-vibe-basierte-app-zu-verkaufen-ist-kein-marketing-problem-es-ist-eine",
+      "destination": "/blog/marketing-spec-indie-apps-before-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/84-der-entwickler-nutzen-ki-29-vertrauen-ihr-die-fehlende-fahigkeit-ist-nicht",
+      "destination": "/blog/ai-coding-refusal-skills-trust-gap",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/er-zahlt-claude-40-000-monat-um-sein-team-zu-ersetzen-die-halfte-seines-tages",
+      "destination": "/blog/claude-ai-agent-debugging-reality",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/84-de-desarrolladores-usa-ia-29-confia-en-ella-la-habilidad-que-falta-no-es",
+      "destination": "/blog/ai-coding-refusal-skills-trust-gap",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-fait-chuter-15-milliards-de-dollars-d-actions-de-cybersecurite",
+      "destination": "/blog/anthropic-just-crashed-15-billion-in-cybersecurity-stocks",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-ingenierie-sociale-visait-les-humains-maintenant-l-ia-en-est-victime",
+      "destination": "/blog/ai-social-engineering-claude-cyberattack",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/actualizar-nodos-obsoletos-en-n8n-era-tan-doloroso-que-deje-de-intentarlo",
+      "destination": "/blog/fix-n8n-outdated-nodes-claude-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-md-ist-das-neue-env-aber-die-meisten-entwickler-behandeln-es-wie-eine-rea",
+      "destination": "/blog/claude-md-is-the-new-env-and-most-developers-treat-it-like-a-readme",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/opus-4-7-se-niega-a-editar-codigo-que-acaba-de-leer-la-razon-es-una-instruccion",
+      "destination": "/blog/claude-opus-code-refusal-bug",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-25-claude-code-youtube-videos-geschaut-damit-du-es-nicht-musst-das-ulti",
+      "destination": "/blog/claude-code-youtube-videos-ranking",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-trouve-le-meilleur-cas-d-usage-de-claude-fable-5-ca-m-a-coute-75-de-mon",
+      "destination": "/blog/claude-fable-5-ultracode-review-quota-management",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/upload-post-vs-zernio-8-monate-social-media-api-kampf-und-was-der",
+      "destination": "/blog/social-media-api-comparison-upload-post-zernio",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-vibe-coding-gestoppt-und-mit-prompt-contracts-begonnen-claude-code-wurd",
+      "destination": "/blog/i-stopped-vibe-coding-and-started-prompt-contracts-claude-code-went-from-gambling-to-shipping",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/deje-que-claude-programara-por-4-horas-construyo-algo-que-nadie-pidio",
+      "destination": "/blog/claude-code-autonomous-loops-fail",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/de-manuscrit-kindle-a-livre-audio-en-un-apres-midi-guide-complet-d",
+      "destination": "/blog/elevenlabs-studio-audiobook-creation-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/vibe-code-rescue-es-la-nueva-fiebre-del-oro-no-extraigas-vende-picos-y-palas",
+      "destination": "/blog/vibe-code-rescue-market-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/hermes-agent-die-selbst-gehostete-ki-ist-endlich-erwachsen-geworden-hier-ist",
+      "destination": "/blog/hermes-agent-self-hosted-ai-setup",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-empresa-prohibio-claude-code-la-semana-que-lanzaron-workflows-la-brecha-ya",
+      "destination": "/blog/claude-workflows-1000-agents-enterprise-ban",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/4-000-manager-bei-block-gefeuert-ki-wird-deinen-manager-nicht-ersetzen-sie",
+      "destination": "/blog/ai-agents-management-block-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/das-agentic-web-kommt-nicht-es-ist-bereits-da",
+      "destination": "/blog/ai-bot-traffic-overtook-humans-seo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-markdown-etait-une-erreur-pour-les-sorties-d-agents-ia-un-ingenieur-de",
+      "destination": "/blog/html-vs-markdown-ai-agent-output",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/stack-overflow-trainierte-die-ki-die-es-zerstorte-jetzt-bittet-es-sie-um-hilfe",
+      "destination": "/blog/stack-overflow-ai-agents-ephemeral-intelligence",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-supprime-mon-dernier-workflow-n8n-convex-a-execute-le-job-de-30-minutes-en",
+      "destination": "/blog/replace-n8n-typescript-convex",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mythos-no-sera-lanzado-ya-esta-decidiendo-que-modelos-si-lo-seran",
+      "destination": "/blog/anthropic-mythos-ai-controls-releases",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-fable-5-est-actuellement-indisponible-le-gouvernement-americain-a",
+      "destination": "/blog/claude-fable-5-government-ban-ai-restrictions",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/markdown-war-ein-fehler-fur-agent-ausgaben-ein-claude-code-engineer-hat-es",
+      "destination": "/blog/html-vs-markdown-ai-agent-output",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/spotify-entwickelte-honk-als-coding-ersatz-ich-baute-meine-eigene-version-fur-15",
+      "destination": "/blog/spotify-built-honk-to-replace-coding-i-built-my-own-for-15",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-lie-cybersecurity-aktien-um-15-milliarden-dollar-absturzen",
+      "destination": "/blog/anthropic-just-crashed-15-billion-in-cybersecurity-stocks",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-bin-ein-kontroll-freak-mein-mesh-vpn-sollte-es-auch-sein",
+      "destination": "/blog/self-hosted-mesh-vpn-netbird-tailscale",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/reemplace-supabase-con-convex-y-lo-auto-hospede-gratis-aqui-tienes-la-guia-compl",
+      "destination": "/blog/i-replaced-supabase-with-convex-and-self-hosted-it-for-free-here-s-the-full-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/vi-25-videos-de-youtube-sobre-codigo-con-claude-para-que-tu-no-tengas-que-hacerl",
+      "destination": "/blog/claude-code-youtube-videos-ranking",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/python-skripte-aus-n8n-aufrufen",
+      "destination": "/blog/calling-a-python-script-from-n8n",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/gumroad-ahora-es-programable-aqui-estan-los-12-agentes-que-manejan-mi-tienda",
+      "destination": "/blog/gumroad-cli-ai-agents-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-programacion-por-vibra-no-ha-muerto-solo-la-construiste-como-el-primer",
+      "destination": "/blog/vibe-coding-method-that-works",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-mouvement-quitgpt-atteint-1-5-million-d-utilisateurs-la-vraie-migration-n-a-p",
+      "destination": "/blog/the-quitgpt-movement-hit-1-5-million-the-real-migration-hasn-t-started-yet",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-ingenieria-social-solia-atacar-a-humanos-ahora-la-ia-es-la-victima",
+      "destination": "/blog/ai-social-engineering-claude-cyberattack",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-arrete-de-creer-des-workflows-ia-j-ai-commence-a-construire-un-rempart",
+      "destination": "/blog/ai-moat-claude-code-self-healing-stack",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/8-signes-que-votre-app-ia-est-une-demo-pas-un-produit",
+      "destination": "/blog/8-signs-your-ai-app-is-a-demo-not-a-product",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/eine-handy-reinigungs-app-von-macht-520-000-monat-die-einzige-anderung-ai-im",
+      "destination": "/blog/ai-app-store-monetization-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/eine-ki-eroffnet-ein-bankkonto-agenten-replizieren-sich-selbst-das-recht-hat",
+      "destination": "/blog/ai-agent-bank-account-llc-legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-a-refuse-le-pentagone-pour-des-raisons-ethiques-deux-mois-plus-tard",
+      "destination": "/blog/anthropic-ethics-controversy-pentagon-dirty-compute",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-ia-qui-traque-les-bots-veut-maintenant-vous-verifier-aussi",
+      "destination": "/blog/ai-bot-detection-human-verification",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/no-busques-claude-mac-download-en-google-el-primer-resultado-vacia-tu-keychain",
+      "destination": "/blog/claude-mac-malware-google-ads",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-vient-de-tuer-mon-setup-openclaw-a-200-mois-je-l-ai-reconstruit-pour-1",
+      "destination": "/blog/anthropic-just-killed-my-200-month-openclaw-setup-so-i-rebuilt-it-for-15",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-servidor-mcp-mintio-a-claude-claude-lo-repitio-como-verdad-100-de-las-veces",
+      "destination": "/blog/mcp-server-security-red-team-testing",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/una-app-limpiadora-de-genera-520k-mes-el-unico-cambio-ai-en-el-nombre",
+      "destination": "/blog/ai-app-store-monetization-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/chrome-devtools-protocol-claude-code-le-pattern-que-les-equipes-open-source-ont",
+      "destination": "/blog/ai-agent-api-reverse-engineering",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-agent-ia-a-echoue-30-fois-sur-le-meme-clic-linkedin-camoufox-l-a-reussi-du",
+      "destination": "/blog/ai-agent-browser-automation-chrome-mcp-camoufox",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tienes-un-tercer-tipo-de-deuda-tecnica-nadie-ha-creado-una-herramienta-para",
+      "destination": "/blog/hidden-technical-debt-free-saas-dependencies",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/elementor-aus-wordpress-entfernen-114-seiten-an-einem-tag-zu-gutenberg",
+      "destination": "/blog/elementor-wordpress-gutenberg-migration",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/todos-entran-en-panico-por-el-ataque-a-la-cadena-de-suministro-de-litellm",
+      "destination": "/blog/mcp-server-security-audit-vulnerabilities",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/94-de-mes-tokens-claude-code-sont-alles-au-mauvais-modele-j-ai-donc-arrete-de",
+      "destination": "/blog/claude-code-token-optimization-costs",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/opus-4-7-parece-haber-roto-tus-prompts-no-es-asi-solo-te-perdiste-las-2",
+      "destination": "/blog/claude-opus-prompt-migration-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/uso-ia-10-horas-al-dia-esto-es-lo-que-descubri-sobre-el-consumo-de-agua",
+      "destination": "/blog/ai-water-consumption-facts",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-horte-auf-mein-context-window-zu-verwalten-ich-fing-an-damit-zu-designen",
+      "destination": "/blog/context-window-ai-agent-distribution",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/google-hat-4-ai-seo-taktiken-beendet-hier-sind-die-claude-prompts-die-sie",
+      "destination": "/blog/google-kills-ai-seo-tactics-claude-prompts",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/eloge-funebre-du-tiret-cadratin",
+      "destination": "/blog/ai-killed-em-dash-typography",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-web-scraping-tradicional-ha-muerto-el-vibe-scraping-lo-acaba-de-reemplazar",
+      "destination": "/blog/ai-web-scraping-claude-mcp",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-seguridad-de-la-ia-es-un-panico-moral-y-los-panicos-morales-siempre-terminan",
+      "destination": "/blog/ai-safety-moral-panic-guardrails",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/dein-vibe-coding-stack-hat-keine-andon-schnur-deshalb-bricht-er-zusammen",
+      "destination": "/blog/ai-code-generation-compiler-feedback",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-meinen-eigenen-openclaw-ki-agenten-in-4-minuten-eingesetzt-er-steuert-j",
+      "destination": "/blog/i-deployed-my-own-openclaw-ai-agent-in-4-minutes-it-now-runs-my-life-from-a-5-server",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/la-securite-ia-est-une-panique-morale-et-les-paniques-morales-finissent-toujours",
+      "destination": "/blog/ai-safety-moral-panic-guardrails",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-destruyo-mi-configuracion-de-openclaw-3-veces-a-la-tercera-deje-de",
+      "destination": "/blog/anthropic-openclaw-ai-pricing-vendor-lock-in",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-schrieb-das-prompt-contracts-buch-kapitel-4-sprengte-mein-eigenes-framework",
+      "destination": "/blog/prompt-contracts-book-chapter-4-broke-framework",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/las-rutinas-de-claude-no-son-un-cron-de-razonamiento-son-un-subconjunto",
+      "destination": "/blog/claude-routines-vs-diy-automation-perimeter",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-modelo-mas-potente-de-anthropic-no-detecto-una-falla-de-seguridad-en-6-200",
+      "destination": "/blog/fable-5-vs-opus-security-audit",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/fable-5-ist-weg-so-erziele-ich-bessere-ergebnisse-fur-weniger-geld",
+      "destination": "/blog/multi-model-ai-panel-perspective-council",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/mein-ki-agent-scheiterte-30-mal-am-gleichen-linkedin-klick-camoufox-schaffte-es",
+      "destination": "/blog/ai-agent-browser-automation-chrome-mcp-camoufox",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/vom-kindle-manuskript-zum-horbuch-an-einem-nachmittag-der-elevencreative-studio",
+      "destination": "/blog/elevenlabs-studio-audiobook-creation-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/auto-heberger-n8n-en-2026-pourquoi-votre-portefeuille-et-vos-donnees-vous-remerc",
+      "destination": "/blog/self-hosting-n8n-why-your-wallet-and-data-will-thank-you",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-ia-que-caza-bots-ahora-tambien-quiere-verificarte-a-ti",
+      "destination": "/blog/ai-bot-detection-human-verification",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-ia-ne-volera-pas-votre-emploi-vous-l-avez-deja-donne",
+      "destination": "/blog/ai-dependency-developer-skills-crisis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/n8n-selbst-hosten-2026-warum-sich-ihr-geldbeutel-und-ihre-daten-bedanken-werden",
+      "destination": "/blog/self-hosting-n8n-why-your-wallet-and-data-will-thank-you",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-ia-me-bloqueo-de-mi-propio-servidor-luego-se-infiltro-como-un-ingeniero-senio",
+      "destination": "/blog/ai-locked-out-server-devops-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/pase-25-anos-evitando-malware-el-codigo-de-claude-almaceno-600-de-mis-secretos",
+      "destination": "/blog/claude-code-security-credentials-plaintext",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/vercel-datenpanne-6-geheimnisse-rotiert-ein-audit-befehl-verriet-18-weitere",
+      "destination": "/blog/vercel-breach-audit-commands-leaked-secrets",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/n8ns-offizieller-mcp-verbraucht-41x-mehr-token-trotzdem-nutze-ich-weiter-die",
+      "destination": "/blog/n8n-official-mcp-vs-community-comparison",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-codigo-siempre-se-dirigia-al-ingles-ya-llego",
+      "destination": "/blog/programming-languages-english-ai-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-routines-claude-ne-sont-pas-un-cron-de-raisonnement-elles-sont-un-sous",
+      "destination": "/blog/claude-routines-vs-diy-automation-perimeter",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/25-ans-a-eviter-les-malwares-claude-code-a-quand-meme-stocke-600-de-mes-secrets",
+      "destination": "/blog/claude-code-security-credentials-plaintext",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-betreibe-15-ki-klone-von-mir-selbst-parallel-und-das-ist-noch-nicht-mal-mein",
+      "destination": "/blog/parallel-ai-clones-workflow",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/docker-29-zerstorte-meinen-vps-claude-code-entdeckte-zwei-bugs-von-denen-ich-nic",
+      "destination": "/blog/docker-29-broke-vps-claude-code-debug",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-baute-11-claude-code-hooks-sechs-waren-binnen-24-stunden-tot",
+      "destination": "/blog/claude-code-hooks-survival-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-gab-claude-code-ein-wordpress-app-passwort-und-einen-satz-es-verwaltete-die",
+      "destination": "/blog/automate-wordpress-with-claude-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-hat-mich-in-14-sekunden-gedoxxt-hier-ist-der-aufraum-leitfaden-den-dir",
+      "destination": "/blog/claude-ai-doxxing-privacy-cleanup-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-den-besten-anwendungsfall-fur-claude-fable-5-gefunden-es-kostete-75",
+      "destination": "/blog/claude-fable-5-ultracode-review-quota-management",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-md-est-le-nouveau-env-et-la-plupart-des-developpeurs-le-traitent-comme-un",
+      "destination": "/blog/claude-md-is-the-new-env-and-most-developers-treat-it-like-a-readme",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/ingenieria-de-harness-para-agentes-lo-que-aprendi-en-8-meses-de-produccion",
+      "destination": "/blog/everyone-s-discovering-agent-harnesses-i-ve-been-building-mine-for-8-months",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ihr-saas-ist-nur-eine-woche-und-1-100-von-einem-klon-entfernt-cloudflare-hat-es",
+      "destination": "/blog/ai-cloned-nextjs-saas-protection",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-equipe-claude-code-declare-l-etat-d-urgence-quand-cette-metrique-chute",
+      "destination": "/blog/the-claude-code-team-declares-emergencies-when-this-one-metric-drops",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-hat-mein-200-monat-openclaw-setup-zerstort-also-habe-ich-es-fur-15-neu",
+      "destination": "/blog/anthropic-just-killed-my-200-month-openclaw-setup-so-i-rebuilt-it-for-15",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-llm-sont-les-pires-consultants-seo-au-monde-leur-liste-noire-est-votre",
+      "destination": "/blog/llms-bad-seo-advice-blacklisted-sites",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-acaba-de-liberar-el-codigo-de-claude-clone-el-repositorio",
+      "destination": "/blog/claude-code-fake-leak-april-fools",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/mythos-wird-nicht-veroffentlicht-es-entscheidet-bereits-was-veroffentlicht-wird",
+      "destination": "/blog/anthropic-mythos-ai-controls-releases",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/spotify-creo-honk-para-reemplazar-la-programacion-yo-construi-el-mio-por-15",
+      "destination": "/blog/spotify-built-honk-to-replace-coding-i-built-my-own-for-15",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-utilise-l-ia-10-heures-par-jour-voici-ce-que-j-ai-decouvert-sur-sa-consommatio",
+      "destination": "/blog/ai-water-consumption-facts",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-meinen-letzten-n8n-workflow-geloscht-convex-erledigte-den-30-minuten",
+      "destination": "/blog/replace-n8n-typescript-convex",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-laisse-claude-coder-pendant-4-heures-il-a-cree-quelque-chose-que-personne",
+      "destination": "/blog/claude-code-autonomous-loops-fail",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/tout-le-monde-panique-a-cause-de-l-attaque-litellm-j-ai-audite-mes-serveurs-mcp",
+      "destination": "/blog/mcp-server-security-audit-vulnerabilities",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-code-usa-esfuerzo-medio-por-defecto-cambiar-a-maximo-no-te-salvara",
+      "destination": "/blog/claude-code-max-effort-context-planning",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ihre-software-fabrik-ist-eine-dark-kitchen-die-1-000-dollar-die-niemand-erwahnt",
+      "destination": "/blog/ai-software-factory-hidden-costs",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-code-arbeitet-standardma-ig-mit-mittlerem-aufwand-max-einstellung-rettet",
+      "destination": "/blog/claude-code-max-effort-context-planning",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-deplace-un-dossier-claude-code-m-a-dit-de-ne-pas-copier-mes-propres-secrets",
+      "destination": "/blog/claude-code-security-secrets-disk",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/pourquoi-les-cli-surpassent-mcp-pour-les-agents-ia-et-comment-creer-votre-propre",
+      "destination": "/blog/why-clis-beat-mcp-for-ai-agents-and-how-to-build-your-own-cli-army",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/deje-de-gestionar-mi-ventana-de-contexto-empece-a-disenar-con-ella",
+      "destination": "/blog/context-window-ai-agent-distribution",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/was-ihr-ki-agent-nicht-bewaltigen-kann-ist-das-geschaft-das-sie-noch-nicht",
+      "destination": "/blog/ai-agent-failure-analysis-revenue",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-ecrit-le-livre-sur-les-contrats-de-prompts-le-chapitre-4-a-casse-mon-propre",
+      "destination": "/blog/prompt-contracts-book-chapter-4-broke-framework",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-lehnte-das-pentagon-aus-ethischen-grunden-ab-zwei-monate-spater",
+      "destination": "/blog/anthropic-ethics-controversy-pentagon-dirty-compute",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-regarde-25-videos-youtube-sur-le-code-claude-pour-vous-le-classement-defini",
+      "destination": "/blog/claude-code-youtube-videos-ranking",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-et-google-viennent-de-sortir-le-meme-produit-a-2-semaines-d",
+      "destination": "/blog/anthropic-google-managed-ai-agents",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/wordpress-est-mort-son-remplacant-n-a-aucune-logique",
+      "destination": "/blog/wordpress-dead-ai-coded-sites-no-standard",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/die-ki-die-bots-jagt-will-auch-sie-verifizieren",
+      "destination": "/blog/ai-bot-detection-human-verification",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropics-starkstes-modell-ubersah-eine-sicherheitslucke-in-6-200-zeilen",
+      "destination": "/blog/fable-5-vs-opus-security-audit",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-vient-de-publier-le-code-de-claude-en-open-source-j-ai-clone-le-repo",
+      "destination": "/blog/claude-code-fake-leak-april-fools",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/desplegue-mi-propio-agente-de-ia-openclaw-en-4-minutos-ahora-controla-mi-vida-de",
+      "destination": "/blog/i-deployed-my-own-openclaw-ai-agent-in-4-minutes-it-now-runs-my-life-from-a-5-server",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/vender-tu-app-codificada-por-feeling-no-es-un-problema-de-marketing-es-una",
+      "destination": "/blog/marketing-spec-indie-apps-before-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-destruyo-mi-setup-de-openclaw-de-200-mes-asi-lo-reconstrui-por-15",
+      "destination": "/blog/anthropic-just-killed-my-200-month-openclaw-setup-so-i-rebuilt-it-for-15",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/vibe-code-rescue-est-la-nouvelle-ruee-vers-l-or-ne-cherchez-pas-d-or-vendez-des",
+      "destination": "/blog/vibe-code-rescue-market-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/ce-que-votre-agent-ia-ne-peut-pas-gerer-c-est-l-entreprise-que-vous-n-avez-pas",
+      "destination": "/blog/ai-agent-failure-analysis-revenue",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/pendant-3-ans-on-a-accuse-l-ia-de-tuer-les-emplois-juniors-on-s-est-trompes",
+      "destination": "/blog/remote-work-killed-junior-jobs-not-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/nicht-entwickler-nutzen-claude-code-auf-weise-die-den-meisten-devs-nie",
+      "destination": "/blog/non-developers-claude-code-productivity",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/lei-40-biografias-de-fundadores-mi-tipo-mbti-hizo-que-37-fueran-inutiles",
+      "destination": "/blog/mbti-founder-reading-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-stack-de-code-ia-n-a-pas-de-cordon-d-arret-d-urgence-c-est-pourquoi-elle",
+      "destination": "/blog/ai-code-generation-compiler-feedback",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/une-ia-a-supprime-sa-base-de-donnees-en-9-secondes-il-accuse-les-fournisseurs",
+      "destination": "/blog/ai-agent-deleted-production-database-devops-practices",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-lie-claude-4-stunden-lang-programmieren-es-baute-etwas-das-niemand-wollte",
+      "destination": "/blog/claude-code-autonomous-loops-fail",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-las-40-grunder-biografien-mein-mbti-typ-machte-37-davon-nutzlos",
+      "destination": "/blog/mbti-founder-reading-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-app-avait-des-visiteurs-zero-conversion-une-ia-gratuite-a-trouve-pourquoi",
+      "destination": "/blog/free-ai-analytics-conversion-issues",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-agente-de-ia-tiene-alzheimer-la-psicologia-resolvio-esto-hace-25-anos",
+      "destination": "/blog/ai-agent-memory-loss-psychology-fix",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/11ty-so-nutzen-sie-das-image-plugin-fur-responsive-bilder-in-css",
+      "destination": "/blog/11ty-how-to-use-the-image-plugin-to-generate-responsive-images-for-css",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/los-agentes-de-ia-aun-no-pueden-finalizar-compras-por-eso-debes-conectarte-en",
+      "destination": "/blog/ai-agent-commerce-mcp-servers",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/25-jahre-lang-vermied-ich-malware-claude-code-speicherte-trotzdem-600-meiner",
+      "destination": "/blog/claude-code-security-credentials-plaintext",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/hor-auf-deine-cli-als-nachgedanke-zu-behandeln-mach-sie-zum-kernel-deines",
+      "destination": "/blog/cli-first-ai-agent-development",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-entreprise-a-banni-claude-code-la-semaine-ou-les-workflows-ont-ete-lances",
+      "destination": "/blog/claude-workflows-1000-agents-enterprise-ban",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/33-automatizaciones-de-openclaw-que-puedes-configurar-en-30-minutos-y-empezar-a",
+      "destination": "/blog/33-openclaw-automations-you-can-set-up-in-30-minutes-that-start-making-you-money-tonight",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/docker-29-rompio-mi-vps-claude-code-encontro-dos-bugs-que-no-sabia-que-existian",
+      "destination": "/blog/docker-29-broke-vps-claude-code-debug",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-responsable-de-claude-code-a-arrete-de-prompter-ce-n-est-pas-un-conseil-c",
+      "destination": "/blog/loop-engineering-ai-coding-evolution",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-app-ia-plantait-sur-un-macbook-a-4-000-le-code-etait-pourtant-parfait",
+      "destination": "/blog/fix-macos-icloud-nodejs-crashes",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/cette-ligne-dans-le-wiki-gist-de-karpathy-que-99-des-developpeurs-ont-ratee-et",
+      "destination": "/blog/karpathy-wiki-hidden-feature-learning-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/paga-40k-al-mes-a-claude-para-reemplazar-a-su-equipo-la-mitad-del-dia-la-pasa",
+      "destination": "/blog/claude-ai-agent-debugging-reality",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/litellm-wurde-gehijackt-ich-lie-meinen-ki-agenten-8-monate-lang-installieren",
+      "destination": "/blog/litellm-supply-chain-attack-ai-agents-security",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/googeln-sie-nicht-claude-mac-download-das-top-ergebnis-leert-ihren-schlusselbund",
+      "destination": "/blog/claude-mac-malware-google-ads",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/los-stars-de-github-estan-trayendo-bots-de-ia-5-cosas-que-hacer-antes-de-que",
+      "destination": "/blog/github-ai-bot-spam-protection",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-code-war-6-wochen-defekt-amd-entdeckte-es-in-6-852-sessions-bevor",
+      "destination": "/blog/claude-code-bug-amd-audit-anthropic",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/lo-que-tu-agente-de-ia-no-puede-manejar-es-el-negocio-que-aun-no-has-construido",
+      "destination": "/blog/ai-agent-failure-analysis-revenue",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/etiquetas-title-por-que-el-73-de-los-sitios-web-desapareceran-de-la-busqueda-ia",
+      "destination": "/blog/title-tags-ai-search-optimization",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/33-openclaw-automatisierungen-die-sie-in-30-minuten-einrichten-und-noch-heute-ab",
+      "destination": "/blog/33-openclaw-automations-you-can-set-up-in-30-minutes-that-start-making-you-money-tonight",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-arrete-de-gerer-ma-fenetre-de-contexte-j-ai-commence-a-concevoir-avec",
+      "destination": "/blog/context-window-ai-agent-distribution",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/un-repositorio-open-source-convirtio-a-claude-code-en-un-arquitecto-de-n8n-y-n8n",
+      "destination": "/blog/claude-code-n8n-architect-open-source",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/bloomberg-behauptet-ki-programmierung-verursacht-produktivitats-panik-sie-diagno",
+      "destination": "/blog/bloomberg-ai-coding-productivity-panic",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/litellm-fue-secuestrado-deje-que-mi-agente-de-ia-instalara-lo-que-quisiera",
+      "destination": "/blog/litellm-supply-chain-attack-ai-agents-security",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/8-anzeichen-dass-ihre-ki-app-nur-eine-demo-ist-und-kein-echtes-produkt",
+      "destination": "/blog/8-signs-your-ai-app-is-a-demo-not-a-product",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/deja-de-anadir-un-cli-a-tu-app-como-algo-secundario-hazlo-el-kernel-de-tu-agente",
+      "destination": "/blog/cli-first-ai-agent-development",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-modele-le-plus-puissant-d-anthropic-a-rate-une-faille-de-securite-sur-6-200",
+      "destination": "/blog/fable-5-vs-opus-security-audit",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-zahlte-premium-preis-fur-das-beste-ki-modell-am-markt-es-ignorierte-69",
+      "destination": "/blog/claude-premium-model-skips-coding-requests",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/stack-overflow-a-entraine-les-ia-qui-l-ont-tue-maintenant-il-leur-demande-de-l",
+      "destination": "/blog/stack-overflow-ai-agents-ephemeral-intelligence",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-deploye-mon-agent-ia-openclaw-en-4-minutes-il-gere-maintenant-ma-vie-depuis",
+      "destination": "/blog/i-deployed-my-own-openclaw-ai-agent-in-4-minutes-it-now-runs-my-life-from-a-5-server",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/dieses-open-source-repository-macht-claude-code-zum-n8n-architekten-n8n-war-noch",
+      "destination": "/blog/claude-code-n8n-architect-open-source",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-app-tenia-visitantes-nadie-convertia-una-herramienta-gratuita-de-ia",
+      "destination": "/blog/free-ai-analytics-conversion-issues",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/choisir-une-base-de-donnees-pour-votre-saas-ce-n-est-pas-1-decision-c-en-est-4",
+      "destination": "/blog/saas-database-architecture-decisions",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/bloomberg-dice-que-la-ia-en-programacion-causa-panico-por-productividad-estan-di",
+      "destination": "/blog/bloomberg-ai-coding-productivity-panic",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/los-llms-son-los-peores-consultores-seo-del-mundo-su-lista-negra-es-tu-plan-de",
+      "destination": "/blog/llms-bad-seo-advice-blacklisted-sites",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/tous-les-tutoriels-claude-code-enseignent-les-memes-5-choses-aucune-ne-fonctionn",
+      "destination": "/blog/every-claude-code-tutorial-teaches-you-the-same-5-things-none-of-them-matter-in-production",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/upload-post-vs-zernio-8-meses-con-una-api-de-redes-sociales-y-lo-que-cambia-el",
+      "destination": "/blog/social-media-api-comparison-upload-post-zernio",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/chaque-generation-choisit-la-mauvaise-stack-technologique-les-vibe-coders-ne",
+      "destination": "/blog/coding-generation-wrong-stack-vibe-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/litellm-vient-d-etre-pirate-j-ai-laisse-mon-agent-ia-installer-n-importe-quoi",
+      "destination": "/blog/litellm-supply-chain-attack-ai-agents-security",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-jefe-de-claude-code-dejo-de-hacer-prompts-eso-no-es-un-consejo-es-una",
+      "destination": "/blog/loop-engineering-ai-coding-evolution",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/soy-un-maniatico-del-control-mi-vpn-mesh-tambien-deberia-serlo",
+      "destination": "/blog/self-hosted-mesh-vpn-netbird-tailscale",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mythos-ne-sortira-pas-il-decide-deja-de-ce-qui-sortira",
+      "destination": "/blog/anthropic-mythos-ai-controls-releases",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/los-creditos-de-ia-desperdiciados-son-el-impuesto-tonto-de-todo-desarrollador",
+      "destination": "/blog/autonomous-refactoring-claude-agents",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/code-bewegte-sich-schon-immer-auf-englisch-zu-jetzt-ist-er-angekommen",
+      "destination": "/blog/programming-languages-english-ai-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/warum-clis-besser-als-mcp-fur-ki-agenten-sind-so-baust-du-deine-eigene-cli-armee",
+      "destination": "/blog/why-clis-beat-mcp-for-ai-agents-and-how-to-build-your-own-cli-army",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/microsoft-vient-de-supprimer-claude-code-en-interne-leurs-propres-developpeurs",
+      "destination": "/blog/microsoft-killed-claude-code-strategy-tax",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-ne-connait-rien-a-votre-seo-c-est-exactement-le-but-recherche",
+      "destination": "/blog/claude-seo-hallucinations-fix-real-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/llms-sind-keine-tiere-claude-oder-chatgpt-ist-nicht-dein-hund-kein-gedachtnis",
+      "destination": "/blog/ai-anthropomorphism-llm-risks",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/jede-ki-wurde-in-30-tagen-dummer-und-es-wird-noch-schlimmer",
+      "destination": "/blog/ai-models-getting-worse-compute-allocation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/wordpress-ist-tot-der-ersatz-hat-keine-mechaniker",
+      "destination": "/blog/wordpress-dead-ai-coded-sites-no-standard",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/meine-ki-app-sturzte-auf-einem-4-000-macbook-ab-der-code-war-einwandfrei",
+      "destination": "/blog/fix-macos-icloud-nodejs-crashes",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/github-no-es-tu-respaldo-una-cuenta-suspendida-lo-demostro-esta-semana",
+      "destination": "/blog/github-backup-self-hosted-git-mirrors",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-software-factory-est-une-dark-kitchen-les-1-000-dont-personne-ne-parle",
+      "destination": "/blog/ai-software-factory-hidden-costs",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-betreibe-5-saas-apps-und-wei-nie-welche-gerade-brennt-also-gab-ich-claude-ei",
+      "destination": "/blog/claude-code-saas-monitoring-tool",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-movimiento-quitgpt-alcanzo-1-5-millones-de-usuarios-la-verdadera-migracion-au",
+      "destination": "/blog/the-quitgpt-movement-hit-1-5-million-the-real-migration-hasn-t-started-yet",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-codigo-de-claude-estuvo-roto-6-semanas-amd-lo-descubrio-en-6-852-sesiones",
+      "destination": "/blog/claude-code-bug-amd-audit-anthropic",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/wordpress-ha-muerto-su-reemplazo-no-tiene-mecanico",
+      "destination": "/blog/wordpress-dead-ai-coded-sites-no-standard",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-nutze-ki-10-stunden-taglich-das-habe-ich-uber-wasserverbrauch-herausgefunden",
+      "destination": "/blog/ai-water-consumption-facts",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/je-gere-5-applications-saas-et-impossible-de-savoir-laquelle-plante-alors-j-ai-d",
+      "destination": "/blog/claude-code-saas-monitoring-tool",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/markdown-fue-un-error-para-la-salida-de-agentes-un-ingeniero-de-codigo-de",
+      "destination": "/blog/html-vs-markdown-ai-agent-output",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/docker-29-a-casse-mon-vps-claude-code-a-trouve-deux-bugs-que-j-ignorais-complete",
+      "destination": "/blog/docker-29-broke-vps-claude-code-debug",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/escribi-el-libro-de-contratos-de-prompts-el-capitulo-4-rompio-mi-propio-framewor",
+      "destination": "/blog/prompt-contracts-book-chapter-4-broke-framework",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-projet-claude-code-n-est-pas-configure-il-fait-juste-semblant-de-l-etre",
+      "destination": "/blog/claude-code-init-audit-mode-documentation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/1of10-alternative-ich-habe-meine-in-einem-nachmittag-fur-0-monat-gebaut",
+      "destination": "/blog/build-youtube-outlier-finder-claude-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-arquitectura-completa-de-openclaw-que-realmente-escala-memoria-cron-jobs-dash",
+      "destination": "/blog/openclaw-architecture-scaling-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/movi-una-carpeta-claude-code-me-dijo-que-no-copiara-mis-propios-secretos",
+      "destination": "/blog/claude-code-security-secrets-disk",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-lu-40-biographies-de-fondateurs-mon-type-mbti-en-a-rendu-37-inutiles",
+      "destination": "/blog/mbti-founder-reading-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/probe-13-modelos-de-ia-para-generar-imagenes-con-consistencia-de-personajes-la",
+      "destination": "/blog/ai-image-model-character-consistency-benchmark",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/construi-11-hooks-de-codigo-para-claude-seis-murieron-en-24-horas",
+      "destination": "/blog/claude-code-hooks-survival-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/convex-claude-code-el-duo-definitivo-para-lanzar-saas-a-las-3-am",
+      "destination": "/blog/convex-claude-typescript-saas-backend",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-stack-de-programacion-vibes-no-tiene-cordon-andon-por-eso-se-rompe",
+      "destination": "/blog/ai-code-generation-compiler-feedback",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/todas-las-ia-se-volvieron-mas-tontas-en-30-dias-y-va-a-empeorar",
+      "destination": "/blog/ai-models-getting-worse-compute-allocation",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/4-000-managers-vires-chez-block-l-ia-ne-remplacera-pas-votre-manager-elle-fera",
+      "destination": "/blog/ai-agents-management-block-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/11ty-como-usar-el-plugin-de-imagenes-para-generar-imagenes-responsivas-en-css",
+      "destination": "/blog/11ty-how-to-use-the-image-plugin-to-generate-responsive-images-for-css",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/le-di-a-claude-code-una-contrasena-de-wordpress-y-una-oracion-gestiono-todo-el-s",
+      "destination": "/blog/automate-wordpress-with-claude-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/llms-sind-die-schlechtesten-seo-berater-der-welt-ihre-blacklist-ist-dein",
+      "destination": "/blog/llms-bad-seo-advice-blacklisted-sites",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/blind-burn-quand-l-ia-construit-plus-vite-que-vous-ne-pouvez-suivre",
+      "destination": "/blog/ai-automation-blind-burn-infrastructure-debt",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/fable-5-ha-desaparecido-este-es-el-metodo-que-uso-para-obtener-mejores",
+      "destination": "/blog/multi-model-ai-panel-perspective-council",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-equipo-de-claude-code-declara-emergencias-cuando-esta-metrica-cae",
+      "destination": "/blog/the-claude-code-team-declares-emergencies-when-this-one-metric-drops",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/github-n-est-pas-votre-sauvegarde-un-compte-suspendu-l-a-prouve-cette-semaine",
+      "destination": "/blog/github-backup-self-hosted-git-mirrors",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-ia-no-esta-escribiendo-codigo-malo-tu-estas-escribiendo-una-especificacion",
+      "destination": "/blog/ai-code-quality-fix-specs-not-prompts",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-code-ermoglicht-jetzt-programmieren-vom-handy-was-ich-dabei-schmerzlich-l",
+      "destination": "/blog/claude-code-web-mobile-coding-reality",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/microsoft-hat-claude-code-intern-beendet-obwohl-ihre-eigenen-entwickler-es",
+      "destination": "/blog/microsoft-killed-claude-code-strategy-tax",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/il-paie-40-000-mois-a-claude-pour-remplacer-son-equipe-il-passe-la-moitie-de",
+      "destination": "/blog/claude-ai-agent-debugging-reality",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-code-permet-maintenant-de-coder-depuis-votre-telephone-voici-ce-que-j-ai",
+      "destination": "/blog/claude-code-web-mobile-coding-reality",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-aufgehort-ki-workflows-zu-bauen-ich-baue-jetzt-einen-burggraben-claude",
+      "destination": "/blog/ai-moat-claude-code-self-healing-stack",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/vous-avez-un-troisieme-type-de-dette-technique-personne-n-a-cree-d-outil-pour",
+      "destination": "/blog/hidden-technical-debt-free-saas-dependencies",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-hat-mein-openclaw-setup-3-mal-zerstort-beim-dritten-mal-horte-ich-auf",
+      "destination": "/blog/anthropic-openclaw-ai-pricing-vendor-lock-in",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/alle-geraten-wegen-des-litellm-supply-chain-angriffs-in-panik-ich-habe-meine",
+      "destination": "/blog/mcp-server-security-audit-vulnerabilities",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/hermes-agent-l-ia-auto-hebergee-qui-a-enfin-muri-voici-la-configuration-bi-vps",
+      "destination": "/blog/hermes-agent-self-hosted-ai-setup",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/blind-burn-que-pasa-cuando-la-ia-construye-mas-rapido-de-lo-que-puedes-rastrear",
+      "destination": "/blog/ai-automation-blind-burn-infrastructure-debt",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/nachruf-auf-den-gedankenstrich",
+      "destination": "/blog/ai-killed-em-dash-typography",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-fabrica-de-software-es-una-dark-kitchen-los-1-000-que-nadie-menciona",
+      "destination": "/blog/ai-software-factory-hidden-costs",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-ia-m-a-verrouille-hors-de-mon-propre-serveur-puis-s-est-reconnectee-comme-un",
+      "destination": "/blog/ai-locked-out-server-devops-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/die-ki-die-sie-verwenden-hat-eine-versteckte-personlichkeit-anthropic-hat",
+      "destination": "/blog/ai-model-distillation-hidden-behaviors",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/agent-harness-engineering-was-mir-8-monate-im-produktivbetrieb-gelehrt-haben",
+      "destination": "/blog/everyone-s-discovering-agent-harnesses-i-ve-been-building-mine-for-8-months",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-m-a-doxxe-en-14-secondes-voici-le-guide-de-nettoyage-que-personne-ne",
+      "destination": "/blog/claude-ai-doxxing-privacy-cleanup-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-fable-5-no-esta-disponible-actualmente-el-gobierno-de-ee-uu-prohibio-un",
+      "destination": "/blog/claude-fable-5-government-ban-ai-restrictions",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/elimine-mi-ultimo-flujo-de-n8n-convex-ejecuto-el-trabajo-de-30-minutos-en-80",
+      "destination": "/blog/replace-n8n-typescript-convex",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/arretez-d-ajouter-une-cli-a-votre-app-en-derniere-minute-faites-en-le-noyau-de",
+      "destination": "/blog/cli-first-ai-agent-development",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/84-des-devs-utilisent-l-ia-29-lui-font-confiance-la-competence-manquante-n-est",
+      "destination": "/blog/ai-coding-refusal-skills-trust-gap",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/vibe-code-rescue-ist-der-nachste-goldrausch-schurfe-nicht-verkaufe-spitzhacken",
+      "destination": "/blog/vibe-code-rescue-market-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/4-ki-seo-taktiken-die-google-fur-tot-erklart-ahrefs-und-die-geleakten-system",
+      "destination": "/blog/ai-seo-tactics-leaked-prompts-google",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/block-despide-a-4-000-gerentes-la-ia-no-reemplazara-a-tu-jefe-te-convertira-en",
+      "destination": "/blog/ai-agents-management-block-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-provoco-una-caida-de-15-mil-millones-en-acciones-de-ciberseguridad",
+      "destination": "/blog/anthropic-just-crashed-15-billion-in-cybersecurity-stocks",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ihr-ki-agent-hat-alzheimer-die-psychologie-hat-das-vor-25-jahren-gelost",
+      "destination": "/blog/ai-agent-memory-loss-psychology-fix",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-sagte-ki-konnte-sich-selbst-entwickeln-dann-stellten-sie-den-ipo",
+      "destination": "/blog/anthropic-ipo-ai-strategy-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-supabase-durch-convex-ersetzt-und-es-kostenlos-selbst-gehostet-hier-ist",
+      "destination": "/blog/i-replaced-supabase-with-convex-and-self-hosted-it-for-free-here-s-the-full-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/openclaw-der-ki-assistent-der-arbeitet-wahrend-sie-schlafen-und-warum-das-beangs",
+      "destination": "/blog/openclaw-the-ai-assistant-that-works-while-you-sleep-and-why-that-s-terrifying",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/stack-overflow-entreno-las-ia-que-lo-mataron-ahora-les-pide-ayuda",
+      "destination": "/blog/stack-overflow-ai-agents-ephemeral-intelligence",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-mcp-officiel-de-n8n-coute-41x-plus-de-tokens-ce-n-est-pas-pour-ca-que-j",
+      "destination": "/blog/n8n-official-mcp-vs-community-comparison",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-open-source-est-mort-hier-l-ia-l-a-tue-ce-qui-le-remplace-est-pire",
+      "destination": "/blog/open-source-ai-security-threats",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/como-ejecutar-scripts-de-python-desde-n8n",
+      "destination": "/blog/calling-a-python-script-from-n8n",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/como-eliminar-elementor-de-wordpress-convertir-114-paginas-a-gutenberg-en-un-dia",
+      "destination": "/blog/elementor-wordpress-gutenberg-migration",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/verschwendete-ki-credits-sind-die-dummheitssteuer-jedes-entwicklers-das-mache",
+      "destination": "/blog/autonomous-refactoring-claude-agents",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-architecture-openclaw-complete-qui-scale-vraiment-memoire-cron-jobs-dashboard",
+      "destination": "/blog/openclaw-architecture-scaling-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-y-google-acaban-de-lanzar-el-mismo-producto-con-2-semanas-de",
+      "destination": "/blog/anthropic-google-managed-ai-agents",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-donne-a-claude-code-un-mot-de-passe-d-app-wordpress-et-une-phrase-il-a-gere",
+      "destination": "/blog/automate-wordpress-with-claude-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-ia-n-ecrit-pas-du-mauvais-code-vous-ecrivez-de-mauvaises-specifications",
+      "destination": "/blog/ai-code-quality-fix-specs-not-prompts",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/brecha-de-vercel-rote-6-secretos-un-comando-de-auditoria-filtro-18-mas",
+      "destination": "/blog/vercel-breach-audit-commands-leaked-secrets",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/mullvad-und-das-wireguard-korrelationsproblem-warum-selbst-die-besten-vpns",
+      "destination": "/blog/mullvad-wireguard-correlation-self-hosted-vpn",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/meine-ki-sperrte-mich-aus-meinem-eigenen-server-aus-und-brach-dann-wie-ein-senio",
+      "destination": "/blog/ai-locked-out-server-devops-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/die-vollstandige-openclaw-architektur-die-wirklich-skaliert-memory-cron-jobs-das",
+      "destination": "/blog/openclaw-architecture-scaling-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/21-openclaw-automatisierungen-uber-die-niemand-spricht-weil-die-offensichtlichen",
+      "destination": "/blog/21-openclaw-automations-nobody-talks-about-because-the-obvious-ones-already-broke-the-internet",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ihr-ki-coding-tool-ist-kein-strom-horen-sie-auf-es-wie-ein",
+      "destination": "/blog/ai-coding-tool-resilient-workflows",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-ia-no-te-robara-el-trabajo-ya-se-lo-entregaste-tu-mismo",
+      "destination": "/blog/ai-dependency-developer-skills-crisis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/opus-4-7-weigert-sich-code-zu-bearbeiten-den-es-gerade-gelesen-hat-der-grund",
+      "destination": "/blog/claude-opus-code-refusal-bug",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/die-datenbank-wahl-fur-deine-saas-ist-nicht-eine-entscheidung-es-sind-4",
+      "destination": "/blog/saas-database-architecture-decisions",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/openclaw-el-asistente-de-ia-que-trabaja-mientras-duermes-y-por-que-es-aterrador",
+      "destination": "/blog/openclaw-the-ai-assistant-that-works-while-you-sleep-and-why-that-s-terrifying",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-installe-un-graphe-de-connaissances-sur-claude-code-14-jours-plus-tard-l",
+      "destination": "/blog/claude-code-knowledge-graph-audit-failed",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-classe-30-idees-de-startups-ia-basees-sur-claude-10-generent-du-cash-10",
+      "destination": "/blog/claude-ai-startup-ideas-ranked",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ki-stiehlt-dir-nicht-den-job-du-hast-ihn-bereits-abgegeben",
+      "destination": "/blog/ai-dependency-developer-skills-crisis",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-das-vibe-coding-beendet-und-eine-echte-app-gebaut-die-methode-die",
+      "destination": "/blog/stop-vibe-coding-build-real-apps-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/7-habitudes-de-dev-contre-intuitives-du-createur-d-openclaw-qui-font-livrer-comm",
+      "destination": "/blog/7-counterintuitive-dev-habits-from-the-creator-of-openclaw-that-make-you-ship-like-a-maniac-6-600",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/web-scraping-ist-tot-vibe-scraping-hat-es-gerade-ersetzt",
+      "destination": "/blog/ai-web-scraping-claude-mcp",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/chrome-devtools-protocol-claude-code-das-muster-an-dem-open-source-teams",
+      "destination": "/blog/ai-agent-api-reverse-engineering",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-web-agentica-no-llegara-en-ya-esta-aqui",
+      "destination": "/blog/ai-bot-traffic-overtook-humans-seo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/21-automatisations-openclaw-dont-personne-ne-parle-parce-que-les-evidentes-ont-d",
+      "destination": "/blog/21-openclaw-automations-nobody-talks-about-because-the-obvious-ones-already-broke-the-internet",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-proyecto-de-claude-code-no-esta-configurado-solo-parece-que-lo-esta",
+      "destination": "/blog/claude-code-init-audit-mode-documentation",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/microsoft-cancelo-claude-code-internamente-sus-propios-desarrolladores-lo",
+      "destination": "/blog/microsoft-killed-claude-code-strategy-tax",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/vos-etoiles-github-attirent-les-bots-ia-5-choses-a-faire-avant-qu-ils-n-arrivent",
+      "destination": "/blog/github-ai-bot-spam-protection",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/social-engineering-zielte-fruher-auf-menschen-ab-jetzt-ist-die-ki-das-opfer",
+      "destination": "/blog/ai-social-engineering-claude-cyberattack",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/3-jahre-lang-gaben-wir-der-ki-die-schuld-fur-das-sterben-der-einstiegsjobs-wir",
+      "destination": "/blog/remote-work-killed-junior-jobs-not-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-web-scraping-est-mort-le-vibe-scraping-vient-de-le-remplacer",
+      "destination": "/blog/ai-web-scraping-claude-mcp",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-plan-pro-max-a-dure-15-minutes-puis-j-ai-lance-context",
+      "destination": "/blog/claude-code-cache-optimization-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-app-de-ia-se-colgaba-en-una-macbook-de-4-000-el-codigo-estaba-perfecto",
+      "destination": "/blog/fix-macos-icloud-nodejs-crashes",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/mein-pro-max-plan-hielt-15-minuten-dann-fuhrte-ich-context-aus",
+      "destination": "/blog/claude-code-cache-optimization-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-agente-de-ia-fallo-el-mismo-clic-de-linkedin-30-veces-camoufox-lo-logro-al",
+      "destination": "/blog/ai-agent-browser-automation-chrome-mcp-camoufox",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-era-de-subsidios-en-ia-para-programacion-acaba-de-terminar-cursor-y-bolt-son",
+      "destination": "/blog/ai-coding-pricing-crisis-github-cursor-bolt",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/github-ist-kein-backup-ein-gesperrter-account-bewies-es-diese-woche",
+      "destination": "/blog/github-backup-self-hosted-git-mirrors",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-saas-esta-a-una-semana-y-1-100-de-ser-clonado-cloudflare-acaba-de-demostrarlo",
+      "destination": "/blog/ai-cloned-nextjs-saas-protection",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-llm-ne-sont-pas-des-animaux-claude-ou-chatgpt-n-est-pas-votre-chien-aucune",
+      "destination": "/blog/ai-anthropomorphism-llm-risks",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/das-claude-code-team-ruft-den-notfall-aus-wenn-diese-eine-kennzahl-sinkt",
+      "destination": "/blog/the-claude-code-team-declares-emergencies-when-this-one-metric-drops",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/toutes-les-ia-ont-perdu-en-intelligence-en-30-jours-et-ca-va-empirer",
+      "destination": "/blog/ai-models-getting-worse-compute-allocation",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/l-ere-des-subventions-ia-pour-le-code-vient-de-s-achever-cursor-et-bolt-sont",
+      "destination": "/blog/ai-coding-pricing-crisis-github-cursor-bolt",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/alternative-a-1of10-j-ai-cree-le-mien-en-un-apres-midi-pour-0-mois",
+      "destination": "/blog/build-youtube-outlier-finder-claude-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/probe-ejecutar-openclaw-ex-clawdbot-con-un-llm-gratuito-esto-es-lo-que-paso",
+      "destination": "/blog/i-tried-running-openclaw-ex-clawdbot-with-a-free-llm-here-s-what-happened",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/autoaloja-n8n-en-2026-por-que-tu-cartera-y-tus-datos-te-lo-agradeceran",
+      "destination": "/blog/self-hosting-n8n-why-your-wallet-and-data-will-thank-you",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/appeler-un-script-python-depuis-n8n",
+      "destination": "/blog/calling-a-python-script-from-n8n",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-abandonne-le-coding-a-l-instinct-pour-les-contrats-de-prompts-mon-code-clau",
+      "destination": "/blog/i-stopped-vibe-coding-and-started-prompt-contracts-claude-code-went-from-gambling-to-shipping",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-routines-sind-kein-reasoning-cron-sie-sind-eine-repository-zentrierte",
+      "destination": "/blog/claude-routines-vs-diy-automation-perimeter",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/instale-un-grafo-de-conocimiento-en-claude-code-14-dias-despues-la-auditoria",
+      "destination": "/blog/claude-code-knowledge-graph-audit-failed",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-cree-11-hooks-de-code-claude-six-ont-echoue-en-24-heures",
+      "destination": "/blog/claude-code-hooks-survival-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-verschob-einen-ordner-claude-code-warnte-mich-vor-meinen-eigenen",
+      "destination": "/blog/claude-code-security-secrets-disk",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/vendre-votre-app-codee-sur-le-vibe-n-est-pas-un-probleme-de-marketing-c-est-une",
+      "destination": "/blog/marketing-spec-indie-apps-before-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/je-suis-un-maniaque-du-controle-mon-vpn-mesh-aussi",
+      "destination": "/blog/self-hosted-mesh-vpn-netbird-tailscale",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/une-ia-vient-d-ouvrir-un-compte-bancaire-les-agents-s-auto-repliquent-la-loi-a",
+      "destination": "/blog/ai-agent-bank-account-llc-legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-no-sabe-nada-sobre-tu-seo-y-ese-es-precisamente-el-punto",
+      "destination": "/blog/claude-seo-hallucinations-fix-real-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-openclaw-ehemals-clawdbot-mit-einem-kostenlosen-llm-getestet-das-ist-pa",
+      "destination": "/blog/i-tried-running-openclaw-ex-clawdbot-with-a-free-llm-here-s-what-happened",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-94-de-mis-tokens-de-claude-code-fueron-al-modelo-equivocado-asi-que-deje-de",
+      "destination": "/blog/claude-code-token-optimization-costs",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/fable-5-a-disparu-voici-ma-methode-pour-obtenir-de-meilleurs-resultats-a",
+      "destination": "/blog/multi-model-ai-panel-perspective-council",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/culpamos-a-la-ia-de-destruir-empleos-junior-durante-3-anos-nos-equivocamos",
+      "destination": "/blog/remote-work-killed-junior-jobs-not-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/bezos-predit-une-penurie-de-main-d-uvre-amazon-licencie-16-000-personnes-pour",
+      "destination": "/blog/amazon-layoffs-ai-labor-shortage-bezos",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/tous-les-trucs-ia-rapide-etaient-des-contournements-diffusiongemma-est-le",
+      "destination": "/blog/diffusiongemma-parallel-ai-local-inference",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/manejo-5-apps-saas-y-no-se-cual-esta-fallando-asi-que-le-di-a-claude-una-herrami",
+      "destination": "/blog/claude-code-saas-monitoring-tool",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/google-baut-die-wahrheitsschicht-des-internets-youtubes-35-millionen-geloschte",
+      "destination": "/blog/youtube-ai-content-purge-synthid-watermarking",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/gumroad-ist-jetzt-scriptbar-hier-ist-der-12-agenten-stack-der-meinen-store",
+      "destination": "/blog/gumroad-cli-ai-agents-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-curriculum-te-dio-cero-entrevistas-200-programadores-con-buena-onda",
+      "destination": "/blog/vibe-coding-replaces-resumes-job-market",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ki-sicherheit-ist-eine-moralpanik-und-moralpaniken-enden-immer",
+      "destination": "/blog/ai-safety-moral-panic-guardrails",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-ceo-de-y-combinator-compartio-su-prompt-de-codigo-para-claude-pero-resuelve-e",
+      "destination": "/blog/y-combinator-s-ceo-shared-his-claude-code-prompt-it-solves-the-wrong-problem",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ai-agent-lies-claude-deception",
+      "destination": "/blog/ai-agent-lies-claude-deception",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-me-hizo-doxxing-en-14-segundos-aqui-esta-la-guia-de-limpieza-que-nadie",
+      "destination": "/blog/claude-ai-doxxing-privacy-cleanup-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-agents-ia-ne-peuvent-pas-encore-finaliser-d-achats-c-est-exactement",
+      "destination": "/blog/ai-agent-commerce-mcp-servers",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-agente-de-ia-dijo-terminado-dos-veces-las-dos-veces-estaba-mintiendo",
+      "destination": "/blog/ai-agent-lies-claude-deception",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/jeder-schnellere-ki-trick-war-nur-ein-workaround-diffusiongemma-ist-das-erste",
+      "destination": "/blog/diffusiongemma-parallel-ai-local-inference",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-credits-ia-gaspilles-sont-l-impot-idiot-de-tout-developpeur-voici-ce-que-je",
+      "destination": "/blog/autonomous-refactoring-claude-agents",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/une-app-de-nettoyage-de-genere-520k-mois-le-seul-changement-ia-dans-le-nom",
+      "destination": "/blog/ai-app-store-monetization-strategy",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/opus-4-7-refuse-de-modifier-le-code-qu-il-vient-de-lire-la-raison-une",
+      "destination": "/blog/claude-opus-code-refusal-bug",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/vibe-coding-ist-nicht-tot-du-hast-es-nur-wie-das-erste-kleine-schweinchen-gebaut",
+      "destination": "/blog/vibe-coding-method-that-works",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/todos-los-trucos-de-ia-mas-rapida-eran-parches-diffusiongemma-es-el-primer",
+      "destination": "/blog/diffusiongemma-parallel-ai-local-inference",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-agent-ia-m-a-dit-termine-deux-fois-les-deux-fois-il-mentait",
+      "destination": "/blog/ai-agent-lies-claude-deception",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/jede-generation-wahlt-den-falschen-tech-stack-vibe-coder-sind-da-keine-ausnahme",
+      "destination": "/blog/coding-generation-wrong-stack-vibe-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-habe-30-ki-startup-ideen-mit-claude-bewertet-10-drucken-geld-10-sind",
+      "destination": "/blog/claude-ai-startup-ideas-ranked",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-a-tue-mon-setup-openclaw-3-fois-a-la-troisieme-j-ai-arrete-de-les",
+      "destination": "/blog/anthropic-openclaw-ai-pricing-vendor-lock-in",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/faille-vercel-j-ai-fait-tourner-6-secrets-une-commande-d-audit-en-a-divulgue-18",
+      "destination": "/blog/vercel-breach-audit-commands-leaked-secrets",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-code-te-permite-programar-desde-tu-telefono-esto-es-lo-que-aprendi-por-la",
+      "destination": "/blog/claude-code-web-mobile-coding-reality",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/pague-precio-premium-por-el-mejor-modelo-de-ia-del-mercado-se-salto-el-69-de",
+      "destination": "/blog/claude-premium-model-skips-coding-requests",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/google-acaba-de-eliminar-4-tacticas-de-seo-con-ia-aqui-estan-los-prompts-de",
+      "destination": "/blog/google-kills-ai-seo-tactics-claude-prompts",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/bezos-prometio-escasez-de-trabajadores-amazon-despidio-16-000-personas-para",
+      "destination": "/blog/amazon-layoffs-ai-labor-shortage-bezos",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-fable-5-ist-derzeit-nicht-verfugbar-die-us-regierung-hat-gestern-ein-ki",
+      "destination": "/blog/claude-fable-5-government-ban-ai-restrictions",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/opus-4-7-scheint-deine-prompts-kaputt-gemacht-zu-haben-hat-es-nicht-du-hast-nur",
+      "destination": "/blog/claude-opus-prompt-migration-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-rechazo-al-pentagono-por-etica-dos-meses-despues-compraron-la",
+      "destination": "/blog/anthropic-ethics-controversy-pentagon-dirty-compute",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/meine-app-hatte-besucher-niemand-konvertierte-kostenlose-ki-analytics-fand-in-3",
+      "destination": "/blog/free-ai-analytics-conversion-issues",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-installierte-einen-knowledge-graph-in-claude-code-14-tage-spater-zerstorte",
+      "destination": "/blog/claude-code-knowledge-graph-audit-failed",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mullvad-et-le-probleme-de-correlation-wireguard-pourquoi-meme-les-meilleurs-vpn",
+      "destination": "/blog/mullvad-wireguard-correlation-self-hosted-vpn",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-cv-vous-a-donne-zero-entretiens-200-vibe-coders-ont-eu-le-votre",
+      "destination": "/blog/vibe-coding-replaces-resumes-job-market",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/chrome-devtools-protocol-claude-code-el-patron-que-equipos-open-source-tardaron",
+      "destination": "/blog/ai-agent-api-reverse-engineering",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-paye-le-prix-fort-pour-le-meilleur-modele-ia-du-marche-il-a-ignore-69-de",
+      "destination": "/blog/claude-premium-model-skips-coding-requests",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ki-bots-uberfluten-github-repositories-5-schritte-zum-schutz-vor-ihrer-ankunft",
+      "destination": "/blog/github-ai-bot-spam-protection",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/94-meiner-claude-code-tokens-gingen-an-das-falsche-modell-also-horte-ich-auf",
+      "destination": "/blog/claude-code-token-optimization-costs",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/27-veraltete-n8n-nodes-zu-aktualisieren-war-so-schmerzhaft-dass-ich-aufgab-dann",
+      "destination": "/blog/fix-n8n-outdated-nodes-claude-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/spotify-a-cree-honk-pour-remplacer-le-code-j-ai-cree-le-mien-pour-15",
+      "destination": "/blog/spotify-built-honk-to-replace-coding-i-built-my-own-for-15",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-code-utilise-un-effort-moyen-par-defaut-passer-au-maximum-ne-vous",
+      "destination": "/blog/claude-code-max-effort-context-planning",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/google-construit-la-couche-de-verite-d-internet-les-35-millions-d-abonnes",
+      "destination": "/blog/youtube-ai-content-purge-synthid-watermarking",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/7-kontraintuitive-entwickler-gewohnheiten-vom-openclaw-schopfer-die-dich-zum-ver",
+      "destination": "/blog/7-counterintuitive-dev-habits-from-the-creator-of-openclaw-that-make-you-ship-like-a-maniac-6-600",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-fable-5-n-a-pas-besoin-de-moins-de-directives-il-en-faut-plus",
+      "destination": "/blog/claude-fable-5-ai-coding-direction",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-wei-nichts-uber-ihr-seo-genau-das-ist-der-punkt",
+      "destination": "/blog/claude-seo-hallucinations-fix-real-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/ne-cherchez-pas-claude-mac-download-sur-google-le-premier-resultat-vide-votre",
+      "destination": "/blog/claude-mac-malware-google-ads",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-linea-en-el-wiki-gist-de-karpathy-que-el-99-de-los-desarrolladores-paso-por",
+      "destination": "/blog/karpathy-wiki-hidden-feature-learning-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/google-esta-construyendo-la-capa-de-verdad-del-internet-los-35-millones-de",
+      "destination": "/blog/youtube-ai-content-purge-synthid-watermarking",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ihr-unternehmen-hat-claude-code-verboten-wahrend-workflows-mit-1-000-agenten",
+      "destination": "/blog/claude-workflows-1000-agents-enterprise-ban",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mi-plan-pro-max-duro-15-minutos-despues-ejecute-context",
+      "destination": "/blog/claude-code-cache-optimization-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mon-serveur-mcp-a-menti-a-claude-claude-l-a-repete-comme-un-fait-100-du-temps",
+      "destination": "/blog/mcp-server-security-red-team-testing",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/7-habitos-contraintuitivos-de-desarrollo-del-creador-de-openclaw-que-te-haran-la",
+      "destination": "/blog/7-counterintuitive-dev-habits-from-the-creator-of-openclaw-that-make-you-ship-like-a-maniac-6-600",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/hermes-agent-la-ia-autoalojada-que-por-fin-maduro-aqui-esta-la-configuracion-de",
+      "destination": "/blog/hermes-agent-self-hosted-ai-setup",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/las-relaciones-parasociales-consiguen-clientes-aqui-tienes-el-sistema-de-ia-de",
+      "destination": "/blog/ai-parasocial-client-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ich-testete-13-ki-bildmodelle-auf-charakterkonsistenz-die-meisten-versagten-auf",
+      "destination": "/blog/ai-image-model-character-consistency-benchmark",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/claude-fable-5-braucht-nicht-weniger-anweisungen-es-braucht-mehr",
+      "destination": "/blog/claude-fable-5-ai-coding-direction",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/google-vient-d-eliminer-4-tactiques-seo-ia-voici-les-prompts-claude-qui-les",
+      "destination": "/blog/google-kills-ai-seo-tactics-claude-prompts",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/parasoziale-beziehungen-gewinnen-kunden-hier-ist-das-4-prompt-ki-system-um-ihre",
+      "destination": "/blog/ai-parasocial-client-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/deine-ki-schreibt-keinen-schlechten-code-du-schreibst-schlechte-spezifikationen",
+      "destination": "/blog/ai-code-quality-fix-specs-not-prompts",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-saas-peut-etre-clone-en-une-semaine-pour-1-100-cloudflare-vient-de-le",
+      "destination": "/blog/ai-cloned-nextjs-saas-protection",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/claude-opus-4-7-semble-avoir-casse-vos-prompts-pas-du-tout-vous-avez-juste-rate",
+      "destination": "/blog/claude-opus-prompt-migration-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/les-relations-parasociales-vous-rapportent-des-clients-voici-le-systeme-ia-a-4",
+      "destination": "/blog/ai-parasocial-client-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/la-ia-que-usas-tiene-una-personalidad-oculta-anthropic-acaba-de-demostrar-que",
+      "destination": "/blog/ai-model-distillation-hidden-behaviors",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/mettre-a-jour-les-n-uds-obsoletes-dans-n8n-etait-si-penible-que-j-ai-abandonne",
+      "destination": "/blog/fix-n8n-outdated-nodes-claude-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/openclaw-l-assistant-ia-qui-travaille-pendant-votre-sommeil-et-pourquoi-c-est-te",
+      "destination": "/blog/openclaw-the-ai-assistant-that-works-while-you-sleep-and-why-that-s-terrifying",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/pourquoi-les-agents-ia-mentent-j-ai-analyse-leur-architecture-maintenant-je-ne",
+      "destination": "/blog/why-ai-agents-lie-architecture",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/anthropic-dijo-que-la-ia-podria-construirse-a-si-misma-luego-solicito-salir-a",
+      "destination": "/blog/anthropic-ipo-ai-strategy-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/upload-post-vs-zernio-8-mois-d-api-reseaux-sociaux-et-ce-que-change-le",
+      "destination": "/blog/social-media-api-comparison-upload-post-zernio",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/4-tactiques-seo-ia-que-google-declare-mortes-ahrefs-et-les-prompts-systeme",
+      "destination": "/blog/ai-seo-tactics-leaked-prompts-google",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/por-que-las-cli-superan-a-mcp-para-agentes-de-ia-y-como-construir-tu-propio-ejer",
+      "destination": "/blog/why-clis-beat-mcp-for-ai-agents-and-how-to-build-your-own-cli-army",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/ejecuto-15-clones-de-ia-de-mi-mismo-en-paralelo-y-ni-siquiera-es-mi-forma-final",
+      "destination": "/blog/parallel-ai-clones-workflow",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/los-no-programadores-estan-usando-claude-code-de-formas-que-los-desarrolladores",
+      "destination": "/blog/non-developers-claude-code-productivity",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/los-llms-no-son-animales-claude-o-chatgpt-no-es-tu-perro-sin-memoria-sin",
+      "destination": "/blog/ai-anthropomorphism-llm-risks",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/y-combinator-ceo-teilt-seinen-claude-code-prompt-aber-lost-das-falsche-problem",
+      "destination": "/blog/y-combinator-s-ceo-shared-his-claude-code-prompt-it-solves-the-wrong-problem",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/balises-title-pourquoi-73-des-sites-web-vont-disparaitre-de-la-recherche-ia-et-v",
+      "destination": "/blog/title-tags-ai-search-optimization",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-remplace-supabase-par-convex-et-l-ai-auto-heberge-gratuitement-voici-le-gui",
+      "destination": "/blog/i-replaced-supabase-with-convex-and-self-hosted-it-for-free-here-s-the-full-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/gumroad-devient-scriptable-voici-les-12-agents-qui-gerent-ma-boutique",
+      "destination": "/blog/gumroad-cli-ai-agents-automation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ki-agenten-konnen-noch-nicht-kaufen-genau-deshalb-sollten-sie-vorbereiten",
+      "destination": "/blog/ai-agent-commerce-mcp-servers",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/comment-supprimer-elementor-de-wordpress-convertir-114-pages-vers-gutenberg-en",
+      "destination": "/blog/elementor-wordpress-gutenberg-migration",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/dein-lebenslauf-brachte-dir-null-vorstellungsgesprache-200-vibe-coder-bekamen",
+      "destination": "/blog/vibe-coding-replaces-resumes-job-market",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/alternativa-a-1of10-construi-la-mia-en-una-tarde-por-0-mes",
+      "destination": "/blog/build-youtube-outlier-finder-claude-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-codigo-abierto-murio-ayer-la-ia-lo-mato-lo-que-lo-reemplaza-es-peor",
+      "destination": "/blog/open-source-ai-security-threats",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/convex-claude-code-le-duo-ultime-pour-livrer-du-saas-a-3h-du-matin",
+      "destination": "/blog/convex-claude-typescript-saas-backend",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-teste-13-modeles-d-ia-d-images-pour-la-coherence-des-personnages-la",
+      "destination": "/blog/ai-image-model-character-consistency-benchmark",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/das-ende-der-ki-coding-subventionen-ist-da-cursor-und-bolt-sind-die-nachsten",
+      "destination": "/blog/ai-coding-pricing-crisis-github-cursor-bolt",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/21-automatizaciones-de-openclaw-que-nadie-menciona-porque-las-obvias-ya-rompiero",
+      "destination": "/blog/21-openclaw-automations-nobody-talks-about-because-the-obvious-ones-already-broke-the-internet",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-vibe-coding-n-est-pas-mort-tu-l-as-juste-construit-comme-le-premier-petit",
+      "destination": "/blog/vibe-coding-method-that-works",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/ce-repo-open-source-a-transforme-claude-code-en-architecte-n8n-et-n8n-n-a-jamais",
+      "destination": "/blog/claude-code-n8n-architect-open-source",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/cada-generacion-eligio-el-stack-equivocado-los-vibe-coders-no-son-diferentes",
+      "destination": "/blog/coding-generation-wrong-stack-vibe-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-hat-gerade-claude-code-open-source-gestellt-ich-habe-das-repo-geklont",
+      "destination": "/blog/claude-code-fake-leak-april-fools",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-code-a-toujours-evolue-vers-l-anglais-il-vient-d-y-arriver",
+      "destination": "/blog/programming-languages-english-ai-coding",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/11ty-comment-utiliser-le-plugin-image-pour-generer-des-images-responsives-en-css",
+      "destination": "/blog/11ty-how-to-use-the-image-plugin-to-generate-responsive-images-for-css",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/tu-herramienta-de-ia-para-programar-no-es-electricidad-deja-de-tratarla-como-un",
+      "destination": "/blog/ai-coding-tool-resilient-workflows",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/convex-claude-code-das-ultimative-duo-fur-saas-entwicklung-um-3-uhr-morgens",
+      "destination": "/blog/convex-claude-typescript-saas-backend",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/8-senales-de-que-tu-app-de-ia-es-solo-una-demo-no-un-producto-real",
+      "destination": "/blog/8-signs-your-ai-app-is-a-demo-not-a-product",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/por-que-los-agentes-de-ia-mienten-analice-su-arquitectura-y-ahora-no-puedo",
+      "destination": "/blog/why-ai-agents-lie-architecture",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/deje-el-vibe-coding-y-construi-una-app-real-el-metodo-que-nadie-ensena",
+      "destination": "/blog/stop-vibe-coding-build-real-apps-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/ki-loschte-seine-datenbank-in-9-sekunden-er-gibt-den-anbietern-die-schuld-er",
+      "destination": "/blog/ai-agent-deleted-production-database-devops-practices",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/j-ai-teste-openclaw-ex-clawdbot-avec-un-llm-gratuit-voici-ce-qui-s-est-passe",
+      "destination": "/blog/i-tried-running-openclaw-ex-clawdbot-with-a-free-llm-here-s-what-happened",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-pdg-de-y-combinator-a-partage-son-prompt-claude-pour-coder-il-resout-le-mauva",
+      "destination": "/blog/y-combinator-s-ceo-shared-his-claude-code-prompt-it-solves-the-wrong-problem",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/blind-burn-was-passiert-wenn-ki-schneller-baut-als-sie-verfolgen-konnen",
+      "destination": "/blog/ai-automation-blind-burn-infrastructure-debt",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/votre-outil-de-code-ia-n-est-pas-de-l-electricite-arretez-de-le-traiter-comme",
+      "destination": "/blog/ai-coding-tool-resilient-workflows",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/elogio-funebre-de-la-raya-larga",
+      "destination": "/blog/ai-killed-em-dash-typography",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/deje-de-programar-por-intuicion-y-comence-con-contratos-de-prompts-mi-codigo-con",
+      "destination": "/blog/i-stopped-vibe-coding-and-started-prompt-contracts-claude-code-went-from-gambling-to-shipping",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/mullvad-y-el-problema-de-correlacion-de-wireguard-por-que-incluso-las-mejores",
+      "destination": "/blog/mullvad-wireguard-correlation-self-hosted-vpn",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/jedes-claude-code-tutorial-lehrt-dieselben-5-dinge-keines-davon-ist-in-der-produ",
+      "destination": "/blog/every-claude-code-tutorial-teaches-you-the-same-5-things-none-of-them-matter-in-production",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/bezos-versprach-arbeitskraftemangel-amazon-entlie-16-000-menschen-um-ihn-zu",
+      "destination": "/blog/amazon-layoffs-ai-labor-shortage-bezos",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/el-mcp-oficial-de-n8n-consume-41x-mas-tokens-por-eso-no-es-la-razon-por-la-que",
+      "destination": "/blog/n8n-official-mcp-vs-community-comparison",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-md-es-el-nuevo-env-y-la-mayoria-de-desarrolladores-lo-tratan-como-un-read",
+      "destination": "/blog/claude-md-is-the-new-env-and-most-developers-treat-it-like-a-readme",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/una-ia-acaba-de-abrir-una-cuenta-bancaria-los-agentes-se-autorreplican-la-ley",
+      "destination": "/blog/ai-agent-bank-account-llc-legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/open-source-starb-gestern-ki-hat-es-getotet-was-es-ersetzt-ist-schlimmer",
+      "destination": "/blog/open-source-ai-security-threats",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/je-fais-tourner-15-clones-ia-de-moi-meme-en-parallele-et-ce-n-est-meme-pas-ma-fo",
+      "destination": "/blog/parallel-ai-clones-workflow",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/33-automatisations-openclaw-a-configurer-en-30-minutes-qui-vous-rapportent-de-l",
+      "destination": "/blog/33-openclaw-automations-you-can-set-up-in-30-minutes-that-start-making-you-money-tonight",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/anthropic-dit-que-l-ia-pourrait-se-construire-elle-meme-puis-depose-son-ipo-ce",
+      "destination": "/blog/anthropic-ipo-ai-strategy-analysis",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/una-ia-borro-su-base-de-datos-en-9-segundos-culpa-a-los-proveedores-se-salto-30",
+      "destination": "/blog/ai-agent-deleted-production-database-devops-practices",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/4-tacticas-de-seo-con-ia-que-google-dice-estan-muertas-ahrefs-y-los-system",
+      "destination": "/blog/ai-seo-tactics-leaked-prompts-google",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/claude-fable-5-no-necesita-menos-direccion-necesita-mas",
+      "destination": "/blog/claude-fable-5-ai-coding-direction",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/clasifique-30-ideas-de-startups-de-ia-con-claude-10-generan-dinero-10-ya-estan",
+      "destination": "/blog/claude-ai-startup-ideas-ranked",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/die-eine-zeile-in-karpathys-wiki-gist-die-99-aller-entwickler-ubersehen-haben",
+      "destination": "/blog/karpathy-wiki-hidden-feature-learning-ai",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-code-de-claude-etait-defaillant-pendant-6-semaines-amd-l-a-decouvert-en-6",
+      "destination": "/blog/claude-code-bug-amd-audit-anthropic",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/blog/anthropic-und-google-haben-das-gleiche-produkt-gelauncht-2-wochen-abstand",
+      "destination": "/blog/anthropic-google-managed-ai-agents",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/blog/le-web-agentique-n-arrive-pas-en-il-est-deja-la",
+      "destination": "/blog/ai-bot-traffic-overtook-humans-seo",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/blog/deje-de-crear-flujos-de-ia-empece-a-construir-una-fortaleza-claude-code-hizo-el",
+      "destination": "/blog/ai-moat-claude-code-self-healing-stack",
+      "statusCode": 301
     }
   ],
   "rewrites": [
@@ -27,19 +2222,28 @@
     {
       "source": "/prompt-contracts-cover-(.*).avif",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/vibe-coding-cover(.*).avif",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/favicon.png",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ]
