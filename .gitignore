@@ -27,3 +27,4 @@ lighthouse-reports/
 .idea/
 .vercel
 .env*.local
+.worktrees/
