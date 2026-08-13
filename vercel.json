@@ -24,6 +24,16 @@
       "statusCode": 301
     },
     {
+      "source": "/blog/claude-text-wat",
+      "destination": "/blog/claude-text-watermark-broken-research",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/claude-text-wat...",
+      "destination": "/blog/claude-text-watermark-broken-research",
+      "statusCode": 301
+    },
+    {
       "source": "/de/blog/title-tags-warum-73-aller-websites-aus-der-ki-suche-verschwinden-werden-und-sie",
       "destination": "/blog/title-tags-ai-search-optimization",
       "statusCode": 301
