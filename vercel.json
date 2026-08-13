@@ -14,6 +14,16 @@
       "permanent": true
     },
     {
+      "source": "/blog/ai-distillation-hidden-behaviors-detection",
+      "destination": "/blog/ai-model-distillation-hidden-behaviors",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/ai-search-vs-google-seo",
+      "destination": "/blog/two-internets-google-vs-ai-search",
+      "statusCode": 301
+    },
+    {
       "source": "/de/blog/title-tags-warum-73-aller-websites-aus-der-ki-suche-verschwinden-werden-und-sie",
       "destination": "/blog/title-tags-ai-search-optimization",
       "statusCode": 301
