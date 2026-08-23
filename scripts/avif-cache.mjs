@@ -185,7 +185,7 @@ export async function convertBlogImages({
     ? savedIndex
     : { schemaVersion: SCHEMA_VERSION, outputs: {} };
   let indexChanged = savedIndex !== index;
-  const result = { sources: files.length, encodedVariants: 0, cacheHits: 0, restoredOutputs: 0, items: [] };
+  const result = { sources: files.length, encodedVariants: 0, cacheHits: 0, restoredOutputs: 0, prunedCacheEntries: 0, items: [] };
 
   for (const sourceName of files) {
     const sourcePath = join(sourceDir, sourceName);
@@ -287,6 +287,19 @@ export async function convertBlogImages({
     logger?.log?.(`${sourceName}: ${canBootstrap ? "cache bootstrapped" : encodedForSource ? `${encodedForSource} AVIF encoded` : "cache hit"}`);
   }
 
+  const activeBases = new Set(files.map(outputBase));
+  for (const base of Object.keys(index.outputs)) {
+    if (activeBases.has(base)) continue;
+    delete index.outputs[base];
+    indexChanged = true;
+  }
   if (indexChanged) await atomicWriteJson(indexPath, index);
+
+  const activeKeys = new Set(Object.values(index.outputs));
+  for (const entry of await readdir(cacheDir, { withFileTypes: true })) {
+    if (!entry.isDirectory() || !isSha256(entry.name) || activeKeys.has(entry.name)) continue;
+    await rm(join(cacheDir, entry.name), { recursive: true, force: true });
+    result.prunedCacheEntries++;
+  }
   return result;
 }
