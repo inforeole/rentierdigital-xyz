@@ -6,6 +6,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://rentierdigital.xyz",
   trailingSlash: "never",
+  compressHTML: true,
   build: {
     inlineStylesheets: "auto",
   },
