@@ -56,6 +56,47 @@ function selectedSources(files) {
   return [...selected.values()];
 }
 
+function isPlainObject(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value)
+    && Object.getPrototypeOf(value) === Object.prototype;
+}
+
+function isSha256(value) {
+  return typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+}
+
+function isValidIndex(index) {
+  return isPlainObject(index)
+    && index.schemaVersion === SCHEMA_VERSION
+    && isPlainObject(index.outputs)
+    && Object.values(index.outputs).every(isSha256);
+}
+
+function isValidManifest(manifest, fingerprint, sourceDigest) {
+  if (!isPlainObject(manifest)
+    || manifest.schemaVersion !== SCHEMA_VERSION
+    || manifest.fingerprint !== fingerprint
+    || manifest.sourceDigest !== sourceDigest
+    || !isPlainObject(manifest.variants)) return false;
+
+  return ["768w.avif", "480w.avif"].every((name) => isPlainObject(manifest.variants[name])
+    && isSha256(manifest.variants[name].digest));
+}
+
+function assertNoDestinationCollisions(files) {
+  const destinations = new Map();
+  for (const sourceName of files) {
+    for (const width of [768, 480]) {
+      const destination = outputName(sourceName, width);
+      const existing = destinations.get(destination);
+      if (existing && existing !== sourceName) {
+        throw new Error(`Generated AVIF destination collision: ${destination} (${existing}, ${sourceName})`);
+      }
+      destinations.set(destination, sourceName);
+    }
+  }
+}
+
 function temporaryPath(path) {
   return `${path}.${process.pid}.${randomUUID()}.tmp`;
 }
@@ -127,9 +168,10 @@ export async function convertBlogImages({
   const fingerprint = fingerprintFor(settings);
   const encoder = conversionSettings.encoder ?? defaultEncoder;
   const files = selectedSources((await readdir(sourceDir)).filter((file) => IMAGE_PATTERN.test(file)));
+  assertNoDestinationCollisions(files);
   const indexPath = join(cacheDir, "index.json");
   const savedIndex = await readJson(indexPath);
-  const index = savedIndex?.schemaVersion === SCHEMA_VERSION && savedIndex?.outputs
+  const index = isValidIndex(savedIndex)
     ? savedIndex
     : { schemaVersion: SCHEMA_VERSION, outputs: {} };
   let indexChanged = savedIndex !== index;
@@ -155,9 +197,9 @@ export async function convertBlogImages({
         return null;
       }
     }));
-    const canBootstrap = !indexedKey && publicDigests.every(Boolean);
-
-    let manifest;
+    let manifest = await readJson(manifestPath);
+    const manifestMatches = isValidManifest(manifest, fingerprint, sourceDigest);
+    const canBootstrap = !indexedKey && !manifestMatches && publicDigests.some(Boolean);
     let encodedForSource = 0;
     if (canBootstrap) {
       manifest = {
@@ -169,17 +211,25 @@ export async function convertBlogImages({
       for (let position = 0; position < variantSpecs.length; position++) {
         const variant = variantSpecs[position];
         const cachePath = join(itemCachePath, variant.cacheName);
-        await atomicCopyIfDifferent(variant.outputPath, cachePath);
-        manifest.variants[variant.cacheName] = { digest: publicDigests[position] };
+        if (publicDigests[position]) {
+          await atomicCopyIfDifferent(variant.outputPath, cachePath);
+          manifest.variants[variant.cacheName] = { digest: publicDigests[position] };
+          continue;
+        }
+        await mkdir(itemCachePath, { recursive: true });
+        const tempPath = temporaryPath(cachePath);
+        try {
+          await encoder({ sourcePath, width: variant.width, quality: variant.quality, outputPath: tempPath });
+          await rename(tempPath, cachePath);
+        } finally {
+          await rm(tempPath, { force: true });
+        }
+        manifest.variants[variant.cacheName] = { digest: await digestFile(cachePath) };
+        encodedForSource++;
+        result.encodedVariants++;
       }
       await atomicWriteJson(manifestPath, manifest);
     } else {
-      manifest = await readJson(manifestPath);
-      const manifestMatches = manifest?.schemaVersion === SCHEMA_VERSION
-        && manifest?.fingerprint === fingerprint
-        && manifest?.sourceDigest === sourceDigest
-        && manifest?.variants;
-
       if (!manifestMatches) {
         manifest = {
           schemaVersion: SCHEMA_VERSION,

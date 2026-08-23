@@ -111,6 +111,81 @@ describe("convertBlogImages", () => {
     await expect(stat(outputPath(sourceDir, "collision.png", 480))).resolves.toBeDefined();
   });
 
+  test("repairs malformed JSON index and manifest shapes without throwing", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["alpha.png"] });
+    const first = await convertBlogImages({ sourceDir, cacheDir });
+    const alpha = first.items[0];
+    await writeFile(join(cacheDir, "index.json"), JSON.stringify({ schemaVersion: 1, outputs: "corrupt" }));
+    let encodes = 0;
+    const encoder = async ({ sourcePath, width, quality, outputPath: destination }) => {
+      encodes++;
+      await sharp(sourcePath).resize({ width, withoutEnlargement: true }).avif({ quality }).toFile(destination);
+    };
+
+    await convertBlogImages({ sourceDir, cacheDir, conversionSettings: { encoder } });
+    expect(encodes).toBe(0);
+    const index = JSON.parse(await readFile(join(cacheDir, "index.json"), "utf8"));
+    expect(index.outputs.alpha).toMatch(/^[a-f0-9]{64}$/);
+    await writeFile(join(alpha.cachePath, "manifest.json"), JSON.stringify({ schemaVersion: 1, variants: "corrupt" }));
+    encodes = 0;
+
+    await convertBlogImages({ sourceDir, cacheDir, conversionSettings: { encoder } });
+    expect(encodes).toBe(2);
+    const manifest = JSON.parse(await readFile(join(alpha.cachePath, "manifest.json"), "utf8"));
+    expect(manifest.variants["768w.avif"].digest).toMatch(/^[a-f0-9]{64}$/);
+    expect(manifest.variants["480w.avif"].digest).toMatch(/^[a-f0-9]{64}$/);
+  });
+
+  test("bootstraps a single existing public variant and encodes only the missing variant", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["alpha.png"] });
+    const mobile = outputPath(sourceDir, "alpha.png", 480);
+    await sharp({ create: { width: 2, height: 2, channels: 3, background: "#f59e0b" } }).avif({ quality: 31 }).toFile(mobile);
+    const originalMobile = await readFile(mobile);
+    let encodes = 0;
+
+    await convertBlogImages({
+      sourceDir,
+      cacheDir,
+      conversionSettings: {
+        encoder: async ({ sourcePath, width, quality, outputPath: destination }) => {
+          encodes++;
+          await sharp(sourcePath).resize({ width, withoutEnlargement: true }).avif({ quality }).toFile(destination);
+        },
+      },
+    });
+
+    expect(encodes).toBe(1);
+    expect(await readFile(mobile)).toEqual(originalMobile);
+    await expect(stat(outputPath(sourceDir, "alpha.png", 768))).resolves.toBeDefined();
+  });
+
+  test("rebuilds a missing index from a verified keyed manifest before considering public bootstrap", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["alpha.png"] });
+    const first = await convertBlogImages({ sourceDir, cacheDir });
+    const alpha = first.items[0];
+    const expected = await Promise.all([readFile(join(alpha.cachePath, "768w.avif")), readFile(join(alpha.cachePath, "480w.avif"))]);
+    await sharp({ create: { width: 2, height: 2, channels: 3, background: "#f97316" } }).avif().toFile(outputPath(sourceDir, "alpha.png", 768));
+    await sharp({ create: { width: 2, height: 2, channels: 3, background: "#0284c7" } }).avif().toFile(outputPath(sourceDir, "alpha.png", 480));
+    await unlink(join(cacheDir, "index.json"));
+
+    const result = await convertBlogImages({
+      sourceDir,
+      cacheDir,
+      conversionSettings: { encoder: async () => { throw new Error("should not encode"); } },
+    });
+
+    expect(result.encodedVariants).toBe(0);
+    expect(await Promise.all([readFile(outputPath(sourceDir, "alpha.png", 768)), readFile(outputPath(sourceDir, "alpha.png", 480))])).toEqual(expected);
+  });
+
+  test("rejects generated destination collisions before any cache or public write", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["foo.png", "foo-480w.png"] });
+
+    await expect(convertBlogImages({ sourceDir, cacheDir })).rejects.toThrow("Generated AVIF destination collision: foo-480w.avif");
+    await expect(stat(cacheDir)).rejects.toThrow();
+    await expect(stat(outputPath(sourceDir, "foo.png", 768))).rejects.toThrow();
+  });
+
   test("invalidates only the source whose bytes or conversion settings change", async () => {
     const { sourceDir, cacheDir } = await createFixture();
     await convertBlogImages({ sourceDir, cacheDir });
