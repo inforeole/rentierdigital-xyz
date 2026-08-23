@@ -24,15 +24,18 @@ export async function getStaticPaths() {
       .slice(0, 3);
     return {
       params: { slug: article.slug },
-      props: { related: related as ContentListItem[] },
+      props: {
+        related: related as ContentListItem[],
+        revision: article.updated_at ?? article._creationTime,
+      },
       cacheKey: buildArticleCacheKey(article, related),
     };
   });
 }
 
 const { slug } = Astro.params;
-const { related } = Astro.props;
-const content = await getBlogBySlug(slug!);
+const { related, revision } = Astro.props;
+const content = await getBlogBySlug(slug!, undefined, revision);
 
 if (!content) {
   return Astro.redirect("/404");
