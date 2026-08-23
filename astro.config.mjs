@@ -7,6 +7,9 @@ export default defineConfig({
   site: "https://rentierdigital.xyz",
   trailingSlash: "never",
   compressHTML: true,
+  experimental: {
+    incrementalBuild: true,
+  },
   build: {
     inlineStylesheets: "auto",
   },

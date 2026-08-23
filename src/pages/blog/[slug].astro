@@ -2,6 +2,7 @@
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import MediumImportLayout from "../../layouts/MediumImportLayout.astro";
 import { getBlogList, getBlogBySlug } from "../../lib/convex";
+import { buildArticleCacheKey } from "../../lib/incremental-build";
 import { renderMarkdown } from "../../lib/markdown";
 import { toLocalImagePath } from "../../lib/image-utils";
 import type { ContentListItem } from "../../types/content";
@@ -24,6 +25,7 @@ export async function getStaticPaths() {
     return {
       params: { slug: article.slug },
       props: { related: related as ContentListItem[] },
+      cacheKey: buildArticleCacheKey(article, related),
     };
   });
 }
