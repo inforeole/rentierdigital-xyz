@@ -235,6 +235,57 @@ describe("convertBlogImages", () => {
     expect(settingsChanged.encodedVariants).toBe(4);
   });
 
+  test("prunes superseded hash directories after a successful invalidation", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["alpha.png"] });
+    const first = await convertBlogImages({ sourceDir, cacheDir });
+    const obsoleteCachePath = first.items[0].cachePath;
+    const unknownCachePath = join(cacheDir, "keep-me");
+    await mkdir(unknownCachePath);
+    await sharp({ create: { width: 5, height: 4, channels: 3, background: "#22c55e" } })
+      .png()
+      .toFile(join(sourceDir, "alpha.png"));
+
+    const result = await convertBlogImages({ sourceDir, cacheDir });
+
+    expect(result.prunedCacheEntries).toBe(1);
+    await expect(stat(obsoleteCachePath)).rejects.toThrow();
+    await expect(stat(result.items[0].cachePath)).resolves.toBeDefined();
+    await expect(stat(unknownCachePath)).resolves.toBeDefined();
+  });
+
+  test("removes deleted sources from the index and cache", async () => {
+    const { sourceDir, cacheDir } = await createFixture();
+    const first = await convertBlogImages({ sourceDir, cacheDir });
+    const bravoCachePath = first.items.find((item) => item.sourceName === "bravo.png").cachePath;
+    await unlink(join(sourceDir, "bravo.png"));
+
+    const result = await convertBlogImages({ sourceDir, cacheDir });
+    const index = JSON.parse(await readFile(join(cacheDir, "index.json"), "utf8"));
+
+    expect(result.prunedCacheEntries).toBe(1);
+    expect(index.outputs.bravo).toBeUndefined();
+    await expect(stat(bravoCachePath)).rejects.toThrow();
+  });
+
+  test("keeps the last valid cache and index when conversion fails", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["alpha.png"] });
+    const first = await convertBlogImages({ sourceDir, cacheDir });
+    const validCachePath = first.items[0].cachePath;
+    const indexBefore = await readFile(join(cacheDir, "index.json"));
+    await sharp({ create: { width: 5, height: 4, channels: 3, background: "#22c55e" } })
+      .png()
+      .toFile(join(sourceDir, "alpha.png"));
+
+    await expect(convertBlogImages({
+      sourceDir,
+      cacheDir,
+      conversionSettings: { encoder: async () => { throw new Error("encode failed"); } },
+    })).rejects.toThrow("encode failed");
+
+    await expect(stat(validCachePath)).resolves.toBeDefined();
+    expect(await readFile(join(cacheDir, "index.json"))).toEqual(indexBefore);
+  });
+
   test("repairs only a missing or corrupt cached variant", async () => {
     const { sourceDir, cacheDir } = await createFixture();
     const first = await convertBlogImages({ sourceDir, cacheDir });
