@@ -186,6 +186,30 @@ describe("convertBlogImages", () => {
     await expect(stat(outputPath(sourceDir, "foo.png", 768))).rejects.toThrow();
   });
 
+  test("re-encodes both variants after an index loss when the source changes", async () => {
+    const { sourceDir, cacheDir } = await createFixture({ sources: ["alpha.png"] });
+    await convertBlogImages({ sourceDir, cacheDir });
+    await unlink(join(cacheDir, "index.json"));
+    await sharp({ create: { width: 5, height: 4, channels: 3, background: "#22c55e" } })
+      .png()
+      .toFile(join(sourceDir, "alpha.png"));
+    await unlink(outputPath(sourceDir, "alpha.png", 768));
+    let encodes = 0;
+
+    await convertBlogImages({
+      sourceDir,
+      cacheDir,
+      conversionSettings: {
+        encoder: async ({ sourcePath, width, quality, outputPath: destination }) => {
+          encodes++;
+          await sharp(sourcePath).resize({ width, withoutEnlargement: true }).avif({ quality }).toFile(destination);
+        },
+      },
+    });
+
+    expect(encodes).toBe(2);
+  });
+
   test("invalidates only the source whose bytes or conversion settings change", async () => {
     const { sourceDir, cacheDir } = await createFixture();
     await convertBlogImages({ sourceDir, cacheDir });

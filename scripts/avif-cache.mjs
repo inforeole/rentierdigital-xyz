@@ -142,6 +142,15 @@ async function readJson(path) {
   }
 }
 
+async function cacheRootWasEmpty(cacheDir) {
+  try {
+    return (await readdir(cacheDir)).length === 0;
+  } catch (error) {
+    if (error?.code === "ENOENT") return true;
+    throw error;
+  }
+}
+
 async function isValidVariant(cachePath, digest) {
   if (typeof digest !== "string") return false;
   try {
@@ -169,6 +178,7 @@ export async function convertBlogImages({
   const encoder = conversionSettings.encoder ?? defaultEncoder;
   const files = selectedSources((await readdir(sourceDir)).filter((file) => IMAGE_PATTERN.test(file)));
   assertNoDestinationCollisions(files);
+  const isColdCacheRoot = await cacheRootWasEmpty(cacheDir);
   const indexPath = join(cacheDir, "index.json");
   const savedIndex = await readJson(indexPath);
   const index = isValidIndex(savedIndex)
@@ -199,7 +209,7 @@ export async function convertBlogImages({
     }));
     let manifest = await readJson(manifestPath);
     const manifestMatches = isValidManifest(manifest, fingerprint, sourceDigest);
-    const canBootstrap = !indexedKey && !manifestMatches && publicDigests.some(Boolean);
+    const canBootstrap = isColdCacheRoot && !indexedKey && !manifestMatches && publicDigests.some(Boolean);
     let encodedForSource = 0;
     if (canBootstrap) {
       manifest = {
