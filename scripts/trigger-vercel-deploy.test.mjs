@@ -64,6 +64,9 @@ test("Vercel deploy contract retains branch previews and routes main through the
   expect(workflow).toContain("contents: read");
   expect(workflow).toContain("runs-on: ubuntu-latest");
   expect(workflow).toContain("timeout-minutes: 5");
+  expect(workflow).toContain("uses: actions/checkout@v4");
+  expect(workflow).toContain("uses: actions/setup-node@v4");
+  expect(workflow).toContain("node-version-file: .node-version");
   expect(workflow).toContain("node scripts/trigger-vercel-deploy.mjs");
   expect(workflow).toContain("secrets.ASTRO_VERCEL_DEPLOY_HOOK");
 });
