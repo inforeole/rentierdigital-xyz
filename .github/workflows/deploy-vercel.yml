@@ -12,12 +12,56 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
-          node-version-file: .node-version
-      - run: node scripts/trigger-vercel-deploy.mjs
+          node-version: "22"
+          package-manager-cache: false
+      - name: Trigger Vercel production deploy
         env:
-          ASTRO_VERCEL_DEPLOY_HOOK: ${{ secrets.ASTRO_VERCEL_DEPLOY_HOOK }}
+          VERCEL_DEPLOY_HOOK: ${{ secrets.ASTRO_VERCEL_DEPLOY_HOOK }}
+        run: |
+          node <<'NODE'
+          async function main() {
+            const hookUrl = process.env.VERCEL_DEPLOY_HOOK;
+            if (!hookUrl) {
+              throw new Error("Vercel deploy hook secret is not configured");
+            }
+
+            let url;
+            try {
+              url = new URL(hookUrl);
+            } catch {
+              throw new Error("Vercel deploy hook URL is invalid");
+            }
+
+            if (url.origin !== "https://api.vercel.com" || url.username || url.password) {
+              throw new Error("Vercel deploy hook URL is not allowed");
+            }
+
+            url.searchParams.set("buildCache", "true");
+
+            let response;
+            try {
+              response = await fetch(url, {
+                method: "POST",
+                redirect: "manual",
+                signal: AbortSignal.timeout(30_000),
+              });
+            } catch {
+              throw new Error("Vercel deploy hook request failed");
+            }
+
+            if (response.status < 200 || response.status >= 300) {
+              throw new Error(`Vercel deploy hook failed with status ${response.status}`);
+            }
+
+            console.log("Vercel deploy hook accepted");
+          }
+
+          main().catch((error) => {
+            console.error(error instanceof Error ? error.message : "Vercel deploy hook failed");
+            process.exitCode = 1;
+          });
+          NODE

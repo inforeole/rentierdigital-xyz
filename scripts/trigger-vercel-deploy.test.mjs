@@ -1,72 +1,36 @@
 import { describe, expect, test } from "bun:test";
 import { readFile } from "node:fs/promises";
 
-import { triggerVercelDeploy } from "./trigger-vercel-deploy.mjs";
+describe("Vercel deploy workflow contract", () => {
+  test("dispatches the cacheable hook directly without checking out the repository", async () => {
+    const [vercelJson, workflow] = await Promise.all([
+      readFile(new URL("../vercel.json", import.meta.url), "utf8"),
+      readFile(new URL("../.github/workflows/deploy-vercel.yml", import.meta.url), "utf8"),
+    ]);
 
-describe("triggerVercelDeploy", () => {
-  test("posts a cacheable hook URL with an abort signal", async () => {
-    let request;
-
-    await triggerVercelDeploy({
-      hookUrl: "https://example.test/hook?source=github",
-      timeoutMs: 50,
-      fetchImpl: async (url, options) => {
-        request = { url, options };
-        return { ok: true, status: 204 };
-      },
-    });
-
-    expect(request.url).toBe("https://example.test/hook?source=github&buildCache=true");
-    expect(request.options.method).toBe("POST");
-    expect(request.options.signal).toBeInstanceOf(AbortSignal);
-    expect(request.options.signal.aborted).toBe(false);
+    expect(JSON.parse(vercelJson).git).toEqual({ deploymentEnabled: { main: false } });
+    expect(workflow).toContain("name: Deploy Vercel production");
+    expect(workflow).toContain("branches: [main]");
+    expect(workflow).toContain('"public/blog-images/**"');
+    expect(workflow).toContain("workflow_dispatch:");
+    expect(workflow).toContain("runs-on: ubuntu-latest");
+    expect(workflow).toContain("timeout-minutes: 2");
+    expect(workflow).not.toContain("actions/checkout");
+    expect(workflow).toContain("actions/setup-node@820762786026740c76f36085b0efc47a31fe5020");
+    expect(workflow).toContain('node-version: "22"');
+    expect(workflow).toContain("package-manager-cache: false");
+    expect(workflow).toContain("VERCEL_DEPLOY_HOOK: ${{ secrets.ASTRO_VERCEL_DEPLOY_HOOK }}");
+    expect(workflow).toContain("process.env.VERCEL_DEPLOY_HOOK");
+    expect(workflow).toContain('url.origin !== "https://api.vercel.com"');
+    expect(workflow).toContain("url.username || url.password");
+    expect(workflow).toContain('url.searchParams.set("buildCache", "true")');
+    expect(workflow).toContain('method: "POST"');
+    expect(workflow).toContain('redirect: "manual"');
+    expect(workflow).toContain("AbortSignal.timeout(30_000)");
+    expect(workflow).toContain("response.status < 200 || response.status >= 300");
+    expect(workflow.match(/await fetch\(/g)).toHaveLength(1);
+    expect(workflow).not.toContain("trigger-vercel-deploy.mjs");
+    expect(workflow).not.toContain("console.log(url");
+    expect(workflow).not.toContain("console.error(url");
   });
-
-  test("replaces a false build cache value", async () => {
-    let requestedUrl;
-
-    await triggerVercelDeploy({
-      hookUrl: "https://example.test/hook?buildCache=false&source=github",
-      fetchImpl: async (url) => {
-        requestedUrl = url;
-        return { ok: true, status: 200 };
-      },
-    });
-
-    expect(requestedUrl).toBe("https://example.test/hook?buildCache=true&source=github");
-  });
-
-  test("rejects a missing hook URL before requesting", async () => {
-    await expect(triggerVercelDeploy({ hookUrl: "" })).rejects.toThrow(
-      "ASTRO_VERCEL_DEPLOY_HOOK must be set",
-    );
-  });
-
-  test("rejects unsuccessful hook responses", async () => {
-    await expect(triggerVercelDeploy({
-      hookUrl: "https://example.test/hook",
-      fetchImpl: async () => ({ ok: false, status: 503 }),
-    })).rejects.toThrow("Vercel deploy hook failed: 503");
-  });
-});
-
-test("Vercel deploy contract retains branch previews and routes main through the hook", async () => {
-  const [vercelJson, workflow] = await Promise.all([
-    readFile(new URL("../vercel.json", import.meta.url), "utf8"),
-    readFile(new URL("../.github/workflows/deploy-vercel.yml", import.meta.url), "utf8"),
-  ]);
-
-  expect(JSON.parse(vercelJson).git).toEqual({ deploymentEnabled: { main: false } });
-  expect(workflow).toContain("name: Deploy Vercel production");
-  expect(workflow).toContain("branches: [main]");
-  expect(workflow).toContain('"public/blog-images/**"');
-  expect(workflow).toContain("workflow_dispatch:");
-  expect(workflow).toContain("contents: read");
-  expect(workflow).toContain("runs-on: ubuntu-latest");
-  expect(workflow).toContain("timeout-minutes: 5");
-  expect(workflow).toContain("uses: actions/checkout@v4");
-  expect(workflow).toContain("uses: actions/setup-node@v4");
-  expect(workflow).toContain("node-version-file: .node-version");
-  expect(workflow).toContain("node scripts/trigger-vercel-deploy.mjs");
-  expect(workflow).toContain("secrets.ASTRO_VERCEL_DEPLOY_HOOK");
 });
