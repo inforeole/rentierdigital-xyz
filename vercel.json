@@ -1,6 +1,11 @@
 {
   "buildCommand": "bun --bun run build",
   "trailingSlash": false,
+  "git": {
+    "deploymentEnabled": {
+      "main": false
+    }
+  },
   "redirects": [
     {
       "source": "/:path(.*)",
