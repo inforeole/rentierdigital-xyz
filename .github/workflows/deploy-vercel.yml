@@ -1,0 +1,19 @@
+name: Deploy Vercel production
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["public/blog-images/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: node scripts/trigger-vercel-deploy.mjs
+        env:
+          ASTRO_VERCEL_DEPLOY_HOOK: ${{ secrets.ASTRO_VERCEL_DEPLOY_HOOK }}
