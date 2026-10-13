@@ -2245,6 +2245,15 @@
   ],
   "headers": [
     {
+      "source": "/go/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/prompt-contracts-cover-(.*).avif",
       "headers": [
         {
