@@ -1,6 +1,11 @@
 {
   "buildCommand": "bun --bun run build",
   "trailingSlash": false,
+  "git": {
+    "deploymentEnabled": {
+      "main": false
+    }
+  },
   "redirects": [
     {
       "source": "/:path(.*)",
@@ -2239,6 +2244,15 @@
     }
   ],
   "headers": [
+    {
+      "source": "/go/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
     {
       "source": "/prompt-contracts-cover-(.*).avif",
       "headers": [

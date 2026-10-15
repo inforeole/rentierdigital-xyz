@@ -37,5 +37,6 @@ export interface ContentFull {
   cover_image_url?: string;
   cover_image_alt?: string;
   cover_caption?: string;
+  updated_at?: string | null;
   translations?: { lang: string; slug: string; title: string }[];
 }
