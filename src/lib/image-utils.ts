@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { statSync } from "node:fs";
+import { resolve, sep } from "node:path";
 
 function md5(input: string): string {
   return createHash("md5").update(input).digest("hex");
@@ -47,6 +49,39 @@ export function imageFilename(url: string, descriptor?: string): string {
   return `${hash}.${ext}`;
 }
 
+/** Return whether a public /blog-images/ URL has a matching file on disk. */
+export function localImageExists(path: string): boolean {
+  if (!path.startsWith("/blog-images/")) return false;
+
+  let relativePath: string;
+  try {
+    relativePath = decodeURIComponent(path.slice("/blog-images/".length));
+  } catch {
+    return false;
+  }
+
+  const imagesDirectory = resolve(process.cwd(), "public/blog-images");
+  const imagePath = resolve(imagesDirectory, relativePath);
+  if (!imagePath.startsWith(`${imagesDirectory}${sep}`)) return false;
+
+  try {
+    return statSync(imagePath).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function blogImagePath(url: string): string | undefined {
+  try {
+    const match = new URL(url).pathname.match(/\/blog-images\/(.+)$/);
+    if (!match) return undefined;
+
+    return `/blog-images/${match[1]}`;
+  } catch {
+    return undefined;
+  }
+}
+
 /**
  * Convert an external image URL to a local /blog-images/ path.
  * Uses the same naming as convex/astro.ts pushImagesToGitHub
@@ -54,8 +89,10 @@ export function imageFilename(url: string, descriptor?: string): string {
  */
 export function toLocalImagePath(url: string, descriptor?: string): string {
   if (!url.startsWith("http")) return url;
-  // Already rewritten to local blog-images URL by Convex publish — extract path
-  const blogImagesMatch = url.match(/\/blog-images\/(.*)/);
-  if (blogImagesMatch) return `/blog-images/${blogImagesMatch[1]}`;
-  return `/blog-images/${imageFilename(url, descriptor)}`;
+
+  const publishedPath = blogImagePath(url);
+  if (publishedPath) return localImageExists(publishedPath) ? publishedPath : url;
+
+  const generatedPath = `/blog-images/${imageFilename(url, descriptor)}`;
+  return localImageExists(generatedPath) ? generatedPath : url;
 }
