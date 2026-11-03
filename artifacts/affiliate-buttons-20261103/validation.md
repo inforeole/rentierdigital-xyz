@@ -1,22 +1,22 @@
-# La préproduction valide les boutons affiliés Rentierdigital.
+# Les boutons Rentierdigital sont déployés et vérifiés.
 
-Le 3 novembre 2026, la compilation a validé 45 boutons sur 18 pages parmi 321 pages indexées.
-Les trois tests ciblés et le contrôle TypeScript strict passent.
-Le navigateur headless a exécuté 108 activations souris, Entrée et Espace sur les 18 pages, avec attribution présente et aucune navigation vers les marchands.
-La fenêtre newsletter est fermée par son bouton normal pendant les tests.
-Deux pages présentent un débordement mobile préexistant, confirmé sur la production avant déploiement (bloc code et tableau, hors boutons) : `/blog/self-hosted-mesh-vpn-netbird-tailscale` et `/blog/best-korean-proxy-for-builders`.
+Le 3 novembre 2026, le commit runtime `c5870a5` a été construit et déployé par le workflow Vercel existant, sans nouvelle variable ni transfert de secret.
+La compilation a été validée localement après retrait explicite de PBN_INGEST_KEY et AFFILIATE_REGISTRY_READ_KEY de l’environnement.
+Quatre tests d’intégration, quinze tests backend et les contrôles TypeScript passent.
+Le contrôle public couvre 320 pages, trois scripts locaux et 45 boutons ; il ne trouve aucune URL affiliée ou Trackr en clair hors les dix placements Contabo explicitement reportés.
+Le navigateur headless valide les 18 pages affiliées et 108 activations souris, Entrée et Espace.
+Les seize tokens correspondent aux destinations vérifiées par sonde signée sur l’origine Trackr.
+Le domaine personnalisé ne relaie pas les sondes signées ; le parcours réel a donc été vérifié avec un unique clic QA marqué, sans suivre la redirection vers le marchand.
+Le clic `07a1b31570277ead1c74e456e8a0b366` a reçu un 302 vers l’offre attendue, avec `isBot=0`, attribution `collected`, s1 à s5 et origine d’entrée conformes ; il doit être exclu des statistiques.
 Les dix placements Contabo non vérifiables restent inchangés sur les trois pages consignées.
 Le livre propre Vibe Coding, For Real reste exclu des affiliations.
-La production publique et la collecte réelle Trackr restent à vérifier après déploiement.
-Le contrôle automatique a refusé le transfert de PBN_INGEST_KEY vers Vercel.
-La préparation utilise désormais une clé distincte AFFILIATE_REGISTRY_READ_KEY limitée au registre vérifié ; sa configuration distante reste à autoriser.
-Aucun secret n’a été transféré lors de cette tentative refusée.
-La contre-revue indépendante n’a pas été exécutée car la voie CLI déléguée a épuisé son quota ; la session principale a effectué la revue et les validations ciblées.
+Deux débordements mobiles préexistants (bloc code et tableau) ont été confirmés sur la version publique antérieure et ne résultent pas des boutons.
+La contre-revue indépendante reste indisponible après épuisement du quota CLI ; la session principale a relu le diff et exécuté les validations ciblées.
 
-## Le build simplifié passe sans accès privé affilié.
+## Les ajouts retenus servent le comportement demandé.
 
-Après le GO de simplification du 3 novembre, le build et les tests navigateur ont été exécutés avec PBN_INGEST_KEY et AFFILIATE_REGISTRY_READ_KEY retirées de l’environnement.
-Les quatre tests d’intégration, le contrôle TypeScript, la compilation de 45 boutons sur 18 pages et les 108 activations navigateur passent.
-Le registre versionné a été vérifié pendant la migration : 93 alias vérifiés et trois non vérifiés, dont seules les offres compatibles et réellement utilisées sont rendues.
-Le build ne consulte plus le registre privé et ne requiert plus de nouvelle configuration Vercel.
-Les paragraphes d’attente de clé ci-dessus décrivent la tentative abandonnée ; aucune autorisation de transfert n’est désormais nécessaire.
+L’encodage stable par site masque les destinations et conserve le design.
+Le runtime ajoute l’attribution et gère souris, clavier et contrôles imbriqués.
+Les contrôles locaux refusent une offre inconnue ou un lien confirmé encore direct ; le registre doit être actualisé après vérification avant d’introduire une nouvelle offre.
+La consultation privée du registre à chaque build et son accès dédié ont été supprimés.
+Le site continue à lire son contenu par l’API publique existante, comme avant cette migration.

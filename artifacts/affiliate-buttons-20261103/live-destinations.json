@@ -1,0 +1,139 @@
+{
+  "at": "2026-11-03T07:24:30.032Z",
+  "pages": 320,
+  "checked": 320,
+  "buttons": 45,
+  "tokens": 16,
+  "results": [
+    {
+      "token": "8xw97GA",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.hostg.xyz/SHHc5",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "mGVsxvA",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.kqzyfj.com/click-100562241-13796481",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "yrGExwq",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://try.elevenlabs.io/voice-agent",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "ha9rvhe",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://get.brightdata.com/unstoppable",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "QHjZwgq",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://chatseo.app/?ref=philippe",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "WKBupYp",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.jdoqocy.com/click-100562241-17264536",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "w6tHpt8",
+      "publicHost": "go.gozrk.com",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.bonzai.pro/ideasxyz/shop/r1qv_6388/idees-strategies?a=t_Gx7p_1295",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "StY5urQ",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://try.elevenlabs.io/rd-audiobook",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "pmdz9WC",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://reflare.io?discount=WELCOME&via=welcome",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "eBiJxXs",
+      "publicHost": "go.gozrk.com",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://easywebinar.com?fp_ref=welcome",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "v9Gugdr",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.dynadot.com?s7G9W6L6Jq6G6i7U",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "Bjrt2Nq",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://uncensored.com/?ref=freedomIA",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "Qr5Ntss",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.nsfwartgenerator.ai?tap_a=reflink&ref=m2i3zjz",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "Jkm4HNA",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.webshare.io/?referral_code=dzesm85ssnlr",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "Fig2V5G",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://wisewand.ai/en/?fpr=try",
+      "matchesConfiguration": true
+    },
+    {
+      "token": "6phahed",
+      "publicHost": "go.rentierdigital.xyz",
+      "probeHost": "go.gozrk.com",
+      "status": 302,
+      "destination": "https://www.hostg.xyz/SHJIR",
+      "matchesConfiguration": true
+    }
+  ],
+  "failures": [],
+  "merchantRequests": 0
+}

@@ -1,0 +1,24 @@
+Vercel CLI 50.3.1
+Fetching deployment "rentierdigital-kfrqr2yxo-inforeoles-projects.vercel.app" in inforeoles-projects
+> Fetched deployment "rentierdigital-kfrqr2yxo-inforeoles-projects.vercel.app" in inforeoles-projects [2m]
+
+  General
+
+    id		dpl_J5GtfqxFGf9m2CkqB1SJJHXeHpre
+    name	rentierdigital-xyz
+    target	production
+    status	● Ready
+    url		https://rentierdigital-kfrqr2yxo-inforeoles-projects.vercel.app
+    created	Tue Nov 03 2026 08:19:10 GMT+0100 (Central European Standard Time) [3m ago]
+
+
+  Aliases
+
+    ╶ https://rentierdigital-xyz-inforeoles-projects.vercel.app
+    ╶ https://rentierdigital-xyz-git-main-inforeoles-projects.vercel.app
+
+
+  Builds
+
+    ┌ .        [0ms]
+    └── λ api/subscribe (5.23KB) [iad1]

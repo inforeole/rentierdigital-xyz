@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-03T07:24:32.204Z",
+  "marker": "qa-rentierdigital.xyz-variants-20261103-1793690670162",
+  "clickId": "07a1b31570277ead1c74e456e8a0b366",
+  "token": "yrGExwq",
+  "status": 302,
+  "destination": "https://try.elevenlabs.io/voice-agent",
+  "source": "rentierdigital.xyz",
+  "isBot": 0,
+  "attributionStatus": "collected",
+  "entryOrigin": "https://rentierdigital.xyz",
+  "initialSource": "qa-verification",
+  "initialMedium": "test",
+  "initialCampaign": "qa-rentierdigital.xyz-variants-20261103-1793690670162",
+  "trackerSubids": {
+    "s1": "rentierdigital.xyz",
+    "s2": "inline-1",
+    "s3": "en",
+    "s4": "/blog/google-local-services-ads-missed-call-ai-solution",
+    "s5": "qa-rentierdigital.xyz-variants-20261103-1793690670162"
+  },
+  "merchantRequests": 0,
+  "excludeFromStatistics": true
+}
