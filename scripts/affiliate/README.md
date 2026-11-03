@@ -6,7 +6,12 @@ Les deux adaptations du consommateur conservent les URL canoniques sans slash fi
 Les identifiants publics sont produits par le générateur commun stable pour rentierdigital.xyz.
 Les fichiers JavaScript du runtime sont des sorties compilées du générateur TypeScript.
 
-Le build consulte l’API privée existante avec AFFILIATE_REGISTRY_READ_KEY (ou la clé privée existante pour un build local supervisé) et ne conserve aucun secret ni registre brut dans dist.
+Le build lit `verified-registry.json`, un jeu de données interne vérifié le 3 novembre 2026 pendant la migration.
+Il n’appelle aucune API privée pour les boutons et n’utilise aucune nouvelle clé ou variable Vercel.
+Les destinations sont encodées dans le HTML ; le registre interne n’est jamais copié dans dist.
+Une nouvelle offre nécessite la vérification de son token, de sa source et de sa destination puis une mise à jour explicite du registre avant publication.
+Une route ou un token inconnu bloque le build au lieu d’exposer une destination directe.
+Cette vérification n’est pas un contrôle de santé permanent du marchand ; les contrôles existants de Trackr restent distincts.
 Les alias des produits propres wizard, vdl, affiliation et vibe-coding-for-real restent ordinaires.
 La page source `src/pages/vibe-coding/index.astro` identifie Phil comme auteur du livre Amazon B0GYQHLSCB ; sa destination sans tag reste inchangée.
 Tout alias connu non vérifié ou toute offre française dans un contenu anglais bloque la publication.

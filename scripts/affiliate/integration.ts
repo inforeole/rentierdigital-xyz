@@ -1,3 +1,4 @@
+import verifiedRegistry from "./verified-registry.json";
 import type { AstroIntegration } from "astro";
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -51,7 +52,7 @@ export function createRegistry(response: RegistryResponse): TrackedAffiliateRegi
     verifiedPathLinks[`/go/${row.slug}`] = label;
     for (const href of row.destinations) if (!direct.has(href)) direct.set(href, {...label, href, evidence: `Trackr campaign ${row.campaignId}`});
   }
-  return {deferredUnverifiedLinks: DEFERRED, ordinaryLocalPaths: [...OWN_SLUGS].map(slug => `/go/${slug}`), siteOrigin: ORIGIN, trackerOrigin: "https://go.rentierdigital.xyz", locale: "en", verifiedGoLinks, verifiedVLinks: {}, verifiedPathLinks, directAffiliateLinks: [...direct.values()]};
+  return {localGoRouteIsAffiliate: true, deferredUnverifiedLinks: DEFERRED, ordinaryLocalPaths: [...OWN_SLUGS].map(slug => `/go/${slug}`), siteOrigin: ORIGIN, trackerOrigin: "https://go.rentierdigital.xyz", locale: "en", verifiedGoLinks, verifiedVLinks: {}, verifiedPathLinks, directAffiliateLinks: [...direct.values()]};
 }
 
 export function assertSourceAffiliates(html: string, response: RegistryResponse, pathname = ""): void {
@@ -75,15 +76,8 @@ export function assertSourceAffiliates(html: string, response: RegistryResponse,
   }
 }
 
-async function loadRegistry(): Promise<RegistryResponse> {
-  const base = process.env.CONVEX_SITE_URL ?? process.env.NEXT_PUBLIC_CONVEX_SITE_URL;
-  const key = process.env.AFFILIATE_REGISTRY_READ_KEY ?? process.env.PBN_INGEST_KEY;
-  if (!base || !key) throw new Error("Affiliate build requires CONVEX_SITE_URL and a registry read credential");
-  const response = await fetch(new URL("/api/affiliate-links?verified=1", base), {
-    headers: {Authorization: `Bearer ${key}`}, signal: AbortSignal.timeout(80_000),
-  });
-  if (!response.ok) throw new Error(`Verified affiliate registry HTTP ${response.status}`);
-  const value: unknown = await response.json();
+export function loadRegistry(): RegistryResponse {
+  const value: unknown = verifiedRegistry;
   if (!value || typeof value !== "object" || !("version" in value) || value.version !== 1
     || !("verified" in value) || !Array.isArray(value.verified)
     || !("unverified" in value) || !Array.isArray(value.unverified)) throw new Error("Invalid affiliate registry response");
@@ -110,7 +104,7 @@ async function htmlFiles(root: string): Promise<string[]> {
 export function rentierTrackedAffiliateIntegration(): AstroIntegration {
   return {name: "rentier-tracked-affiliates", hooks: {
     "astro:build:done": async ({dir}) => {
-      const response = await loadRegistry();
+      const response = loadRegistry();
       const registry = createRegistry(response);
       const root = fileURLToPath(dir);
       const files = await htmlFiles(root);

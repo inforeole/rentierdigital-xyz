@@ -12,3 +12,11 @@ Le contrôle automatique a refusé le transfert de PBN_INGEST_KEY vers Vercel.
 La préparation utilise désormais une clé distincte AFFILIATE_REGISTRY_READ_KEY limitée au registre vérifié ; sa configuration distante reste à autoriser.
 Aucun secret n’a été transféré lors de cette tentative refusée.
 La contre-revue indépendante n’a pas été exécutée car la voie CLI déléguée a épuisé son quota ; la session principale a effectué la revue et les validations ciblées.
+
+## Le build simplifié passe sans accès privé affilié.
+
+Après le GO de simplification du 3 novembre, le build et les tests navigateur ont été exécutés avec PBN_INGEST_KEY et AFFILIATE_REGISTRY_READ_KEY retirées de l’environnement.
+Les quatre tests d’intégration, le contrôle TypeScript, la compilation de 45 boutons sur 18 pages et les 108 activations navigateur passent.
+Le registre versionné a été vérifié pendant la migration : 93 alias vérifiés et trois non vérifiés, dont seules les offres compatibles et réellement utilisées sont rendues.
+Le build ne consulte plus le registre privé et ne requiert plus de nouvelle configuration Vercel.
+Les paragraphes d’attente de clé ci-dessus décrivent la tentative abandonnée ; aucune autorisation de transfert n’est désormais nécessaire.

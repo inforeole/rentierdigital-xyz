@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
 import { parse } from "node-html-parser";
-import { createRegistry, assertSourceAffiliates, CONFIG, DEFERRED, type RegistryResponse } from "./integration";
+import { createRegistry, loadRegistry, assertSourceAffiliates, CONFIG, DEFERRED, type RegistryResponse } from "./integration";
 import { transformTrackedAffiliateHtml } from "./vendor/trackedAffiliate";
 import { decodeTrackedDestination } from "./vendor/trackedAffiliateObfuscation";
 const response: RegistryResponse = {version: 1, unverified: [{slug: "unverified", reason: "missing_source"}], verified: [
@@ -35,4 +35,10 @@ test("existing unverified placements are confined to their page and count", asyn
   expect(parse(result.html).querySelector("a")?.getAttribute("href")).toBe(entry.href);
   await expect(transformTrackedAffiliateHtml({...options, pagePathname: "/blog/new-page"})).rejects.toThrow();
   expect(() => assertSourceAffiliates(html.repeat(entry.count + 1), response, entry.pagePathname)).toThrow("count increased");
+});
+
+test("the local registry loads without private credentials and rejects unknown aliases", async () => {
+  const registry = createRegistry(loadRegistry());
+  expect(Object.keys(registry.verifiedGoLinks).length).toBeGreaterThan(0);
+  await expect(transformTrackedAffiliateHtml({html: '<html lang="en"><body><a href="/go/new-unverified-offer">Offer</a></body></html>', pagePathname: '/blog/new', registry, config: CONFIG, runtimeSource: 'void 0'})).rejects.toThrow("sans jeton");
 });
