@@ -5,5 +5,6 @@ Les destinations exactes répondent en anglais et correspondent aux programmes a
 Les deux transports passent les activations souris, Entrée, Espace et mobile, le contrôle signé de destination et la relecture du clic QA attribué dans Trackr.
 Les quatre tests d’intégration et le build passent.
 Le lot utilise l’intégration existante sans ajout de variable Vercel ni de serveur.
-Les preuves précèdent la publication ; les contrôles publics seront ajoutés après déploiement.
+Le déploiement Vercel `rentierdigital-k9h1dqs22-inforeoles-projects.vercel.app` est aliasé sur le domaine public.
+Les six placements publics des deux transports passent l’activation navigateur interceptée et ne révèlent pas leurs destinations en clair.
 Les clics marqués `qa-full-audit` doivent être exclus des statistiques commerciales.
