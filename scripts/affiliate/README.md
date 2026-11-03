@@ -17,8 +17,12 @@ La page source `src/pages/vibe-coding/index.astro` identifie Phil comme auteur d
 Tout alias connu non vérifié ou toute offre française dans un contenu anglais bloque la publication.
 Les liens marchands ordinaires et les livres propres restent inchangés.
 
-## Les placements Contabo existants attendent vérification.
+## Les dix placements Contabo utilisent le publisher enregistré.
 
-Le 3 novembre 2026, dix placements publics sur trois pages utilisent le publisher CJ 100429498, qui ne correspond pas aux campagnes Contabo enregistrées avec 100562241.
-Le registre conserve uniquement les trois couples exacts page/URL dans `DEFERRED`, avec un plafond correspondant aux occurrences publiques observées (5, 3, 2).
-Toute nouvelle page ou augmentation bloque la compilation ; aucune destination ni attribution existante n’est remplacée.
+Phil a autorisé le 3 novembre 2026 le remplacement des offres dont l’affiliation existe déjà, après vérification de la destination et du tracking.
+Les dix placements des trois pages OpenClaw utilisent le transport `nUmYSJS`, campagne `6132`, vers `https://www.kqzyfj.com/links/100562241/type/dlg/https://contabo.com/en-us/openclaw-hosting/`.
+Le test HTTP marchand confirme la page OpenClaw, `PID=100562241`, `AID=12438672` et un identifiant CJ.
+L’ancienne URL avec publisher `100429498` reste uniquement comme clé interne de remplacement des contenus historiques ; elle n’est plus une destination publiée.
+Les trois exceptions Contabo sont retirées de `DEFERRED`, dont le mécanisme de contrôle reste intact.
+Le build produit 55 boutons sur 21 pages, sans nouvelle variable Vercel ni API privée pour le registre affilié.
+Les tests de transformation passent ; la validation Trackr avant déploiement et la vérification publique sont conservées dans les artefacts de livraison.

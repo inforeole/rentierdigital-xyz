@@ -19,23 +19,7 @@ export interface RegistryResponse {
 const ORIGIN = "https://rentierdigital.xyz";
 const OWN_SLUGS = new Set(["wizard", "vdl", "affiliation", "vibe-coding-for-real"]);
 // Existing public placements preserved pending verification of publisher ownership.
-export const DEFERRED = [
-  {
-    "pagePathname": "/blog/i-deployed-my-own-openclaw-ai-agent-in-4-minutes-it-now-runs-my-life-from-a-5-server",
-    "href": "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
-    "count": 5
-  },
-  {
-    "pagePathname": "/blog/openclaw-architecture-scaling-guide",
-    "href": "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
-    "count": 3
-  },
-  {
-    "pagePathname": "/blog/anthropic-just-killed-my-200-month-openclaw-setup-so-i-rebuilt-it-for-15",
-    "href": "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
-    "count": 2
-  }
-] as const;
+export const DEFERRED: readonly {pagePathname: string; href: string; count: number}[] = [];
 export const CONFIG = createTrackedAffiliateSiteConfig("rentierdigital.xyz");
 
 export function createRegistry(response: RegistryResponse): TrackedAffiliateRegistry {

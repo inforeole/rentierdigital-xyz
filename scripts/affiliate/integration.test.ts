@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
 import { parse } from "node-html-parser";
-import { createRegistry, loadRegistry, assertSourceAffiliates, CONFIG, DEFERRED, type RegistryResponse } from "./integration";
+import { createRegistry, loadRegistry, assertSourceAffiliates, CONFIG, type RegistryResponse } from "./integration";
 import { transformTrackedAffiliateHtml } from "./vendor/trackedAffiliate";
 import { decodeTrackedDestination } from "./vendor/trackedAffiliateObfuscation";
 const response: RegistryResponse = {version: 1, unverified: [{slug: "unverified", reason: "missing_source"}], verified: [
@@ -27,14 +27,22 @@ test("unverified aliases and incompatible languages stop publication", () => {
   expect(() => assertSourceAffiliates('<html lang="en"><a href="/go/french">Offre</a></html>', response)).toThrow("language mismatch");
 });
 
-test("existing unverified placements are confined to their page and count", async () => {
-  const entry = DEFERRED[0];
-  const html = `<html lang="en"><head></head><body><a href="${entry.href}">Contabo</a></body></html>`;
-  const options = {html, registry: createRegistry(response), config: CONFIG, runtimeSource: "void 0"};
-  const result = await transformTrackedAffiliateHtml({...options, pagePathname: entry.pagePathname});
-  expect(parse(result.html).querySelector("a")?.getAttribute("href")).toBe(entry.href);
-  await expect(transformTrackedAffiliateHtml({...options, pagePathname: "/blog/new-page"})).rejects.toThrow();
-  expect(() => assertSourceAffiliates(html.repeat(entry.count + 1), response, entry.pagePathname)).toThrow("count increased");
+test("approved Contabo placements use the verified transport and preserve attribution", async () => {
+  const data = loadRegistry();
+  const row = data.verified.find(row => row.slug === "contabo-openclaw")!;
+  const html = `<html lang="en"><head></head><body><a class="cta" href="${row.destinations[0]}">Contabo</a></body></html>`;
+  assertSourceAffiliates(html, data);
+  const options = {html, config: CONFIG, runtimeSource: "void 0", pagePathname: "/blog/openclaw-architecture-scaling-guide"};
+  const result = await transformTrackedAffiliateHtml({...options, registry: createRegistry(data)});
+  const button = parse(result.html).querySelector(`[${CONFIG.controlAttribute}]`)!;
+  const target = new URL(decodeTrackedDestination(button.getAttribute(CONFIG.controlAttribute)!, CONFIG)!);
+  expect(target.origin + target.pathname).toBe("https://go.rentierdigital.xyz/nUmYSJS");
+  expect(target.searchParams.get("s1")).toBe("rentierdigital.xyz");
+  expect(target.searchParams.get("s4")).toBe(options.pagePathname);
+  expect(button.getAttribute("href")).toBeUndefined();
+  expect(button.getAttribute("class")).toBe("cta");
+  expect(result.html).not.toContain("100429498");
+  await expect(transformTrackedAffiliateHtml({...options, registry: createRegistry(response)})).rejects.toThrow();
 });
 
 test("the local registry loads without private credentials and rejects unknown aliases", async () => {
