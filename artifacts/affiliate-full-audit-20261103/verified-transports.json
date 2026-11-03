@@ -1,0 +1,42 @@
+[
+  {
+    "domain": "rentierdigital.xyz",
+    "alias": "zernio",
+    "dest": "https://zernio.link/phil",
+    "program": "Zernio",
+    "programId": "nn74n9tyqmggf7fd769mnw9sqn89q8b2",
+    "locale": "en",
+    "merchantProbe": {
+      "url": "https://zernio.link/phil",
+      "final": "https://zernio.com/?via=phil&dub_id=Q27trisfDiAVTZE1",
+      "status": 200,
+      "lang": "en",
+      "title": "Zernio - Marketing Infrastructure for Agents",
+      "at": "2026-11-03T09:44:53.672Z"
+    },
+    "token": "REj9Lpt",
+    "campaignId": 6194,
+    "source": "https://rentierdigital.xyz/",
+    "host": "go.gozrk.com"
+  },
+  {
+    "domain": "rentierdigital.xyz",
+    "alias": "upload-post-legacy",
+    "dest": "https://upload-post.com/?ref=PROMO",
+    "program": "Upload-Post",
+    "programId": "nn7exdg87ncbh0gpcs27905dcn87a0c9",
+    "locale": "en",
+    "merchantProbe": {
+      "url": "https://upload-post.com/?ref=PROMO",
+      "final": "https://www.upload-post.com/?ref=PROMO",
+      "status": 200,
+      "lang": "en",
+      "title": "Social Media API - Post Everywhere Easily | Upload-Post",
+      "at": "2026-11-03T09:44:54.093Z"
+    },
+    "token": "RFczjD4",
+    "campaignId": 6195,
+    "source": "https://rentierdigital.xyz/",
+    "host": "go.gozrk.com"
+  }
+]

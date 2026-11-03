@@ -241,7 +241,7 @@
     },
     {
       "lang": "FR",
-      "name": "Ideas.xyz (id\u00e9es)",
+      "name": "Ideas.xyz (idées)",
       "slug": "ideas-xyz-idees",
       "url_redirection": "https://go.rentierdigital.xyz/qUi2biX",
       "token": "qUi2biX",
@@ -252,7 +252,7 @@
     },
     {
       "lang": "FR",
-      "name": "Ideas.xyz (strat\u00e9gies)",
+      "name": "Ideas.xyz (stratégies)",
       "slug": "ideas-xyz-strategies",
       "url_redirection": "https://go.rentierdigital.xyz/FDBekQg",
       "token": "FDBekQg",
@@ -714,7 +714,7 @@
     },
     {
       "lang": "FR",
-      "name": "fiverr (acc\u00e9l\u00e9rer wp)",
+      "name": "fiverr (accélérer wp)",
       "slug": "fiverr-accelerer-wp",
       "url_redirection": "https://go.rentierdigital.xyz/jc3Sg63",
       "token": "jc3Sg63",
@@ -1030,6 +1030,28 @@
       "destinations": [
         "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
         "https://www.kqzyfj.com/links/100562241/type/dlg/https://contabo.com/en-us/openclaw-hosting/"
+      ]
+    },
+    {
+      "lang": "EN",
+      "name": "Zernio",
+      "slug": "zernio",
+      "url_redirection": "https://go.gozrk.com/REj9Lpt",
+      "token": "REj9Lpt",
+      "campaignId": 6194,
+      "destinations": [
+        "https://zernio.link/phil"
+      ]
+    },
+    {
+      "lang": "EN",
+      "name": "Upload-Post",
+      "slug": "upload-post-legacy",
+      "url_redirection": "https://go.gozrk.com/RFczjD4",
+      "token": "RFczjD4",
+      "campaignId": 6195,
+      "destinations": [
+        "https://upload-post.com/?ref=PROMO"
       ]
     }
   ],
