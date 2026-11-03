@@ -1,0 +1,1 @@
+{"extends":"./tsconfig.json","compilerOptions":{"types":["bun","node"],"noEmit":true},"include":["scripts/affiliate/**/*.ts","astro.config.ts"],"exclude":["node_modules","dist"]}

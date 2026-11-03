@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-03T06:34:49.272Z",
+  "reason": "Publisher 100429498 not matched to registered Contabo campaigns using 100562241; preserve pending review under existing deferral decision",
+  "results": [
+    {
+      "path": "/blog/i-deployed-my-own-openclaw-ai-agent-in-4-minutes-it-now-runs-my-life-from-a-5-server",
+      "href": "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
+      "count": 5,
+      "status": 200
+    },
+    {
+      "path": "/blog/openclaw-architecture-scaling-guide",
+      "href": "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
+      "count": 3,
+      "status": 200
+    },
+    {
+      "path": "/blog/anthropic-just-killed-my-200-month-openclaw-setup-so-i-rebuilt-it-for-15",
+      "href": "https://www.dpbolvw.net/click-100429498-12438672?url=https%3A%2F%2Fcontabo.com%2Fen%2Fopenclaw-hosting%2F",
+      "count": 2,
+      "status": 200
+    }
+  ]
+}

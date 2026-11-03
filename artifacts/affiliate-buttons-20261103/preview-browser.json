@@ -1,0 +1,211 @@
+{
+  "at": "2026-11-03T06:41:19.208Z",
+  "live": false,
+  "pages": 18,
+  "results": [
+    {
+      "path": "/blog/cold-email-automation-system-ai-verification",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "ha9rvhe"
+      ]
+    },
+    {
+      "path": "/blog/google-local-services-ads-missed-call-ai-solution",
+      "controls": 1,
+      "activations": 3,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "yrGExwq"
+      ]
+    },
+    {
+      "path": "/blog/self-hosting-n8n-why-your-wallet-and-data-will-thank-you",
+      "controls": 9,
+      "activations": 19,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "8xw97GA",
+        "mGVsxvA"
+      ]
+    },
+    {
+      "path": "/blog/self-hosted-mesh-vpn-netbird-tailscale",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": true,
+      "tokens": [
+        "mGVsxvA",
+        "8xw97GA"
+      ]
+    },
+    {
+      "path": "/blog/claude-seo-hallucinations-fix-real-data",
+      "controls": 5,
+      "activations": 11,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "QHjZwgq"
+      ]
+    },
+    {
+      "path": "/blog/ai-moat-claude-code-self-healing-stack",
+      "controls": 1,
+      "activations": 3,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "8xw97GA"
+      ]
+    },
+    {
+      "path": "/blog/8-signs-your-ai-app-is-a-demo-not-a-product",
+      "controls": 1,
+      "activations": 3,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "8xw97GA"
+      ]
+    },
+    {
+      "path": "/blog/claude-ai-doxxing-privacy-cleanup-guide",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "WKBupYp"
+      ]
+    },
+    {
+      "path": "/blog/claude-code-side-businesses",
+      "controls": 1,
+      "activations": 3,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "w6tHpt8"
+      ]
+    },
+    {
+      "path": "/blog/elevenlabs-studio-audiobook-creation-guide",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "StY5urQ"
+      ]
+    },
+    {
+      "path": "/blog/reflare-ai-thumbnail-testing-youtube",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "pmdz9WC"
+      ]
+    },
+    {
+      "path": "/blog/easywebinar-review",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "eBiJxXs"
+      ]
+    },
+    {
+      "path": "/blog/internetbs-alternative",
+      "controls": 3,
+      "activations": 7,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "v9Gugdr"
+      ]
+    },
+    {
+      "path": "/blog/ai-uncensored-monetization-digital-rentier-2026",
+      "controls": 4,
+      "activations": 9,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "Bjrt2Nq",
+        "Qr5Ntss"
+      ]
+    },
+    {
+      "path": "/blog/best-korean-proxy-for-builders",
+      "controls": 1,
+      "activations": 3,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": true,
+      "tokens": [
+        "Jkm4HNA"
+      ]
+    },
+    {
+      "path": "/blog/local-seo-content-strategy-corpus",
+      "controls": 3,
+      "activations": 7,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "Fig2V5G"
+      ]
+    },
+    {
+      "path": "/blog/hermes-agent-self-hosted-ai-setup",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "6phahed",
+        "mGVsxvA"
+      ]
+    },
+    {
+      "path": "/blog/mullvad-wireguard-correlation-self-hosted-vpn",
+      "controls": 2,
+      "activations": 5,
+      "hidden": 0,
+      "stickyVerified": false,
+      "mobileOverflow": false,
+      "tokens": [
+        "Jkm4HNA"
+      ]
+    }
+  ],
+  "failures": [],
+  "merchantRequests": 0
+}

@@ -1,6 +1,6 @@
-// @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
+import { rentierTrackedAffiliateIntegration } from "./scripts/affiliate/integration";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
@@ -14,6 +14,7 @@ export default defineConfig({
     inlineStylesheets: "auto",
   },
   integrations: [
+    rentierTrackedAffiliateIntegration(),
     sitemap({
       filter: (page) =>
         !page.includes("/test-avif") &&
