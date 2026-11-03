@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-03T08:57:22.048Z",
+  "checks": [
+    {
+      "domain": "rentierdigital.xyz",
+      "path": "/blog/i-deployed-my-own-openclaw-ai-agent-in-4-minutes-it-now-runs-my-life-from-a-5-server",
+      "status": 200,
+      "buttons": 5,
+      "encoded": true,
+      "noHrefRelTarget": true,
+      "dateModified": null
+    },
+    {
+      "domain": "rentierdigital.xyz",
+      "path": "/blog/openclaw-architecture-scaling-guide",
+      "status": 200,
+      "buttons": 3,
+      "encoded": true,
+      "noHrefRelTarget": true,
+      "dateModified": null
+    },
+    {
+      "domain": "rentierdigital.xyz",
+      "path": "/blog/anthropic-just-killed-my-200-month-openclaw-setup-so-i-rebuilt-it-for-15",
+      "status": 200,
+      "buttons": 2,
+      "encoded": true,
+      "noHrefRelTarget": true,
+      "dateModified": null
+    }
+  ]
+}

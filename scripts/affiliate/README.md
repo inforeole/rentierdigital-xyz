@@ -26,3 +26,8 @@ L’ancienne URL avec publisher `100429498` reste uniquement comme clé interne 
 Les trois exceptions Contabo sont retirées de `DEFERRED`, dont le mécanisme de contrôle reste intact.
 Le build produit 55 boutons sur 21 pages, sans nouvelle variable Vercel ni API privée pour le registre affilié.
 Les tests de transformation passent ; la validation Trackr avant déploiement et la vérification publique sont conservées dans les artefacts de livraison.
+
+Le 3 novembre 2026, le déploiement Vercel `rentierdigital-i8hcvv5oy-inforeoles-projects.vercel.app` a été aliasé sur le domaine public.
+Le contrôle HTTP vérifie les dix boutons des trois pages ; le navigateur public vérifie les trois boutons du guide avec douze activations souris, clavier et mobile.
+Les preuves sont dans `artifacts/affiliate-replacements-20261103/` ; le clic QA `5b31b829677675e97f76b8c723c6b9c6` a une attribution collectée et doit être exclu des statistiques commerciales.
+Le débordement mobile préexistant de 72 px reste hors scope ; les boutons restent dans l’écran.
