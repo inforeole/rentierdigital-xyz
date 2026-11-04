@@ -30,6 +30,11 @@ Le hook `.githooks/pre-push` lance le typecheck et `bun test`, sans le build.
 Chaque clone l'active avec `git config core.hooksPath .githooks`.
 Le contournement ponctuel est `git push --no-verify`.
 
+## Variables Convex du build
+
+Le build lit les billets dans Convex, donc la CI reçoit `CONVEX_SITE_URL` et `PUBLIC_CONVEX_ACTIONS_URL` en secrets Actions.
+Ces deux valeurs sont des copies des variables Vercel production, posées par `vercel env pull` sans affichage.
+
 ## Dette connue
 
 Le dépôt n'a pas d'ESLint, donc la CI ne lint rien.
