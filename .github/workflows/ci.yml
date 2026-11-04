@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Check types, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: rentierdigital-xyz
+    steps:
+      - name: Check out rentierdigital-xyz
+        uses: actions/checkout@v7
+        with:
+          path: rentierdigital-xyz
+          persist-credentials: false
+
+      - name: Check out trackr
+        uses: actions/checkout@v7
+        with:
+          repository: inforeole/trackr
+          ref: main
+          path: trackr
+          ssh-key: ${{ secrets.TRACKR_DEPLOY_KEY }}
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check TypeScript
+        run: bun run typecheck
+
+      - name: Run tests
+        run: bun test
+
+      - name: Build
+        # Le site lit ses billets dans Convex au build ; les deux URL viennent des variables Vercel production.
+        env:
+          CONVEX_SITE_URL: ${{ vars.CONVEX_SITE_URL }}
+          PUBLIC_CONVEX_ACTIONS_URL: ${{ vars.PUBLIC_CONVEX_ACTIONS_URL }}
+        run: bun run build

@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "bun scripts/convert-avif.mjs && astro build && bunx pagefind --site dist",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "typecheck": "tsc --noEmit -p tsconfig.affiliate.json"
   },
   "dependencies": {
     "@astrojs/rss": "4.0.18",
@@ -24,6 +25,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "tailwindcss": "^4.2.1",
+    "trackr-attribution": "file:../trackr/attribution",
     "unified": "^11.0.5"
   },
   "devDependencies": {

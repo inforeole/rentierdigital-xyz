@@ -1,13 +1,18 @@
 import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { createRequire } from "node:module";
 import { promisify } from "node:util";
 import type { TrackedAffiliateSiteConfig } from "./trackedAffiliateObfuscation";
+
+export function trackrAttributionModulePath(): string {
+  return createRequire(import.meta.url).resolve("trackr-attribution/browser");
+}
 
 function generatedRuntimeSource(config: TrackedAffiliateSiteConfig): string {
   const id = config.identifiers;
   const helper = (name: string): string => `${id.selector}${name}`;
-  const attributionModule = new URL("./vendor/trackr/browser/attribution.ts", import.meta.url).pathname;
+  const attributionModule = trackrAttributionModulePath();
   return `import { initTrackrAttribution as ${id.attribution}Init } from ${JSON.stringify(attributionModule)};
 const ${id.selector}=${JSON.stringify(`[${config.controlAttribute}]`)};
 const ${helper("inner")}="a[href],button,input,select,textarea,summary,[contenteditable='true'],[role='button'],[role='link']";
