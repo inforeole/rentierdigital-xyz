@@ -41,3 +41,8 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Dépendance trackr et CI
+
+Le build consomme `trackr-attribution` depuis le dépôt voisin `../trackr`.
+La CI, l'installation Vercel et le hook pre-push (`git config core.hooksPath .githooks`) sont décrits dans `docs/github-ci.md`.

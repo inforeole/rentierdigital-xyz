@@ -1,7 +1,9 @@
 # Le build conserve les destinations privées et rend les boutons encodés
 
 Le générateur de variante, le runtime et les contrôles proviennent du projet PBN, commit 7bf7fdd58.
-La copie locale permet un build autonome sans dépendre d’un chemin du Mac ni d’un autre dépôt au runtime.
+La copie locale du générateur permet un build autonome sans dépendre d’un chemin du Mac.
+Le code d’attribution n’est plus copié : le runtime importe `trackr-attribution/browser`, installé depuis `../trackr/attribution`.
+Le build exige donc `../trackr` ; voir `docs/github-ci.md` pour la CI et l’installation Vercel.
 Les deux adaptations du consommateur conservent les URL canoniques sans slash final et transportent l’origine Trackr vérifiée de chaque offre, car le registre utilise deux domaines.
 Les identifiants publics sont produits par le générateur commun stable pour rentierdigital.xyz.
 Les fichiers JavaScript du runtime sont des sorties compilées du générateur TypeScript.

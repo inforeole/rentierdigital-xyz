@@ -1,4 +1,5 @@
 {
+  "installCommand": "bash scripts/vercel-install.sh",
   "buildCommand": "bun --bun run build",
   "trailingSlash": false,
   "git": {
