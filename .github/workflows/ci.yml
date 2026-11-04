@@ -54,6 +54,6 @@ jobs:
       - name: Build
         # Le site lit ses billets dans Convex au build ; les deux URL viennent des variables Vercel production.
         env:
-          CONVEX_SITE_URL: ${{ secrets.CONVEX_SITE_URL }}
-          PUBLIC_CONVEX_ACTIONS_URL: ${{ secrets.PUBLIC_CONVEX_ACTIONS_URL }}
+          CONVEX_SITE_URL: ${{ vars.CONVEX_SITE_URL }}
+          PUBLIC_CONVEX_ACTIONS_URL: ${{ vars.PUBLIC_CONVEX_ACTIONS_URL }}
         run: bun run build

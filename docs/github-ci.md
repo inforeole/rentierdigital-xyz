@@ -32,8 +32,8 @@ Le contournement ponctuel est `git push --no-verify`.
 
 ## Variables Convex du build
 
-Le build lit les billets dans Convex, donc la CI reçoit `CONVEX_SITE_URL` et `PUBLIC_CONVEX_ACTIONS_URL` en secrets Actions.
-Ces deux valeurs sont des copies des variables Vercel production, posées par `vercel env pull` sans affichage.
+Le build lit les billets dans Convex, donc la CI reçoit `CONVEX_SITE_URL` et `PUBLIC_CONVEX_ACTIONS_URL` en variables Actions, car ce sont des URL publiques.
+`~/tmp/rentierdigital-xyz-ci-convex-env.sh` les pose depuis les `.env.local` de rentierdigital-xyz et de rentierdigital, sans affichage.
 
 ## Dette connue
 
