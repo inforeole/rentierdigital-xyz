@@ -1,12 +1,12 @@
 import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
 import { promisify } from "node:util";
 import type { TrackedAffiliateSiteConfig } from "./trackedAffiliateObfuscation";
 
 export function trackrAttributionModulePath(): string {
-  return fileURLToPath(import.meta.resolve("trackr-attribution/browser"));
+  return createRequire(import.meta.url).resolve("trackr-attribution/browser");
 }
 
 function generatedRuntimeSource(config: TrackedAffiliateSiteConfig): string {
