@@ -51,6 +51,13 @@ jobs:
       - name: Run tests
         run: bun test
 
+      - name: Cache AVIF conversion
+        uses: actions/cache@v6
+        with:
+          path: rentierdigital-xyz/node_modules/.cache/rentierdigital-avif
+          key: avif-${{ runner.os }}-${{ hashFiles('rentierdigital-xyz/public/blog-images/**', 'rentierdigital-xyz/scripts/avif-cache.mjs', 'rentierdigital-xyz/scripts/convert-avif.mjs', 'rentierdigital-xyz/bun.lock') }}
+          restore-keys: avif-${{ runner.os }}-
+
       - name: Build
         # Le site lit ses billets dans Convex au build ; les deux URL viennent des variables Vercel production.
         env:
