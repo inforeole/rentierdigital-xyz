@@ -3,11 +3,11 @@
   "verified": [
     {
       "lang": "EN",
-      "name": "Monid",
-      "slug": "monid",
-      "url_redirection": "https://go.gozrk.com/EaAefbY",
-      "token": "EaAefbY",
-      "campaignId": 6302,
+      "name": "Monid (blog)",
+      "slug": "monid-blog",
+      "url_redirection": "https://go.rentierdigital.xyz/kLis8ZD",
+      "token": "kLis8ZD",
+      "campaignId": 6342,
       "destinations": [
         "https://monid.ai/openrouter-for-agent-tools?fpr=email-media"
       ]
