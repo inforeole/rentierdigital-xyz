@@ -3,6 +3,17 @@
   "verified": [
     {
       "lang": "EN",
+      "name": "Monid",
+      "slug": "monid",
+      "url_redirection": "https://go.gozrk.com/EaAefbY",
+      "token": "EaAefbY",
+      "campaignId": 6302,
+      "destinations": [
+        "https://monid.ai/openrouter-for-agent-tools?fpr=email-media"
+      ]
+    },
+    {
+      "lang": "EN",
       "name": "dynadot-referral",
       "slug": "dynadot-referral",
       "url_redirection": "https://go.rentierdigital.xyz/v9Gugdr",
