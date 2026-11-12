@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "bun scripts/convert-avif.mjs && astro build && bunx pagefind --site dist",
+    "build": "bun scripts/convert-avif.mjs && astro build && bun scripts/imgcore-fix.ts && bunx pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "tsc --noEmit -p tsconfig.affiliate.json"
@@ -16,6 +16,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "7.2.4",
+    "imgcore": "file:../imgcore",
     "node-html-parser": "7.1.0",
     "rehype-raw": "7.0.0",
     "rehype-shift-heading": "^2.0.0",

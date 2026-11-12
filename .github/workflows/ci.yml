@@ -37,6 +37,15 @@ jobs:
           ssh-key: ${{ secrets.TRACKR_DEPLOY_KEY }}
           persist-credentials: false
 
+      - name: Check out imgcore
+        uses: actions/checkout@v7
+        with:
+          repository: inforeole/imgcore
+          ref: main
+          path: imgcore
+          ssh-key: ${{ secrets.IMGCORE_DEPLOY_KEY }}
+          persist-credentials: false
+
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
