@@ -20,6 +20,11 @@
       "permanent": true
     },
     {
+      "source": "/blog-images/:base([^/]+)\\.png",
+      "destination": "/blog-images/:base-fb.jpg",
+      "permanent": true
+    },
+    {
       "source": "/blog/ai-distillation-hidden-behaviors-detection",
       "destination": "/blog/ai-model-distillation-hidden-behaviors",
       "statusCode": 301

@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "bun scripts/convert-avif.mjs && astro build && bun scripts/imgcore-fix.ts && bunx pagefind --site dist",
+    "build": "bun scripts/convert-avif.mjs && astro build && bun scripts/blog-image-fallbacks.ts && bun scripts/imgcore-fix.ts && bunx pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "tsc --noEmit -p tsconfig.affiliate.json"

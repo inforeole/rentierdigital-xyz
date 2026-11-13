@@ -1,1 +1,1 @@
-{"extends":"./tsconfig.json","compilerOptions":{"types":["bun","node"],"noEmit":true},"include":["scripts/affiliate/**/*.ts","scripts/imgcore-fix.ts","tests/imgcore-fix.test.ts","astro.config.ts"],"exclude":["node_modules","dist"]}
+{"extends":"./tsconfig.json","compilerOptions":{"types":["bun","node"],"noEmit":true},"include":["scripts/affiliate/**/*.ts","scripts/imgcore-fix.ts","scripts/blog-image-fallbacks.ts","tests/blog-image-fallbacks.test.ts","tests/imgcore-fix.test.ts","astro.config.ts"],"exclude":["node_modules","dist"]}

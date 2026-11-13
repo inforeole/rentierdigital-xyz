@@ -53,3 +53,12 @@ Le build lit les billets dans Convex, donc la CI reçoit `CONVEX_SITE_URL` et `P
 
 Le dépôt n'a pas d'ESLint, donc la CI ne lint rien.
 Ajouter un lint est un lot à part.
+
+## Replis JPEG des images de blog
+
+`scripts/blog-image-fallbacks.ts` s'exécute entre `astro build` et `imgcore-fix.ts`.
+Il convertit chaque `dist/blog-images/<base>.png` en `<base>-fb.jpg` (1200 px au plus, mozjpeg qualité 80, fond blanc), réécrit les références du dist (img, og:image, JSON-LD, sitemap) et supprime les PNG du dist.
+Les PNG sources de `public/blog-images` restent inchangés, car le pipeline de publication en dépend.
+Le cache des JPEG vit dans `node_modules/.cache/blog-image-fallbacks/v1`.
+Une redirection permanente de `vercel.json` envoie les anciennes URL `/blog-images/<base>.png` vers `<base>-fb.jpg`.
+Mesure du 2026-11-13 : `dist` passe de 601 Mo à 204 Mo, et les 670 PNG passent de 684 Mo à 69 Mo.
