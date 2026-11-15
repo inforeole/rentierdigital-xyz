@@ -1,4 +1,5 @@
 ---
+import { mediumImportImages } from "../lib/medium-import-images";
 /**
  * Minimal HTML layout served when an article is in `prepa_medium` status.
  *
@@ -85,7 +86,7 @@ const renderedHtml = coverImageUrl
     <article>
       <h1>{title}</h1>
       {subtitle && <p>{subtitle}</p>}
-      <div set:html={renderedHtml} />
+      <div set:html={mediumImportImages(renderedHtml, canonical)} />
     </article>
   </body>
 </html>
