@@ -57,3 +57,16 @@
   font-size: 0.9em;
   font-weight: 400;
 }
+
+@media (max-width: 600px) {
+  :is(article, .prose) table:not([hidden]) {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  :is(article, .prose) table :is(th, td) { padding-inline: max(.55rem, 8px); }
+  .prose :is(p, li, td) { overflow-wrap: anywhere; }
+}
