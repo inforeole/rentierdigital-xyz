@@ -45,9 +45,48 @@ export function runImgcoreFix(options: ImgcoreFixOptions): string {
   return run.stdout.trim();
 }
 
+// Baseline versionnée de l'audit : elle fige les erreurs connues, seule une nouvelle erreur bloque le build.
+// Absente, l'audit échoue (code 2) au lieu de passer : sur Vercel, une baseline écrite au build serait perdue.
+export const IMGCORE_BASELINE_PATH = join(ROOT, "imgcore-baseline.json");
+
+// WHY 60 s : l'audit lit le HTML et les en-têtes des images, en moins d'une seconde sur les 326 pages du site.
+export const IMGCORE_AUDIT_TIMEOUT_MS = 60_000;
+
+export interface ImgcoreAuditOptions {
+  distDir: string;
+  baselinePath?: string;
+  cli?: string;
+  timeoutMs?: number;
+}
+
+/**
+ * Lance `imgcore audit` après `fix all` : une erreur absente de la baseline (code 1), une baseline absente
+ * ou un échec du CLI lève avec les lignes `nouvelle erreur`, et le build échoue.
+ */
+export function runImgcoreAudit(options: ImgcoreAuditOptions): string {
+  const cli = options.cli ?? resolveImgcoreCli();
+  const args = [cli, "audit", options.distDir, "--baseline", options.baselinePath ?? IMGCORE_BASELINE_PATH];
+  const run = spawnSync("bun", args, {
+    encoding: "utf8",
+    timeout: options.timeoutMs ?? IMGCORE_AUDIT_TIMEOUT_MS,
+    killSignal: "SIGKILL",
+    maxBuffer: 16 * 1024 * 1024,
+  });
+  if (run.error) throw new Error(`imgcore audit a échoué : ${run.error.message}`);
+  const lines = run.stdout.trim().split("\n");
+  if (run.status !== 0) {
+    const fresh = lines.filter((line) => line.startsWith("nouvelle erreur") || line.startsWith("... "));
+    const detail = (fresh.length > 0 ? fresh : (run.stderr || run.stdout).trim().split("\n").slice(-5)).join("\n");
+    throw new Error(`imgcore audit a échoué (code ${String(run.status)})${detail ? `\n${detail}` : ""}`);
+  }
+  return lines.at(-1) ?? "";
+}
+
 if (import.meta.main) {
   try {
-    console.log(runImgcoreFix({ distDir: join(ROOT, "dist") }));
+    const distDir = join(ROOT, "dist");
+    console.log(runImgcoreFix({ distDir }));
+    console.log(`imgcore audit : ${runImgcoreAudit({ distDir })}`);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exit(1);
