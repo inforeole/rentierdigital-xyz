@@ -50,7 +50,7 @@ describe("scripts/imgcore-fix", () => {
   });
 });
 
-describe("scripts/imgcore-fix : audit bloquant", () => {
+describe("scripts/imgcore-fix : audit non bloquant", () => {
   async function distWithRemoteImage(): Promise<{ root: string; dist: string; baselinePath: string }> {
     const root = await mkdtemp(join(tmpdir(), "rd-imgcore-audit-"));
     directories.push(root);
@@ -63,10 +63,12 @@ describe("scripts/imgcore-fix : audit bloquant", () => {
     return { root, dist, baselinePath: join(root, "imgcore-baseline.json") };
   }
 
-  test("une erreur absente de la baseline fait échouer et nomme l'image", async () => {
+  test("une erreur absente de la baseline laisse passer et nomme l'image dans le rapport", async () => {
     const { dist, baselinePath } = await distWithRemoteImage();
     await writeFile(baselinePath, JSON.stringify({ version: 1, fingerprints: [] }));
-    expect(() => runImgcoreAudit({ distDir: dist, baselinePath })).toThrow(/nouvelle erreur : img-dimensions {2}index\.html {2}https:\/\/example\.test\/x\.jpg/);
+    const report = runImgcoreAudit({ distDir: dist, baselinePath });
+    expect(report).toContain("non bloquant, 1 erreur(s) hors baseline");
+    expect(report).toMatch(/nouvelle erreur : img-dimensions {2}index\.html {2}https:\/\/example\.test\/x\.jpg/);
   });
 
   test("une erreur figée dans la baseline passe", async () => {
@@ -75,9 +77,9 @@ describe("scripts/imgcore-fix : audit bloquant", () => {
     expect(runImgcoreAudit({ distDir: dist, baselinePath })).toContain("0 erreur(s) hors baseline");
   });
 
-  test("une baseline absente fait échouer au lieu de passer en silence", async () => {
+  test("une baseline absente est signalée sans faire échouer", async () => {
     const { dist, baselinePath } = await distWithRemoteImage();
-    expect(() => runImgcoreAudit({ distDir: dist, baselinePath })).toThrow(/imgcore audit a échoué \(code 2\)/);
+    expect(runImgcoreAudit({ distDir: dist, baselinePath })).toMatch(/^non bloquant, audit en échec \(code 2\)/);
   });
 });
 
