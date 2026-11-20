@@ -3,6 +3,17 @@
   "verified": [
     {
       "lang": "EN",
+      "name": "Refuseless - bypass AI prompt restrictions",
+      "slug": "refuseless-prompt-restrictions",
+      "url_redirection": "https://go.rentierdigital.xyz/6jzVuxz",
+      "token": "6jzVuxz",
+      "campaignId": 7013,
+      "destinations": [
+        "https://refuseless.com/?ref=pqyouzn3"
+      ]
+    },
+    {
+      "lang": "EN",
       "name": "Monid",
       "slug": "monid-blog",
       "url_redirection": "https://go.rentierdigital.xyz/kLis8ZD",
@@ -1080,6 +1091,6 @@
       "reason": "campaign_inactive_ambiguous_or_wrong_source"
     }
   ],
-  "verifiedAt": "2026-11-03T07:15:35Z",
-  "verificationSource": "Authenticated owner registry and active Trackr campaigns, verified during migration"
+  "verifiedAt": "2026-11-20T18:47:22Z",
+  "verificationSource": "Authenticated owner registry and active Trackr campaigns, refreshed for Refuseless on 2026-11-20"
 }
