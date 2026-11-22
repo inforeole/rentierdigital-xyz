@@ -19,7 +19,8 @@ export default defineConfig({
       filter: (page) =>
         !page.includes("/test-avif") &&
         !page.includes("/wizard-links") &&
-        !page.includes("/go/"),
+        !page.includes("/go/") &&
+        !page.includes("/medium-import/"),
     }),
   ],
   vite: {
