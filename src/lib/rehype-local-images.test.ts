@@ -1,4 +1,6 @@
-import { describe, expect, test } from "bun:test";
+import { afterEach, describe, expect, test } from "bun:test";
+import { rmSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 import type { Element, Root } from "hast";
 import { toLocalImagePath } from "./image-utils";
 import { rehypeLocalImages } from "./rehype-local-images";
@@ -60,8 +62,18 @@ describe("rehypeLocalImages", () => {
     expect(renderedPng.properties.src).toBe(png);
   });
 
+  const fixtureBase = "rehype-local-images-fixture-no-avif";
+  const fixtureFiles = [".png", ".avif", "-480w.avif"].map((suffix) =>
+    resolve(process.cwd(), "public/blog-images", `${fixtureBase}${suffix}`),
+  );
+
+  afterEach(() => {
+    for (const file of fixtureFiles) rmSync(file, { force: true });
+  });
+
   test("keeps an available local original without AVIF as an image", () => {
-    const filename = "a-diagram-showing-a-single-secret-e-g-stripe-secret-key-10bf21e9.png";
+    const filename = `${fixtureBase}.png`;
+    writeFileSync(fixtureFiles[0], "");
     const rendered = renderImage(`https://rentierdigital.xyz/blog-images/${filename}`);
 
     expect(rendered.tagName).toBe("img");
