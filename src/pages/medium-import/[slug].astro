@@ -1,0 +1,49 @@
+---
+import MediumImportLayout from "../../layouts/MediumImportLayout.astro";
+import { getBlogBySlug, getBlogList } from "../../lib/convex";
+import { buildArticleCacheKey } from "../../lib/incremental-build";
+import { toLocalImagePath } from "../../lib/image-utils";
+import { renderMarkdown } from "../../lib/markdown";
+
+export async function getStaticPaths() {
+  const articles = await getBlogList();
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { revision: article.updated_at ?? article._creationTime },
+    cacheKey: buildArticleCacheKey(article, []),
+  }));
+}
+
+const { slug } = Astro.params;
+const { revision } = Astro.props;
+const content = await getBlogBySlug(slug!, undefined, revision);
+
+if (!content) {
+  return Astro.redirect("/404");
+}
+
+const markdownWithoutH1 = content.content_markdown
+  .replace(/^#\s+.+\n*/m, "")
+  .replace(/^# /gm, "## ")
+  .replace(/^\[cover image\]\s*$/gim, "")
+  .replace(/\[COVER[:\s][^\]]*\]\s*/gi, "");
+const htmlContent = await renderMarkdown(markdownWithoutH1);
+const description = (
+  content.seo_meta_description ??
+  content.hook_first_lines ??
+  content.content_markdown.slice(0, 155).replace(/\n/g, " ")
+).trim();
+const canonical = `https://rentierdigital.xyz/blog/${content.slug}`;
+---
+
+<MediumImportLayout
+  title={content.title}
+  subtitle={content.subtitle}
+  description={description}
+  canonical={canonical}
+  htmlContent={htmlContent}
+  coverImageUrl={content.cover_image_url ? toLocalImagePath(content.cover_image_url, content.slug) : undefined}
+  coverImageAlt={content.cover_image_alt}
+  publishedDate={content.published_date}
+  lang="en"
+/>
